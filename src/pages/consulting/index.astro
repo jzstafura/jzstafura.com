@@ -462,9 +462,10 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
     justify-content: center;
   }
 
-  @media (max-width: 860px) {
-    .cards, .results-grid { grid-template-columns: 1fr; }
-    .method { grid-template-columns: 1fr; gap: 2.5rem; }
-    .cred-band { margin: 0 -1.5rem; }
-  }
+@media (max-width: 640px) {
+  .bio { grid-template-columns: 1fr; gap: 2rem; }
+  .entry { grid-template-columns: 1fr; gap: 0.25rem; }
+  .entry-meta { padding-top: 0; }
+  .skills-grid { grid-template-columns: 1fr; }
+}
 </style>
