@@ -1,0 +1,85 @@
+---
+interface Props {
+  title: string;
+  description?: string;
+}
+const { title, description = "JZ Stafura — Cognitive Psychologist, Data Scientist, Consultant" } = Astro.props;
+---
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content={description} />
+    <title>{title}</title>
+    <link rel="stylesheet" href="/styles/global.css" />
+  </head>
+  <body>
+    <header>
+      <nav>
+        <a href="/" class="site-name">JZ Stafura</a>
+        <ul>
+          <li><a href="/lab">Lab</a></li>
+          <li><a href="/consulting">Consulting</a></li>
+          <li><a href="/writing">Writing</a></li>
+          <li><a href="/fun">Fun</a></li>
+          <li><a href="/about">About</a></li>
+        </ul>
+      </nav>
+    </header>
+    <main>
+      <slot />
+    </main>
+    <footer>
+      <p>© {new Date().getFullYear()} JZ Stafura</p>
+    </footer>
+  </body>
+</html>
+
+<style>
+  header {
+    border-bottom: 1px solid var(--color-border);
+    padding: 1rem 1.5rem;
+  }
+
+  nav {
+    max-width: var(--max-width);
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .site-name {
+    font-size: 1.1rem;
+    font-weight: bold;
+    color: var(--color-text);
+    text-decoration: none;
+  }
+
+  ul {
+    list-style: none;
+    display: flex;
+    gap: 1.5rem;
+  }
+
+  ul a {
+    color: var(--color-muted);
+    font-size: 0.95rem;
+  }
+
+  ul a:hover {
+    color: var(--color-accent);
+    text-decoration: none;
+  }
+
+  footer {
+    border-top: 1px solid var(--color-border);
+    text-align: center;
+    padding: 2rem;
+    color: var(--color-muted);
+    font-size: 0.85rem;
+    margin-top: 4rem;
+  }
+</style>

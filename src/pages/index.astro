@@ -1,17 +1,51 @@
 ---
-
+import BaseLayout from '../layouts/BaseLayout.astro';
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
-</html>
+<BaseLayout title="JZ Stafura">
+  <section class="hero">
+    <h1>JZ Stafura</h1>
+    <p class="tagline">Cognitive psychologist. Data scientist. Consultant.</p>
+  </section>
+
+  <section class="links">
+    <a href="https://www.linkedin.com/in/jzstafura" target="_blank" rel="noopener">LinkedIn</a>
+    <a href="https://scholar.google.com/citations?user=F6LcYIoAAAAJ&hl=en" target="_blank" rel="noopener">Google Scholar</a>
+    <a href="https://github.com/jzstafura" target="_blank" rel="noopener">GitHub</a>
+  </section>
+</BaseLayout>
+
+<style>
+  .hero {
+    padding: 4rem 0 2rem;
+  }
+
+  h1 {
+    font-size: 2.5rem;
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+  }
+
+  .tagline {
+    color: var(--color-muted);
+    font-size: 1.15rem;
+  }
+
+  .links {
+    display: flex;
+    gap: 1.5rem;
+    margin-top: 2rem;
+  }
+
+  .links a {
+    font-size: 0.95rem;
+    color: var(--color-muted);
+    border-bottom: 1px solid var(--color-border);
+    padding-bottom: 2px;
+  }
+
+  .links a:hover {
+    color: var(--color-accent);
+    text-decoration: none;
+  }
+</style>

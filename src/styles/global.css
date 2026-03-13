@@ -1,0 +1,39 @@
+:root {
+  --color-bg: #fafafa;
+  --color-text: #1a1a1a;
+  --color-muted: #666;
+  --color-accent: #2563eb;
+  --color-border: #e5e5e5;
+  --font-sans: 'Georgia', serif;
+  --font-mono: 'Courier New', monospace;
+  --max-width: 860px;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background: var(--color-bg);
+  color: var(--color-text);
+  font-family: var(--font-sans);
+  font-size: 1.05rem;
+  line-height: 1.7;
+}
+
+a {
+  color: var(--color-accent);
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+main {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 2rem 1.5rem;
+}
