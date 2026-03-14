@@ -9,22 +9,22 @@ const sections = [
     body: 'D3 visualizations, AI hallucination research, grant processing tools, and evidence synthesis dashboards.',
   },
   {
-    slug: '/consulting/',
-    label: 'Consulting',
-    heading: 'Organizational Diagnostics',
-    body: 'Validated psychological measurement applied to real problems. Not surveys for the sake of surveys — signal that informs decisions.',
-  },
-  {
     slug: '/writing/',
     label: 'Writing',
     heading: 'Essays & Articles',
-    body: 'On cognition, AI, organizations, policy, and whatever I can\'t stop thinking about. Here, on LinkedIn, and on Substack.',
+    body: "On cognition, AI, organizations, policy, and whatever I can't stop thinking about. Here, on LinkedIn, and on Substack.",
+  },
+  {
+    slug: '/consulting/',
+    label: 'Consulting',
+    heading: 'Organizational Diagnostics',
+    body: 'Validated psychological measurement applied to real problems. Not surveys for the sake of surveys. Signal that informs decisions.',
   },
   {
     slug: '/about/',
     label: 'About',
     heading: 'Background',
-    body: 'PhD in cognitive psychology. Researcher, founder, research administrator, and consultant — in roughly that order.',
+    body: 'PhD in cognitive psychology. Researcher, founder, research administrator, and consultant in roughly that order.',
   },
 ];
 ---
@@ -46,7 +46,7 @@ const sections = [
         <span class="section-label">{s.label}</span>
         <h2>{s.heading}</h2>
         <p>{s.body}</p>
-        <span class="section-arrow">→</span>
+        <span class="section-arrow">&rarr;</span>
       </a>
     ))}
   </section>

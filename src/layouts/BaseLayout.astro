@@ -36,8 +36,8 @@ const canonicalURL = new URL(Astro.url.pathname, 'https://jzstafura.com').href;
         <a href="/" class="site-name">JZ Stafura</a>
         <ul>
           <li><a href="/lab" class={pathname.startsWith('/lab') ? 'active' : ''}>Lab</a></li>
-          <li><a href="/consulting" class={pathname.startsWith('/consulting') ? 'active' : ''}>Consulting</a></li>
           <li><a href="/writing" class={pathname.startsWith('/writing') ? 'active' : ''}>Writing</a></li>
+          <li><a href="/consulting" class={pathname.startsWith('/consulting') ? 'active' : ''}>Consulting</a></li>
           <li><a href="/fun" class={pathname.startsWith('/fun') ? 'active' : ''}>Fun</a></li>
           <li><a href="/about" class={pathname.startsWith('/about') ? 'active' : ''}>About</a></li>
         </ul>
