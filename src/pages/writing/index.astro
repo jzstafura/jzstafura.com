@@ -1,0 +1,178 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { getCollection } from 'astro:content';
+
+const rawPosts = await getCollection('writing');
+const posts = rawPosts
+  .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf())
+  .map(post => ({
+    ...post,
+    formattedDate: post.data.date.toLocaleDateString('en-US', { year: 'numeric', month: 'short' }),
+    href: post.data.external_url ?? '/writing/' + post.id + '/',
+    target: post.data.external_url ? '_blank' : '_self',
+    rel: post.data.external_url ? 'noopener noreferrer' : '',
+  }));
+---
+
+<BaseLayout
+  title="Writing — JZ Stafura"
+  description="Essays, articles, and notes on cognition, AI, organizations, and more."
+>
+  <section class="hero">
+    <p class="overline">Writing</p>
+    <h1>Essays & Articles</h1>
+    <p class="hero-sub">On cognition, AI, organizations, policy, and whatever I can't stop thinking about. Published here, on LinkedIn, and on Substack.</p>
+    <div class="external-links">
+      <a href="https://substack.com/@pghjz" target="_blank" rel="noopener">Substack ↗</a>
+      <a href="https://www.linkedin.com/in/jzstafura" target="_blank" rel="noopener">LinkedIn ↗</a>
+    </div>
+  </section>
+
+  <section class="posts">
+    {posts.map((post) => (
+      <a href={post.href} target={post.target} rel={post.rel} class="post-row">
+        <div class="post-meta">
+          <span class="post-date">{post.formattedDate}</span>
+          {post.data.venue && <span class="post-venue">{post.data.venue}</span>}
+        </div>
+        <div class="post-content">
+          <h2>
+            {post.data.title}
+            {post.data.external_url && <span class="ext-icon"> ↗</span>}
+          </h2>
+          <p>{post.data.description}</p>
+          {post.data.tags && (
+            <div class="tags">
+              {post.data.tags.map(tag => <span>{tag}</span>)}
+            </div>
+          )}
+        </div>
+      </a>
+    ))}
+  </section>
+</BaseLayout>
+
+<style>
+  .overline {
+    font-size: 0.75rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--color-muted);
+    margin-bottom: 0.75rem;
+  }
+
+  .hero {
+    padding: 4rem 0 3rem;
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .hero h1 {
+    font-size: clamp(2rem, 4vw, 3rem);
+    font-weight: normal;
+    margin-bottom: 0.75rem;
+  }
+
+  .hero-sub {
+    max-width: 55ch;
+    color: var(--color-muted);
+    margin-bottom: 1.5rem;
+  }
+
+  .external-links {
+    display: flex;
+    gap: 1.5rem;
+  }
+
+  .external-links a {
+    font-size: 0.875rem;
+    color: var(--color-muted);
+    border-bottom: 1px solid var(--color-border);
+    padding-bottom: 2px;
+  }
+
+  .external-links a:hover {
+    color: var(--color-accent);
+    text-decoration: none;
+  }
+
+  .posts {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .post-row {
+    display: grid;
+    grid-template-columns: 9rem 1fr;
+    gap: 2rem;
+    padding: 2rem 0;
+    border-bottom: 1px solid var(--color-border);
+    text-decoration: none;
+    color: inherit;
+    transition: background 0.15s;
+  }
+
+  .post-row:hover h2 {
+    color: var(--color-accent);
+  }
+
+  .post-meta {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+    padding-top: 0.2rem;
+  }
+
+  .post-date {
+    font-size: 0.78rem;
+    color: var(--color-muted);
+    letter-spacing: 0.04em;
+  }
+
+  .post-venue {
+    font-size: 0.68rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--color-accent);
+    border: 1px solid rgba(37, 99, 235, 0.25);
+    padding: 0.15rem 0.4rem;
+    width: fit-content;
+  }
+
+  .post-content h2 {
+    font-size: 1.1rem;
+    font-weight: normal;
+    margin-bottom: 0.5rem;
+    transition: color 0.15s;
+  }
+
+  .ext-icon {
+    font-size: 0.85rem;
+    color: var(--color-muted);
+  }
+
+  .post-content p {
+    font-size: 0.875rem;
+    color: var(--color-muted);
+    line-height: 1.7;
+    margin-bottom: 0.75rem;
+  }
+
+  .tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+  }
+
+  .tags span {
+    font-size: 0.65rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--color-muted);
+    border: 1px solid var(--color-border);
+    padding: 0.15rem 0.45rem;
+  }
+
+  @media (max-width: 640px) {
+    .post-row { grid-template-columns: 1fr; gap: 0.5rem; }
+  }
+</style>
