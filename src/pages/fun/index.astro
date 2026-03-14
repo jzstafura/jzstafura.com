@@ -17,9 +17,24 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
       <h2>Banana Santana Name Generator</h2>
       <p>Six absurdist naming algorithms. Rhyming pairs, quasi-European aristocrats, celebrity mashups, nicknamed characters, and more. Each with a 65% chance of an occupation.</p>
       <div class="card-footer">
-        <span class="tag">Pure JS</span>
-        <span class="tag">Absurdist</span>
+        <div class="tags">
+          <span class="tag">Pure JS</span>
+          <span class="tag">Absurdist</span>
+        </div>
         <span class="card-cta">Generate a name &#x2192;</span>
+      </div>
+    </a>
+
+    <a href="/fun/soulwrap/" class="card card-dark">
+      <div class="card-emoji">&#x1F32B;</div>
+      <h2>SoulWrap&#x2122;</h2>
+      <p>A deadpan luxury wellness landing page for a fictional existential crisis solution. The aesthetic is serious. The joke doesn&#x2019;t wink.</p>
+      <div class="card-footer">
+        <div class="tags">
+          <span class="tag">Parody</span>
+          <span class="tag">Vanilla HTML</span>
+        </div>
+        <span class="card-cta">Visit site &#x2192;</span>
       </div>
     </a>
   </section>
@@ -47,22 +62,30 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 
   .card:hover {
     border-color: #FFAA00;
-    box-shadow: 0 2px 16px rgba(255, 170, 0, 0.15);
+    box-shadow: 0 2px 16px rgba(255, 170, 0, 0.12);
     text-decoration: none;
+  }
+
+  .card-dark:hover {
+    border-color: #9ca3af;
+    box-shadow: 0 2px 16px rgba(0, 0, 0, 0.08);
   }
 
   .card-emoji { font-size: 2.5rem; line-height: 1; margin-bottom: 0.25rem; }
 
   .card h2 { font-size: 1.15rem; font-weight: normal; color: var(--color-text); transition: color 0.15s; }
   .card:hover h2 { color: #d97706; }
+  .card-dark:hover h2 { color: var(--color-text); }
 
   .card p { font-size: 0.875rem; color: var(--color-muted); line-height: 1.7; flex-grow: 1; }
 
   .card-footer { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 0.5rem; margin-top: 0.5rem; }
 
+  .tags { display: flex; gap: 0.4rem; flex-wrap: wrap; }
   .tag { font-size: 0.65rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--color-muted); border: 1px solid var(--color-border); padding: 0.15rem 0.45rem; }
 
   .card-cta { font-size: 0.8rem; color: #d97706; }
+  .card-dark .card-cta { color: var(--color-muted); }
 
   @media (max-width: 640px) { .grid { grid-template-columns: 1fr; } }
 </style>
