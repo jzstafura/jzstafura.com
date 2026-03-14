@@ -5,7 +5,9 @@ interface Props {
   title: string;
   description?: string;
 }
-const { title, description = "JZ Stafura — Cognitive Psychologist, Data Scientist, Consultant" } = Astro.props;
+const { title, description = "JZ Stafura — Cognitive Psychologist, Consultant" } = Astro.props;
+const pathname = Astro.url.pathname;
+const canonicalURL = new URL(Astro.url.pathname, 'https://jzstafura.com').href;
 ---
 
 <!DOCTYPE html>
@@ -15,18 +17,29 @@ const { title, description = "JZ Stafura — Cognitive Psychologist, Data Scient
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content={description} />
     <title>{title}</title>
-
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="canonical" href={canonicalURL} />
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={canonicalURL} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:site_name" content="JZ Stafura" />
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
   </head>
   <body>
     <header>
       <nav>
         <a href="/" class="site-name">JZ Stafura</a>
         <ul>
-          <li><a href="/lab">Lab</a></li>
-          <li><a href="/consulting">Consulting</a></li>
-          <li><a href="/writing">Writing</a></li>
-          <li><a href="/fun">Fun</a></li>
-          <li><a href="/about">About</a></li>
+          <li><a href="/lab" class={pathname.startsWith('/lab') ? 'active' : ''}>Lab</a></li>
+          <li><a href="/consulting" class={pathname.startsWith('/consulting') ? 'active' : ''}>Consulting</a></li>
+          <li><a href="/writing" class={pathname.startsWith('/writing') ? 'active' : ''}>Writing</a></li>
+          <li><a href="/fun" class={pathname.startsWith('/fun') ? 'active' : ''}>Fun</a></li>
+          <li><a href="/about" class={pathname.startsWith('/about') ? 'active' : ''}>About</a></li>
         </ul>
       </nav>
     </header>
@@ -74,6 +87,12 @@ const { title, description = "JZ Stafura — Cognitive Psychologist, Data Scient
   ul a:hover {
     color: var(--color-accent);
     text-decoration: none;
+  }
+
+  ul a.active {
+    color: var(--color-text);
+    border-bottom: 1px solid var(--color-text);
+    padding-bottom: 1px;
   }
 
   footer {
