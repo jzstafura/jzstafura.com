@@ -1,0 +1,68 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+---
+<BaseLayout
+  title="Fun — JZ Stafura"
+  description="Experiments, toys, and diversions."
+>
+  <section class="hero">
+    <p class="overline">Fun</p>
+    <h1>Experiments &amp; Diversions</h1>
+    <p class="hero-sub">Not everything has to be serious. Some things exist because they should.</p>
+  </section>
+
+  <section class="grid">
+    <a href="/fun/banana-santana/" class="card">
+      <div class="card-emoji">🍌</div>
+      <h2>Banana Santana Name Generator</h2>
+      <p>Six absurdist naming algorithms. Rhyming pairs, quasi-European aristocrats, celebrity mashups, nicknamed characters, and more. Each with a 65% chance of an occupation.</p>
+      <div class="card-footer">
+        <span class="tag">Pure JS</span>
+        <span class="tag">Absurdist</span>
+        <span class="card-cta">Generate a name &#x2192;</span>
+      </div>
+    </a>
+  </section>
+</BaseLayout>
+
+<style>
+  .overline { font-size: 0.75rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--color-muted); margin-bottom: 0.75rem; }
+  .hero { padding: 4rem 0 3rem; border-bottom: 1px solid var(--color-border); margin-bottom: 3rem; }
+  .hero h1 { font-size: clamp(2rem, 4vw, 3rem); font-weight: normal; margin-bottom: 0.75rem; }
+  .hero-sub { max-width: 55ch; color: var(--color-muted); }
+
+  .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(340px, 1fr)); gap: 1.5rem; }
+
+  .card {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    padding: 2rem;
+    border: 1px solid var(--color-border);
+    background: white;
+    text-decoration: none;
+    color: inherit;
+    transition: border-color 0.15s, box-shadow 0.15s;
+  }
+
+  .card:hover {
+    border-color: #FFAA00;
+    box-shadow: 0 2px 16px rgba(255, 170, 0, 0.15);
+    text-decoration: none;
+  }
+
+  .card-emoji { font-size: 2.5rem; line-height: 1; margin-bottom: 0.25rem; }
+
+  .card h2 { font-size: 1.15rem; font-weight: normal; color: var(--color-text); transition: color 0.15s; }
+  .card:hover h2 { color: #d97706; }
+
+  .card p { font-size: 0.875rem; color: var(--color-muted); line-height: 1.7; flex-grow: 1; }
+
+  .card-footer { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 0.5rem; margin-top: 0.5rem; }
+
+  .tag { font-size: 0.65rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--color-muted); border: 1px solid var(--color-border); padding: 0.15rem 0.45rem; }
+
+  .card-cta { font-size: 0.8rem; color: #d97706; }
+
+  @media (max-width: 640px) { .grid { grid-template-columns: 1fr; } }
+</style>

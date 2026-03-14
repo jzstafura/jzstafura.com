@@ -1,0 +1,249 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+---
+<BaseLayout
+  title="Banana Santana Name Generator — JZ Stafura"
+  description="Six absurdist naming algorithms. Generate hilariously improbable character names."
+>
+  <div class="back"><a href="/fun/">&#x2190; Fun</a></div>
+
+  <section class="hero">
+    <p class="overline">Fun / Generator</p>
+    <div class="title-row">
+      <span class="banana-emoji">🍌</span>
+      <h1>Banana Santana</h1>
+      <span class="trumpet-emoji">🎺</span>
+    </div>
+    <p class="hero-sub">Name Generator</p>
+    <p class="dedication">Dedicated to Thomas Pynchon and Fernando Pessoa.</p>
+  </section>
+
+  <section class="generator">
+    <div class="name-display" id="nameDisplay">
+      <span class="name-text" id="generatedName">&#x2014;</span>
+    </div>
+    <button id="generateBtn" type="button">Generate Name</button>
+    <p class="pattern-label" id="patternLabel">&nbsp;</p>
+  </section>
+
+  <section class="about">
+    <h2>Six Patterns</h2>
+    <div class="patterns">
+      <div class="pattern">
+        <span class="pct">25%</span>
+        <div>
+          <strong>Object + Surname</strong>
+          <p>Bread Schwartz, Cheese Mullet, Flapjack Arnold</p>
+        </div>
+      </div>
+      <div class="pattern">
+        <span class="pct">25%</span>
+        <div>
+          <strong>Normal + Absurd</strong>
+          <p>Marc Remorse, Susan Melancholy, Bernard Turbulence</p>
+        </div>
+      </div>
+      <div class="pattern">
+        <span class="pct">20%</span>
+        <div>
+          <strong>Rhyming Pairs</strong>
+          <p>Banana Santana, Mallory Ballory, Cillian Milligan</p>
+        </div>
+      </div>
+      <div class="pattern">
+        <span class="pct">10%</span>
+        <div>
+          <strong>Quasi-European</strong>
+          <p>Samson Heichentheibuuts, Clemethy Swartzchild</p>
+        </div>
+      </div>
+      <div class="pattern">
+        <span class="pct">10%</span>
+        <div>
+          <strong>Celebrity Mashups</strong>
+          <p>Julio Louis Dreyfus, James Earl Moans, Brad Pitt Stop</p>
+        </div>
+      </div>
+      <div class="pattern">
+        <span class="pct">10%</span>
+        <div>
+          <strong>Nicknamed Characters</strong>
+          <p>"Dental" Dan Johnson, "Bad At It" Bonnie Clark</p>
+        </div>
+      </div>
+    </div>
+    <p class="occupation-note">Each name has a 65% chance of receiving an occupation.</p>
+  </section>
+
+  <footer class="page-footer">
+    <p><em>"In a world of Johns and Janes, dare to be a Himothy Hamberpantz."</em></p>
+    <a href="https://github.com/jzstafura/banana-Santana-generator" target="_blank" rel="noopener">View on GitHub &#x2197;</a>
+  </footer>
+</BaseLayout>
+
+<style>
+  .back { padding: 1.5rem 0 0; }
+  .back a { font-size: 0.85rem; color: var(--color-muted); text-decoration: none; }
+  .back a:hover { color: var(--color-accent); }
+
+  .overline { font-size: 0.75rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--color-muted); margin-bottom: 1rem; }
+
+  .hero { padding: 2.5rem 0 2rem; border-bottom: 1px solid var(--color-border); text-align: center; }
+
+  .title-row { display: flex; align-items: center; justify-content: center; gap: 0.75rem; margin-bottom: 0.25rem; }
+  .title-row h1 { font-size: clamp(2rem, 5vw, 3.25rem); font-weight: normal; color: var(--color-text); }
+
+  .banana-emoji { font-size: 2.5rem; animation: sway 4s ease-in-out infinite; display: inline-block; }
+  .trumpet-emoji { font-size: 2rem; animation: sway 4s ease-in-out infinite 0.5s; display: inline-block; }
+
+  @keyframes sway {
+    0%, 100% { transform: rotate(-5deg); }
+    50% { transform: rotate(5deg); }
+  }
+
+  .hero-sub { font-size: 1rem; color: var(--color-muted); letter-spacing: 0.08em; text-transform: uppercase; font-size: 0.8rem; margin-bottom: 0.5rem; }
+  .dedication { font-size: 0.8rem; color: var(--color-muted); font-style: italic; }
+
+  .generator { padding: 3rem 0 2rem; border-bottom: 1px solid var(--color-border); text-align: center; }
+
+  .name-display {
+    background: #fffbeb;
+    border: 2px solid #fde68a;
+    padding: 2.5rem 2rem;
+    margin: 0 auto 1.75rem;
+    max-width: 580px;
+    min-height: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .name-text {
+    font-size: clamp(1.3rem, 3vw, 1.8rem);
+    color: var(--color-text);
+    line-height: 1.35;
+    font-style: italic;
+    transition: opacity 0.15s;
+  }
+
+  .name-text.fading { opacity: 0; }
+
+  button {
+    background: #d97706;
+    color: white;
+    border: none;
+    padding: 0.85rem 2.5rem;
+    font-size: 0.9rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    cursor: pointer;
+    font-family: var(--font-sans);
+    transition: background 0.15s, transform 0.1s;
+  }
+
+  button:hover { background: #b45309; }
+  button:active { transform: translateY(1px); }
+
+  .pattern-label { font-size: 0.75rem; color: var(--color-muted); margin-top: 0.75rem; letter-spacing: 0.04em; font-style: italic; min-height: 1.2em; }
+
+  .about { padding: 2.5rem 0; }
+  .about h2 { font-size: 1rem; font-weight: normal; letter-spacing: 0.1em; text-transform: uppercase; color: var(--color-muted); margin-bottom: 1.5rem; }
+
+  .patterns { display: flex; flex-direction: column; border: 1px solid var(--color-border); margin-bottom: 1.25rem; }
+
+  .pattern { display: grid; grid-template-columns: 3.5rem 1fr; gap: 1.25rem; padding: 1rem 1.25rem; border-bottom: 1px solid var(--color-border); align-items: start; }
+  .pattern:last-child { border-bottom: none; }
+
+  .pct { font-size: 0.75rem; font-family: var(--font-mono); color: #d97706; padding-top: 0.2rem; }
+
+  .pattern strong { display: block; font-size: 0.875rem; margin-bottom: 0.2rem; }
+  .pattern p { font-size: 0.8rem; color: var(--color-muted); margin: 0; font-style: italic; }
+
+  .occupation-note { font-size: 0.8rem; color: var(--color-muted); font-style: italic; }
+
+  .page-footer { padding: 2rem 0; border-top: 1px solid var(--color-border); text-align: center; }
+  .page-footer p { font-size: 0.875rem; color: var(--color-muted); margin-bottom: 0.75rem; }
+  .page-footer a { font-size: 0.8rem; color: var(--color-muted); border-bottom: 1px solid var(--color-border); padding-bottom: 1px; }
+  .page-footer a:hover { color: var(--color-accent); text-decoration: none; }
+</style>
+
+<script>
+const nameData = {
+  objects_foods: ["Banana","Bread","Cheese","Flapjack","Cookie","Pump","Pleather","Toothpick","Pimple","Speedball","Mustard","Pickle","Waffle","Pretzel","Biscuit","Noodle","Taco","Burrito","Anchovy","Olive","Radish","Turnip","Cabbage","Butter","Gravy","Sauce","Pepper","Meatball","Dumpling","Bagel","Croissant","Muffin","Pancake","Sausage","Bacon","Onion","Garlic","Lettuce","Tomato","Cucumber","Avocado","Mango","Papaya","Kiwi","Melon","Peach","Plum","Cherry","Grape","Lemon","Lime","Orange","Grapefruit","Tangerine","Pineapple","Coconut","Walnut","Almond","Cashew","Peanut","Chestnut","Pistachio","Hazelnut","Macadamia","Pecan"],
+  common_surnames: ["Schwartz","Mullet","Arnold","Nickerson","Jarvis","Anthony","McKenzie","Jackson","Garcia","Rodriguez","Murphy","Johnson","Williams","Brown","Davis","Miller","Wilson","Moore","Taylor","Anderson","Thomas","Martinez","Hernandez","Lopez","Gonzalez","Harris","Clark","Lewis","Robinson","Walker","Young","Allen","King","Wright","Scott","Torres","Nguyen","Hill","Flores","Green","Adams","Nelson","Baker","Hall","Rivera","Campbell","Mitchell","Carter","Roberts","Gomez","Phillips","Evans","Turner","Diaz","Parker","Cruz","Edwards","Collins","Reyes","Stewart","Morris","Morales","Cook","Rogers","Morgan"],
+  absurd_descriptors: ["Remorse","Banality","Substantive","Prankster","Saxophone","Glockenspiel","Melancholy","Derision","Bellwether","Fantasia","Jimnitz","Conclusive","Withered","Merriweather","Habbington","Malone","Bethrottled","Flannery","Vilhunther","Catastrophe","Jubilee","Harmonics","Velocity","Paradox","Mayhem","Serenity","Calamity","Prosperity","Misfortune","Eloquence","Turbulence","Consequence","Resonance","Abundance","Defiance","Brilliance","Arrogance","Ignorance","Tolerance","Violence","Silence","Cadence","Prudence","Clarence","Florence","Lawrence","Tangent","Fragment","Segment","Regiment","Document","Monument","Ornament","Parliament","Testament","Sentiment","Increment","Complement","Supplement","Implement","Experiment"],
+  normal_first_names: ["James","John","David","Michael","Robert","William","Richard","Thomas","Charles","Daniel","Matthew","Anthony","Mark","Donald","Steven","Paul","Andrew","Joshua","Kenneth","Kevin","Mary","Patricia","Jennifer","Linda","Barbara","Elizabeth","Susan","Jessica","Sarah","Karen","Nancy","Lisa","Betty","Margaret","Sandra","Ashley","Kimberly","Emily","Donna","Michelle","Christopher","Joseph","Brian","Jason","Justin","Ryan","Jacob","Nicholas","Tyler","Brandon","Alexander","Samuel","Benjamin","Stephanie","Rebecca","Laura","Amanda","Melissa","Nicole","Angela","Heather","Amy","Rachel","Catherine","Christine","Deborah","Janet","Carolyn","Virginia","Kathleen","Pamela","George","Edward","Ronald","Timothy","Gregory","Frank","Raymond","Patrick","Dennis","Jerry","Peter","Harold"],
+  rhyme_bases: [["Banana","Santana"],["Mallory","Ballory"],["Cillian","Milligan"],["Flimagan","Jimagan"],["Jerald","Gerald"],["Kimmy","Timmy"],["Ricky","Dicky"],["Danny","Manny"],["Sally","Tally"],["Benny","Lenny"],["Marvin","Darvin"],["Crystal","Pistol"],["Barney","Carney"],["Dolly","Polly"],["Randy","Dandy"],["Perry","Berry"],["Harry","Larry"],["Terry","Jerry"],["Molly","Holly"],["Willie","Billie"],["Freddy","Teddy"],["Kenny","Denny"],["Patty","Matty"],["Bobby","Robbie"],["Jimmy","Timmy"],["Rory","Cory"],["Shelly","Kelly"],["Andy","Sandy"],["Mandy","Brandy"],["Cindy","Mindy"],["Tracy","Stacy"],["Casey","Lacey"],["Bailey","Hailey"]],
+  quasi_european_parts: {
+    first: ["Samson","Clemethy","Horsythe","Gertrude","Hildegard","Brunhilde","Wolfgang","Siegfried","Gunther","Hermann","Wilhelmina","Anastasia","Bartholomew","Hieronymus","Archibald","Reginald","Maximilian","Cornelius","Theodosius","Adolphus","Alaric","Ambrose","Augustus","Benedict","Casimir","Dietrich","Egbert","Friedrich","Gottfried","Heinrich","Leopold","Lothar","Ruprecht","Ulrich"],
+    last: ["Heichentheibuuts","Swartzchild","Flannery","Vilhunther","Pfefferkorn","Schweinsteiger","Blumenkranz","Himmelfarb","Rosenblatt","Morgenstern","Edelstein","Finklestein","Rothschild","Oppenheimer","Weinberger","Goldschmidt","Eisenhower","Beethoven","Vanderbilt","Rockefeller","Guggenheim","Rothenberg","Steinberg","Greenberg","Rosenberg","Bloomberg","Lindbergh","Spielberg"]
+  },
+  celebrity_mashups: [["Julio","Louis","Dreyfus"],["James","Earl","Moans"],["Livermore","Van","Heusen"],["Julian","Linux","Dreyfoid"],["Borat","Cigar","Ette"],["Tony","Scooby","Doo"],["Katy","Pepi","Cola"],["Jose","Mole","Day"],["Brad","Pitt","Stop"],["Tom","Cruise","Control"],["Jennifer","Anise","Ton"],["Leonardo","DiCatchprio"],["Meryl","Streep","Throat"],["Johnny","Depth","Charge"],["Sandra","Bullfrog"],["Denzel","Washington","State"],["Julia","Roberts","Rules"],["George","Clooney","Tunes"],["Morgan","Freebird"],["Matt","Daemon","Process"]],
+  occupations: ["Trumpet Player","Lawyer","Wood Shop Owner","Teacher","Ticket Writer","Waitress","Secretary","Pilot","Actuary","Accountant","Gym Instructor","Club Owner","Doctor","Hotel Piano Player","Waiter","Baker","Gas Station Attendant","Mechanic","Firefighter","Real Estate Agent","Principal","Exterminator","Kabob Shop Owner","Sweater Shop Owner","Cat Portraitist","MLM Entrepreneur","Dentist","Kicker","Librarian","Pharmacist","Barber","Florist","Postal Worker","Bus Driver","Security Guard","Janitor","Chef","Bartender","Retail Manager","Construction Worker","Electrician","Plumber","Veterinarian","Paramedic","Zookeeper","Park Ranger","Tour Guide","Wedding Planner","Dog Walker","Pet Groomer","Crossing Guard","Mall Santa","Rodeo Clown","Fortune Teller","Mime Artist","Street Performer","Organ Grinder","Lighthouse Keeper","Town Crier","Sword Swallower","Fire Breather","Contortionist","Juggler","Magician's Assistant","Carnival Barker","Balloon Artist","Face Painter","Ice Cream Truck Driver","Zamboni Driver","Golf Cart Attendant","Toll Booth Operator","Parking Attendant","Elevator Operator","Night Watchman","Pool Cleaner","Window Washer"],
+  nicknames: ["Hands","Dental","Bad At It","The Minor","The Kicker","Slick","The Fixer","Tiny","Big","Fast","Slow","Lucky","Unlucky","The Kid","Pops","Ace","Doc","Smiley","Grumpy","Lefty","Righty","Boss","Chief","Captain","Major","Colonel","Sarge","Skip","Chip","Buddy","Pal","Mac","Wheels","Turbo","Nitro","Rocket","Boomer","Crash","Flash","Dash","Zip"]
+};
+
+const patternLabels = {
+  rhyme: "Rhyming pair",
+  object: "Object + surname",
+  absurd: "Normal + absurd",
+  european: "Quasi-European",
+  celebrity: "Celebrity mashup",
+  nickname: "Nicknamed character"
+};
+
+function pick(arr) {
+  return arr[Math.floor(Math.random() * arr.length)];
+}
+
+function weightedPick(items, weights) {
+  const total = weights.reduce((a, b) => a + b, 0);
+  let r = Math.random() * total;
+  for (let i = 0; i < items.length; i++) {
+    r -= weights[i];
+    if (r <= 0) return items[i];
+  }
+  return items[items.length - 1];
+}
+
+const patterns = [
+  { key: 'rhyme',     weight: 0.20, fn: () => { const b = pick(nameData.rhyme_bases); return b[0] + ' ' + b[1]; } },
+  { key: 'object',    weight: 0.25, fn: () => pick(nameData.objects_foods) + ' ' + pick(nameData.common_surnames) },
+  { key: 'absurd',    weight: 0.25, fn: () => pick(nameData.normal_first_names) + ' ' + pick(nameData.absurd_descriptors) },
+  { key: 'european',  weight: 0.10, fn: () => pick(nameData.quasi_european_parts.first) + ' ' + pick(nameData.quasi_european_parts.last) },
+  { key: 'celebrity', weight: 0.10, fn: () => pick(nameData.celebrity_mashups).join(' ') },
+  { key: 'nickname',  weight: 0.10, fn: () => '"' + pick(nameData.nicknames) + '" ' + pick(nameData.normal_first_names) + ' ' + pick(nameData.common_surnames) },
+];
+
+function generate() {
+  const pattern = weightedPick(patterns, patterns.map(p => p.weight));
+  let name = pattern.fn();
+  if (Math.random() < 0.65) {
+    name += ' \u2014 ' + pick(nameData.occupations);
+  }
+  return { name, label: patternLabels[pattern.key] };
+}
+
+function animateName(name, label) {
+  const el = document.getElementById('generatedName');
+  const labelEl = document.getElementById('patternLabel');
+  el.classList.add('fading');
+  setTimeout(() => {
+    el.textContent = name;
+    labelEl.textContent = label;
+    el.classList.remove('fading');
+  }, 150);
+}
+
+document.getElementById('generateBtn').addEventListener('click', () => {
+  const { name, label } = generate();
+  animateName(name, label);
+});
+
+// Generate one on load
+window.addEventListener('DOMContentLoaded', () => {
+  const { name, label } = generate();
+  document.getElementById('generatedName').textContent = name;
+  document.getElementById('patternLabel').textContent = label;
+});
+</script>

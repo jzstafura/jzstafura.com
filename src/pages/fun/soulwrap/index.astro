@@ -1,0 +1,131 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+---
+<BaseLayout
+  title="SoulWrap™ — JZ Stafura"
+  description="Existential Wellness Solution. Patented Ontological Compression Technology. One Size Embraces All."
+>
+  <div class="back"><a href="/fun/">&#x2190; Fun</a></div>
+
+  <section class="hero">
+    <p class="overline">Fun / Parody</p>
+    <h1>SoulWrap™</h1>
+    <p class="hero-sub">Existential Wellness Solution. Because the abyss gazes also, but at least it's cozy.</p>
+    <div class="tags">
+      <span>Parody</span>
+      <span>Wellness Culture</span>
+      <span>Continental Philosophy</span>
+      <span>Deadpan</span>
+    </div>
+  </section>
+
+  <section class="preview-section">
+    <a href="https://jzstafura.github.io/soulwrap/" target="_blank" rel="noopener" class="preview-card">
+      <div class="preview-inner">
+        <p class="preview-headline">You Can't Outrun Your Existential Dread</p>
+        <p class="preview-sub">But you can wrap it.</p>
+        <div class="preview-features">
+          <div class="pf">
+            <span class="pf-stat">87%</span>
+            <span class="pf-label">reduction in midnight existential spirals</span>
+          </div>
+          <div class="pf">
+            <span class="pf-stat">&#x221e;</span>
+            <span class="pf-label">improved capacity to commit to ultimately futile projects</span>
+          </div>
+          <div class="pf">
+            <span class="pf-stat">&#x2713;</span>
+            <span class="pf-label">works if life is inherently absurd</span>
+          </div>
+        </div>
+      </div>
+      <div class="preview-cta">
+        Experience SoulWrap™ &#x2197;
+      </div>
+    </a>
+    <p class="preview-note">A parody product landing page. The "Order Now" button links to the Stanford Encyclopedia of Philosophy entry on Existentialism.</p>
+  </section>
+
+  <section class="about">
+    <h2>About This Project</h2>
+    <p>SoulWrap™ is a deadpan parody of luxury wellness branding — the kind that promises ontological transformation through proprietary fabric technology and carefully selected lifestyle photography. It takes the form of a full product landing page, complete with comparison tables, testimonials, and a genuinely absurd ingredient list.</p>
+    <p>The target is the genre of wellness marketing that appropriates the language of depth (mindfulness, authenticity, presence) while selling something that can be shipped in two days. SoulWrap™ takes that logic to its natural conclusion: what if the product just directly addressed the void?</p>
+    <p>Built in vanilla HTML/CSS/JS. No framework needed for absurdism.</p>
+  </section>
+</BaseLayout>
+
+<style>
+  .back { padding: 1.5rem 0 0; }
+  .back a { font-size: 0.85rem; color: var(--color-muted); text-decoration: none; }
+  .back a:hover { color: var(--color-accent); }
+
+  .overline { font-size: 0.75rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--color-muted); margin-bottom: 0.75rem; }
+  .hero { padding: 2.5rem 0 2rem; border-bottom: 1px solid var(--color-border); margin-bottom: 2.5rem; }
+  .hero h1 { font-size: clamp(1.75rem, 4vw, 2.75rem); font-weight: normal; margin-bottom: 0.75rem; }
+  .hero-sub { max-width: 55ch; color: var(--color-muted); margin-bottom: 1.25rem; }
+
+  .tags { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+  .tags span { font-size: 0.65rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--color-muted); border: 1px solid var(--color-border); padding: 0.2rem 0.5rem; }
+
+  .preview-section { margin-bottom: 3rem; }
+
+  .preview-card {
+    display: flex;
+    flex-direction: column;
+    border: 1px solid var(--color-border);
+    background: white;
+    text-decoration: none;
+    color: inherit;
+    transition: border-color 0.15s, box-shadow 0.15s;
+  }
+
+  .preview-card:hover {
+    border-color: var(--color-accent);
+    box-shadow: 0 2px 16px rgba(37, 99, 235, 0.1);
+    text-decoration: none;
+  }
+
+  .preview-inner { padding: 2.5rem 2rem 2rem; }
+
+  .preview-headline {
+    font-size: 1.5rem;
+    font-weight: normal;
+    margin-bottom: 0.4rem;
+    color: var(--color-text);
+  }
+
+  .preview-sub {
+    font-size: 1rem;
+    color: var(--color-muted);
+    font-style: italic;
+    margin-bottom: 2rem;
+  }
+
+  .preview-features { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 1rem; }
+
+  .pf {
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+    padding: 1rem;
+    border: 1px solid var(--color-border);
+  }
+
+  .pf-stat { font-size: 1.5rem; color: var(--color-text); font-family: var(--font-mono); }
+  .pf-label { font-size: 0.78rem; color: var(--color-muted); line-height: 1.4; }
+
+  .preview-cta {
+    padding: 1rem 2rem;
+    background: var(--color-text);
+    color: white;
+    font-size: 0.85rem;
+    letter-spacing: 0.05em;
+    text-align: center;
+  }
+
+  .preview-note { font-size: 0.8rem; color: var(--color-muted); margin-top: 0.75rem; font-style: italic; }
+
+  section.about { padding-bottom: 2rem; }
+  .about h2 { font-size: 1.1rem; font-weight: normal; margin-bottom: 1.25rem; }
+  .about p { color: var(--color-muted); line-height: 1.75; margin-bottom: 1rem; max-width: 65ch; }
+</style>
