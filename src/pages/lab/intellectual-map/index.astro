@@ -1,0 +1,162 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+---
+<BaseLayout
+  title="Intellectual Network Map - JZ Stafura"
+  description="Interactive visualization of 450+ books organized by core intellectual problems across 8 fundamental domains."
+>
+  <div class="back"><a href="/lab/">&#x2190; Lab</a></div>
+
+  <section class="hero">
+    <p class="overline">Lab / Visualization</p>
+    <h1>Intellectual Network Map</h1>
+    <p class="hero-sub">450+ books. 8 problem domains. The connections that academic categories erase.</p>
+    <div class="meta-row">
+      <span class="status status-live">Live</span>
+      <div class="links">
+        <a href="https://jzstafura-lab.github.io/intellectual-map/" target="_blank" rel="noopener">Open Full Site &#x2197;</a>
+        <a href="https://github.com/JZStafura-Lab/intellectual-map" target="_blank" rel="noopener">GitHub &#x2197;</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="preview-section">
+    <a href="https://jzstafura-lab.github.io/intellectual-map/" target="_blank" rel="noopener" class="preview-card">
+      <div class="preview-inner">
+        <div class="preview-domain-grid">
+          <span>Consciousness</span>
+          <span>Language</span>
+          <span>Violence</span>
+          <span>Social Structure</span>
+          <span>Aesthetic Experience</span>
+          <span>Self / Subject</span>
+          <span>Temporality</span>
+          <span>Place / Space</span>
+        </div>
+        <div class="preview-stat">450+ books across 8 problem domains</div>
+      </div>
+      <div class="preview-cta">
+        Open Interactive Map &#x2197;
+      </div>
+    </a>
+    <p class="preview-note">Interactive — zoom, pan, click bridge authors for biographical modals. Opens in a new tab.</p>
+  </section>
+
+  <section class="about">
+    <h2>About This Project</h2>
+    <p>Standard library organization &mdash; genre, discipline, Library of Congress subject &mdash; imposes administrative categories on a reading life that does not actually work that way. A book on Foucault sits in "philosophy" while a book on Collins sits in "sociology," obscuring that both are fundamentally about how social structures produce and regulate behavior.</p>
+    <p>This project reorganizes a personal reading collection by the core questions each book addresses: What is consciousness? How does language make meaning? What are the conditions of interpersonal violence? Eight problem domains replace the received categories.</p>
+
+    <div class="details-grid">
+      <div class="detail-block">
+        <h3>8 Problem Domains</h3>
+        <ul>
+          <li>Consciousness</li>
+          <li>Language</li>
+          <li>Violence</li>
+          <li>Social Structure</li>
+          <li>Aesthetic Experience</li>
+          <li>Self / Subject</li>
+          <li>Temporality</li>
+          <li>Place / Space</li>
+        </ul>
+      </div>
+      <div class="detail-block">
+        <h3>Bridge Authors</h3>
+        <p class="detail-desc">8 thinkers identified as bridges across multiple domains &mdash; Foucault, Sloterdijk, Pynchon, Dennett, DFW, Didion, Zizek, Collins &mdash; with biographical modals pulled live from the Wikipedia REST API.</p>
+      </div>
+      <div class="detail-block">
+        <h3>Stack</h3>
+        <ul>
+          <li>Python (NetworkX, Plotly)</li>
+          <li>Vanilla JavaScript</li>
+          <li>Wikipedia REST API</li>
+          <li>sessionStorage caching</li>
+          <li>CSS Grid / Flexbox</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .back { padding: 1.5rem 0 0; }
+  .back a { font-size: 0.85rem; color: var(--color-muted); text-decoration: none; }
+  .back a:hover { color: var(--color-accent); }
+
+  .overline { font-size: 0.75rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--color-muted); margin-bottom: 0.75rem; }
+  .hero { padding: 2.5rem 0 2rem; border-bottom: 1px solid var(--color-border); margin-bottom: 2.5rem; }
+  .hero h1 { font-size: clamp(1.75rem, 4vw, 2.75rem); font-weight: normal; margin-bottom: 0.75rem; }
+  .hero-sub { max-width: 55ch; color: var(--color-muted); margin-bottom: 1.25rem; }
+  .meta-row { display: flex; align-items: center; gap: 1.5rem; }
+  .status { font-size: 0.65rem; letter-spacing: 0.1em; text-transform: uppercase; padding: 0.2rem 0.55rem; border: 1px solid; }
+  .status-live { color: #16a34a; border-color: rgba(22, 163, 74, 0.3); background: rgba(22, 163, 74, 0.05); }
+  .links { display: flex; gap: 1.25rem; }
+  .links a { font-size: 0.85rem; color: var(--color-muted); border-bottom: 1px solid var(--color-border); padding-bottom: 1px; text-decoration: none; }
+  .links a:hover { color: var(--color-accent); }
+
+  .preview-section { margin-bottom: 3rem; }
+
+  .preview-card {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    border: 1px solid var(--color-border);
+    background: white;
+    text-decoration: none;
+    color: inherit;
+    transition: border-color 0.15s, box-shadow 0.15s;
+    min-height: 260px;
+  }
+
+  .preview-card:hover {
+    border-color: var(--color-accent);
+    box-shadow: 0 2px 16px rgba(37, 99, 235, 0.1);
+    text-decoration: none;
+  }
+
+  .preview-inner { padding: 2.5rem 2rem 1.5rem; }
+
+  .preview-domain-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .preview-domain-grid span {
+    font-size: 0.75rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--color-muted);
+    border: 1px solid var(--color-border);
+    padding: 0.3rem 0.75rem;
+  }
+
+  .preview-stat {
+    font-size: 0.85rem;
+    color: var(--color-muted);
+    font-style: italic;
+  }
+
+  .preview-cta {
+    padding: 1rem 2rem;
+    background: var(--color-accent);
+    color: white;
+    font-size: 0.85rem;
+    letter-spacing: 0.05em;
+    text-align: center;
+  }
+
+  .preview-note { font-size: 0.8rem; color: var(--color-muted); margin-top: 0.75rem; }
+
+  section.about { padding-bottom: 2rem; }
+  .about h2 { font-size: 1.1rem; font-weight: normal; margin-bottom: 1.25rem; }
+  .about p { color: var(--color-muted); line-height: 1.75; margin-bottom: 1rem; max-width: 65ch; }
+
+  .details-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 2rem; margin-top: 2rem; padding-top: 2rem; border-top: 1px solid var(--color-border); }
+  .detail-block h3 { font-size: 0.75rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--color-muted); margin-bottom: 0.75rem; }
+  .detail-block ul { list-style: none; }
+  .detail-block li { font-size: 0.875rem; color: var(--color-text); padding: 0.2rem 0; }
+  .detail-desc { font-size: 0.875rem; color: var(--color-muted); line-height: 1.6; }
+</style>

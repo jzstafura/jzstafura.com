@@ -1,0 +1,163 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+---
+<BaseLayout
+  title="Violence Research Dashboard - JZ Stafura"
+  description="Interactive evidence synthesis dashboard exploring cognitive, social, and ecological factors underlying interpersonal violence."
+>
+  <div class="back"><a href="/lab/">&#x2190; Lab</a></div>
+
+  <section class="hero">
+    <p class="overline">Lab / Dashboard</p>
+    <h1>Violence Research Dashboard</h1>
+    <p class="hero-sub">An interactive evidence synthesis tool for exploring cognitive, social, and ecological factors underlying interpersonal violence.</p>
+    <div class="meta-row">
+      <span class="status status-live">Live</span>
+      <div class="links">
+        <a href="https://jzstafura-lab.github.io/projects/violence/dashboard/" target="_blank" rel="noopener">Open Dashboard &#x2197;</a>
+        <a href="https://jzstafura-lab.github.io" target="_blank" rel="noopener">JAB Lab &#x2197;</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="preview-section">
+    <a href="https://jzstafura-lab.github.io/projects/violence/dashboard/" target="_blank" rel="noopener" class="preview-card">
+      <div class="preview-inner">
+        <div class="focus-grid">
+          <div class="focus-item">
+            <span class="focus-label">Individual</span>
+            <p>Cognitive and emotional factors in violent behavior</p>
+          </div>
+          <div class="focus-item">
+            <span class="focus-label">Situational</span>
+            <p>Micro-sociological conditions that enable or prevent violence</p>
+          </div>
+          <div class="focus-item">
+            <span class="focus-label">Ecological</span>
+            <p>Structural and environmental contexts of interpersonal violence</p>
+          </div>
+          <div class="focus-item">
+            <span class="focus-label">Intervention</span>
+            <p>Prevention and intervention strategy development</p>
+          </div>
+        </div>
+      </div>
+      <div class="preview-cta">
+        Open Interactive Dashboard &#x2197;
+      </div>
+    </a>
+    <p class="preview-note">Interactive evidence synthesis dashboard. Opens in a new tab.</p>
+  </section>
+
+  <section class="about">
+    <h2>About This Project</h2>
+    <p>Interpersonal violence involves a complex interaction of individual cognitive and emotional factors, immediate social dynamics, and broader ecological and structural conditions. This dashboard synthesizes evidence across those levels of analysis.</p>
+    <p>The project focuses on organizing the research literature in a way that supports prediction, prevention, and intervention strategy development &mdash; with an emphasis on the micro-sociological and cognitive conditions that make violence situationally possible or impossible.</p>
+
+    <div class="details-grid">
+      <div class="detail-block">
+        <h3>Research Focus</h3>
+        <ul>
+          <li>Micro-sociological conditions</li>
+          <li>Cognitive and emotional factors</li>
+          <li>Ecological contexts</li>
+          <li>Prevention and intervention</li>
+        </ul>
+      </div>
+      <div class="detail-block">
+        <h3>Stack</h3>
+        <ul>
+          <li>R</li>
+          <li>Quarto</li>
+          <li>Evidence synthesis methods</li>
+          <li>Interactive visualization</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .back { padding: 1.5rem 0 0; }
+  .back a { font-size: 0.85rem; color: var(--color-muted); text-decoration: none; }
+  .back a:hover { color: var(--color-accent); }
+
+  .overline { font-size: 0.75rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--color-muted); margin-bottom: 0.75rem; }
+  .hero { padding: 2.5rem 0 2rem; border-bottom: 1px solid var(--color-border); margin-bottom: 2.5rem; }
+  .hero h1 { font-size: clamp(1.75rem, 4vw, 2.75rem); font-weight: normal; margin-bottom: 0.75rem; }
+  .hero-sub { max-width: 55ch; color: var(--color-muted); margin-bottom: 1.25rem; }
+  .meta-row { display: flex; align-items: center; gap: 1.5rem; }
+  .status { font-size: 0.65rem; letter-spacing: 0.1em; text-transform: uppercase; padding: 0.2rem 0.55rem; border: 1px solid; }
+  .status-live { color: #16a34a; border-color: rgba(22, 163, 74, 0.3); background: rgba(22, 163, 74, 0.05); }
+  .links { display: flex; gap: 1.25rem; }
+  .links a { font-size: 0.85rem; color: var(--color-muted); border-bottom: 1px solid var(--color-border); padding-bottom: 1px; text-decoration: none; }
+  .links a:hover { color: var(--color-accent); }
+
+  .preview-section { margin-bottom: 3rem; }
+
+  .preview-card {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    border: 1px solid var(--color-border);
+    background: white;
+    text-decoration: none;
+    color: inherit;
+    transition: border-color 0.15s, box-shadow 0.15s;
+  }
+
+  .preview-card:hover {
+    border-color: var(--color-accent);
+    box-shadow: 0 2px 16px rgba(37, 99, 235, 0.1);
+    text-decoration: none;
+  }
+
+  .preview-inner { padding: 2rem; }
+
+  .focus-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 1rem;
+  }
+
+  .focus-item {
+    padding: 1rem;
+    border: 1px solid var(--color-border);
+  }
+
+  .focus-label {
+    font-size: 0.65rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--color-accent);
+    display: block;
+    margin-bottom: 0.5rem;
+  }
+
+  .focus-item p {
+    font-size: 0.82rem;
+    color: var(--color-muted);
+    line-height: 1.5;
+    margin: 0;
+  }
+
+  .preview-cta {
+    padding: 1rem 2rem;
+    background: var(--color-accent);
+    color: white;
+    font-size: 0.85rem;
+    letter-spacing: 0.05em;
+    text-align: center;
+  }
+
+  .preview-note { font-size: 0.8rem; color: var(--color-muted); margin-top: 0.75rem; }
+
+  section.about { padding-bottom: 2rem; }
+  .about h2 { font-size: 1.1rem; font-weight: normal; margin-bottom: 1.25rem; }
+  .about p { color: var(--color-muted); line-height: 1.75; margin-bottom: 1rem; max-width: 65ch; }
+
+  .details-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 2rem; margin-top: 2rem; padding-top: 2rem; border-top: 1px solid var(--color-border); }
+  .detail-block h3 { font-size: 0.75rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--color-muted); margin-bottom: 0.75rem; }
+  .detail-block ul { list-style: none; }
+  .detail-block li { font-size: 0.875rem; color: var(--color-text); padding: 0.2rem 0; }
+</style>
