@@ -1,0 +1,135 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+const demos = [
+  {
+    title: "Parietal ERP: Expected vs. Unexpected",
+    slug: "eeg-p300",
+    description: "An animated ERP visualization of the P300 oddball paradigm. Rare deviant stimuli elicit a dramatically larger late positive component — a hallmark of context updating in working memory. Clickable component badges reveal latency, generator, and modulation details.",
+    tags: ["EEG", "P300", "Oddball Paradigm", "Cognitive Neuroscience"],
+  },
+  {
+    title: "Language ERPs: N400 & P600",
+    slug: "erp-language",
+    description: "Visualizes the N400 and P600 components elicited by semantic and syntactic violations. Demonstrates their classic double dissociation, supporting distinct neural substrates for meaning and grammatical structure in language comprehension.",
+    tags: ["ERP", "N400", "P600", "Language", "Semantics", "Syntax"],
+  },
+];
+---
+
+<BaseLayout
+  title="Educational — JZ Stafura"
+  description="Interactive demonstrations of cognitive neuroscience and ERP concepts."
+>
+
+  <section class="hero">
+    <p class="overline">Educational</p>
+    <h1>Interactive Demonstrations</h1>
+    <p class="hero-sub">Interactive visualizations of cognitive neuroscience concepts — ERP components, experimental paradigms, and the neural signatures of cognition.</p>
+  </section>
+
+  <section class="demos">
+    <div class="grid">
+      {demos.map((demo) => (
+        <a href={`/educational/${demo.slug}/`} class="card">
+          <h2>{demo.title}</h2>
+          <p class="desc">{demo.description}</p>
+          <div class="tags">
+            {demo.tags.map(tag => <span class="tag">{tag}</span>)}
+          </div>
+          <span class="cta">Open →</span>
+        </a>
+      ))}
+    </div>
+  </section>
+
+</BaseLayout>
+
+<style>
+  .overline {
+    font-size: 0.75rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--color-muted);
+    margin-bottom: 0.75rem;
+  }
+
+  .hero {
+    padding: 4rem 0 3rem;
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .hero h1 {
+    font-size: clamp(2rem, 4vw, 3rem);
+    font-weight: normal;
+    line-height: 1.15;
+    margin-bottom: 1rem;
+  }
+
+  .hero-sub {
+    max-width: 55ch;
+    color: var(--color-muted);
+    line-height: 1.7;
+  }
+
+  .demos {
+    padding: 3rem 0 4rem;
+  }
+
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 1px;
+    background: var(--color-border);
+    border: 1px solid var(--color-border);
+    overflow: hidden;
+  }
+
+  .card {
+    background: var(--color-bg);
+    padding: 2rem 1.75rem;
+    text-decoration: none;
+    color: inherit;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    transition: background 0.2s;
+  }
+
+  .card:hover { background: #fff; text-decoration: none; }
+
+  .card h2 {
+    font-size: 1.2rem;
+    font-weight: normal;
+    color: var(--color-text);
+    margin: 0;
+  }
+
+  .desc {
+    font-size: 0.875rem;
+    color: var(--color-muted);
+    line-height: 1.7;
+    flex: 1;
+  }
+
+  .tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+  }
+
+  .tag {
+    font-size: 0.68rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--color-accent);
+    border: 1px solid rgba(37, 99, 235, 0.25);
+    padding: 0.2rem 0.5rem;
+  }
+
+  .cta {
+    font-size: 0.8rem;
+    color: var(--color-accent);
+    margin-top: 0.5rem;
+  }
+</style>

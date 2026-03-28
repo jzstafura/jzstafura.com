@@ -1,0 +1,23 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import EegP300 from '../../../components/educational/EegP300.jsx';
+---
+
+<BaseLayout
+  title="Parietal ERP: Expected vs. Unexpected — JZ Stafura"
+  description="An interactive visualization of the P300 oddball paradigm — animated ERP waveforms for standard and deviant stimuli with clickable component detail cards."
+>
+  <div class="full-bleed">
+    <EegP300 client:load />
+  </div>
+</BaseLayout>
+
+<style>
+  :global(main) {
+    padding: 0 !important;
+    max-width: none !important;
+  }
+  .full-bleed {
+    width: 100%;
+  }
+</style>
