@@ -8,9 +8,9 @@ const posts = rawPosts
   .map(post => ({
     ...post,
     formattedDate: post.data.date.toLocaleDateString('en-US', { year: 'numeric', month: 'short' }),
-    href: post.data.external_url ?? '/writing/' + post.id + '/',
-    target: post.data.external_url ? '_blank' : '_self',
-    rel: post.data.external_url ? 'noopener noreferrer' : '',
+    href: post.data.internal_url ?? post.data.external_url ?? '/writing/' + post.id + '/',
+    target: post.data.internal_url ? '_self' : (post.data.external_url ? '_blank' : '_self'),
+    rel: (!post.data.internal_url && post.data.external_url) ? 'noopener noreferrer' : '',
   }));
 ---
 
@@ -38,7 +38,7 @@ const posts = rawPosts
         <div class="post-content">
           <h2>
             {post.data.title}
-            {post.data.external_url && <span class="ext-icon"> ↗</span>}
+            {!post.data.internal_url && post.data.external_url && <span class="ext-icon"> ↗</span>}
           </h2>
           <p>{post.data.description}</p>
           {post.data.tags && (

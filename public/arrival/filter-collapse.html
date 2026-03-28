@@ -1,0 +1,747 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>The Filter That Learns to Forget</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=IBM+Plex+Mono:wght@300;400&display=swap');
+
+  :root {
+    --bg: #FAF7F4;
+    --surface: #F5F2EE;
+    --border: #DDD9D3;
+    --accent: #B45309;
+    --caught: #B45309;
+    --missed: #1D4ED8;
+    --noise: #6D28D9;
+    --text: #1C1917;
+    --muted: #78716C;
+    --subtle: #A09C98;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'IBM Plex Mono', monospace;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 40px 20px;
+  }
+
+  h1 {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-weight: 400;
+    font-size: clamp(1.4rem, 3vw, 2rem);
+    color: var(--accent);
+    text-align: center;
+    letter-spacing: 0.02em;
+    margin-bottom: 6px;
+  }
+
+  .subtitle {
+    font-size: 0.7rem;
+    color: var(--muted);
+    text-align: center;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    margin-bottom: 22px;
+  }
+
+
+  /* ── layout ───────────────────────────────────────────────────────── */
+  .layout {
+    display: grid;
+    grid-template-columns: 1fr 280px;
+    gap: 24px;
+    width: 100%;
+    max-width: 1000px;
+  }
+
+  canvas {
+    display: block;
+    width: 100%;
+    border: 1px solid var(--border);
+    background: var(--surface);
+    border-radius: 2px;
+  }
+
+  .panel {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .card {
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: 2px;
+    padding: 18px;
+  }
+
+  .card-label {
+    font-size: 0.6rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 14px;
+  }
+
+  .stat-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-bottom: 10px;
+  }
+
+  .stat-label { font-size: 0.65rem; color: var(--muted); }
+
+  .stat-value {
+    font-size: 1.1rem;
+    font-family: 'Playfair Display', serif;
+  }
+  .stat-value.caught { color: var(--caught); }
+  .stat-value.missed { color: var(--missed); }
+  .stat-value.noise  { color: var(--noise); }
+
+  .bar-bg {
+    height: 3px;
+    background: var(--border);
+    border-radius: 2px;
+    overflow: hidden;
+  }
+  .bar-fill {
+    height: 100%;
+    border-radius: 2px;
+    transition: width 0.3s ease;
+  }
+
+  /* always-visible note under the missed bar */
+  .platform-note {
+    font-size: 0.57rem;
+    color: var(--subtle);
+    font-style: italic;
+    margin-top: 5px;
+    margin-bottom: 12px;
+    line-height: 1.45;
+  }
+
+  .bar-spacer { margin-bottom: 12px; }
+
+  /* ── controls ─────────────────────────────────────────────────────── */
+  .control-group { margin-bottom: 14px; }
+
+  .control-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 6px;
+  }
+
+  .control-label { font-size: 0.65rem; color: var(--text); }
+  .control-val   { font-size: 0.65rem; color: var(--accent); }
+
+  input[type=range] {
+    width: 100%;
+    -webkit-appearance: none;
+    height: 2px;
+    background: var(--border);
+    outline: none;
+    border-radius: 2px;
+  }
+  input[type=range]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 12px; height: 12px;
+    border-radius: 50%;
+    background: var(--accent);
+    cursor: pointer;
+  }
+
+  .toggle-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 10px;
+  }
+
+  .toggle {
+    position: relative;
+    width: 36px; height: 18px;
+    flex-shrink: 0;
+  }
+  .toggle input { opacity: 0; width: 0; height: 0; }
+  .toggle-slider {
+    position: absolute; inset: 0;
+    background: var(--border);
+    border-radius: 18px;
+    cursor: pointer;
+    transition: background 0.2s;
+  }
+  .toggle-slider:before {
+    content: '';
+    position: absolute;
+    width: 12px; height: 12px;
+    left: 3px; top: 3px;
+    background: var(--subtle);
+    border-radius: 50%;
+    transition: transform 0.2s, background 0.2s;
+  }
+  .toggle input:checked + .toggle-slider { background: rgba(109,40,217,0.18); }
+  .toggle input:checked + .toggle-slider:before {
+    transform: translateX(18px);
+    background: var(--noise);
+  }
+  .toggle-label { font-size: 0.65rem; color: var(--text); }
+
+  /* ── buttons ──────────────────────────────────────────────────────── */
+  button {
+    width: 100%;
+    padding: 10px;
+    background: transparent;
+    border: 1px solid var(--accent);
+    color: var(--accent);
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    cursor: pointer;
+    border-radius: 2px;
+    transition: background 0.15s;
+    margin-bottom: 8px;
+  }
+  button:hover { background: rgba(180,83,9,0.07); }
+  button.secondary { border-color: var(--border); color: var(--muted); }
+  button.secondary:hover { background: rgba(0,0,0,0.03); }
+
+  /* ── generation counter ───────────────────────────────────────────── */
+  .generation-label {
+    font-size: 0.6rem;
+    color: var(--muted);
+    text-align: center;
+    letter-spacing: 0.1em;
+  }
+
+  .generation-val {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.6rem;
+    color: var(--text);
+    text-align: center;
+    display: block;
+  }
+
+  /* ── legend ───────────────────────────────────────────────────────── */
+  .legend {
+    display: flex;
+    gap: 14px;
+    flex-wrap: wrap;
+    margin-top: 8px;
+  }
+  .legend-item {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 0.6rem;
+    color: var(--muted);
+  }
+  .legend-dot {
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+
+  /* ── noise annotation ─────────────────────────────────────────────── */
+  .annotation {
+    font-size: 0.62rem;
+    color: var(--muted);
+    line-height: 1.6;
+    font-style: italic;
+    border-left: 2px solid var(--border);
+    padding-left: 10px;
+    margin-top: 4px;
+  }
+
+  @media (max-width: 680px) {
+    .layout { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<h1>The Filter That Learns to Forget</h1>
+<p class="subtitle">Mode Capture &amp; the Convergence of Legibility</p>
+
+<div class="layout">
+  <div>
+    <canvas id="c" height="500"></canvas>
+  </div>
+
+  <div class="panel">
+
+    <!-- Generation counter -->
+    <div class="card" style="text-align:center;">
+      <div class="generation-label">Training Generation</div>
+      <span class="generation-val" id="genVal">0</span>
+      <div class="generation-label" id="collapseNote" style="color:transparent;">&#9650; collapse in progress</div>
+    </div>
+
+    <!-- Stats -->
+    <div class="card">
+      <div class="card-label">Current Capture</div>
+
+      <div class="stat-row">
+        <span class="stat-label">Caught (legible)</span>
+        <span class="stat-value caught" id="caughtPct">—</span>
+      </div>
+      <div class="bar-bg"><div class="bar-fill" id="caughtBar" style="width:0%;background:var(--caught)"></div></div>
+      <div class="bar-spacer"></div>
+
+      <div class="stat-row">
+        <span class="stat-label">Invisible (missed)</span>
+        <span class="stat-value missed" id="missedPct">—</span>
+      </div>
+      <div class="bar-bg"><div class="bar-fill" id="missedBar" style="width:0%;background:var(--missed)"></div></div>
+      <div class="platform-note">Platform view: the filter cannot see what it doesn't catch.</div>
+
+      <div class="stat-row" id="noiseRow" style="opacity:0.3">
+        <span class="stat-label">Noise-recovered</span>
+        <span class="stat-value noise" id="noisePct">—</span>
+      </div>
+      <div class="bar-bg"><div class="bar-fill" id="noiseBar" style="width:0%;background:var(--noise)"></div></div>
+
+      <div class="legend">
+        <div class="legend-item"><div class="legend-dot" style="background:var(--caught)"></div>caught</div>
+        <div class="legend-item"><div class="legend-dot" style="background:var(--missed)"></div>invisible</div>
+        <div class="legend-item"><div class="legend-dot" style="background:var(--noise)"></div>noise-rec.</div>
+        <div class="legend-item"><div class="legend-dot" style="background:#CCC;border:1px solid #AAA"></div>threshold</div>
+      </div>
+    </div>
+
+    <!-- Controls -->
+    <div class="card">
+      <div class="card-label">Parameters</div>
+
+      <div class="control-group">
+        <div class="control-row">
+          <span class="control-label">Particles / cycle</span>
+          <span class="control-val" id="countVal">40</span>
+        </div>
+        <input type="range" id="countSlider" min="10" max="80" value="40"/>
+      </div>
+
+      <div class="control-group">
+        <div class="control-row">
+          <span class="control-label">Learning rate</span>
+          <span class="control-val" id="lrVal">0.15</span>
+        </div>
+        <input type="range" id="lrSlider" min="1" max="30" value="15"/>
+      </div>
+
+      <div class="toggle-row">
+        <label class="toggle">
+          <input type="checkbox" id="noiseToggle"/>
+          <span class="toggle-slider"></span>
+        </label>
+        <span class="toggle-label">Inject noise (perturbation)</span>
+      </div>
+
+      <div class="annotation" id="noiseAnnotation">
+        Noise off: filter trains only on prior captures. Convergence inevitable.
+      </div>
+    </div>
+
+    <!-- Actions -->
+    <div class="card">
+      <div class="card-label">Simulation</div>
+      <button id="stepBtn">&#9654; Next Generation</button>
+      <button id="autoBtn">&#9654;&#9654; Run Auto</button>
+      <button class="secondary" id="resetBtn">&#8635; Reset</button>
+    </div>
+
+  </div>
+</div>
+
+<script>
+const canvas = document.getElementById('c');
+const ctx = canvas.getContext('2d');
+
+// ═══════════════════════════════════════════════════════════════════════════════
+// DRAW DISPATCH
+// ═══════════════════════════════════════════════════════════════════════════════
+function draw() {
+  const W = canvas.width, H = canvas.height;
+  ctx.clearRect(0, 0, W, H);
+  ctx.fillStyle = '#F5F2EE';
+  ctx.fillRect(0, 0, W, H);
+
+  const TOP      = 40;
+  const PANEL_H  = H - 80;
+  const FILTER_X = W * 0.52;
+  const CHART_X  = W * 0.62;
+  const CHART_W  = W - CHART_X - 20;
+
+  drawParticleStream(FILTER_X, TOP, PANEL_H, W);
+  if (state.history.length > 1) {
+    drawChart(CHART_X, TOP, CHART_W, PANEL_H);
+  } else {
+    ctx.fillStyle = '#C7C3BE';
+    ctx.font = '11px "IBM Plex Mono"';
+    ctx.textAlign = 'center';
+    ctx.fillText('Run simulation to',   CHART_X + CHART_W/2, TOP + PANEL_H/2 - 8);
+    ctx.fillText('see convergence',     CHART_X + CHART_W/2, TOP + PANEL_H/2 + 8);
+  }
+}
+let state = {
+  generation: 0,
+  filterMin: 0.25,
+  history: [],
+  particles: [],
+  autoTimer: null,
+};
+
+// ── config ──────────────────────────────────────────────────────────────────
+const LEARNING_RATE = () => parseFloat(document.getElementById('lrSlider').value) / 100;
+const COUNT        = () => parseInt(document.getElementById('countSlider').value);
+const NOISE_ON     = () => document.getElementById('noiseToggle').checked;
+
+// ── resize ───────────────────────────────────────────────────────────────────
+function resize() {
+  const rect = canvas.parentElement.getBoundingClientRect();
+  canvas.width  = rect.width;
+  canvas.height = 500;
+}
+resize();
+window.addEventListener('resize', () => { resize(); draw(); });
+
+// ── particle generation ──────────────────────────────────────────────────────
+function generateParticles() {
+  const n = COUNT();
+  const fm = state.filterMin;
+  const particles = [];
+  let caught = 0, missed = 0, noiseRec = 0;
+
+  for (let i = 0; i < n; i++) {
+    const collapse = Math.min(state.generation * 0.04, 0.7);
+    const rawSize  = Math.random();
+    const size     = rawSize * (1 - collapse) + (0.55 * collapse + rawSize * 0.1 * collapse);
+    const ns       = Math.max(0.05, Math.min(0.98, size));
+
+    const isCaught   = ns >= fm;
+    let   isNoiseRec = false;
+
+    if (!isCaught && NOISE_ON() && Math.random() < 0.25) isNoiseRec = true;
+
+    if (isCaught)       caught++;
+    else if (isNoiseRec) noiseRec++;
+    else                 missed++;
+
+    particles.push({ size: ns, caught: isCaught, noiseRec: isNoiseRec, x: null, y: null });
+  }
+  return { particles, caught, missed, noiseRec, total: n };
+}
+
+// ── step ─────────────────────────────────────────────────────────────────────
+function step() {
+  const lr     = LEARNING_RATE();
+  const result = generateParticles();
+  state.particles = result.particles;
+
+  const caughtSizes = result.particles.filter(p => p.caught).map(p => p.size);
+  if (caughtSizes.length > 0) {
+    const mean   = caughtSizes.reduce((a,b) => a+b, 0) / caughtSizes.length;
+    const target = mean * 0.7;
+    state.filterMin += lr * (target - state.filterMin);
+    state.filterMin  = Math.min(Math.max(state.filterMin, 0.05), 0.85);
+  }
+  if (NOISE_ON()) {
+    state.filterMin = Math.max(state.filterMin - lr * 0.3, 0.05);
+  }
+
+  state.history.push({
+    generation: state.generation,
+    caught:     result.caught,
+    missed:     result.missed,
+    noiseRec:   result.noiseRec,
+    total:      result.total,
+    filterMin:  state.filterMin,
+  });
+
+  state.generation++;
+  updateStats(result);
+  draw();
+}
+
+// ── reset ─────────────────────────────────────────────────────────────────────
+function reset() {
+  clearInterval(state.autoTimer);
+  state.autoTimer = null;
+  document.getElementById('autoBtn').textContent = '▶▶ Run Auto';
+  state = { generation: 0, filterMin: 0.25, history: [], particles: [], autoTimer: null };
+  updateStats({ caught: 0, missed: 0, noiseRec: 0, total: 1 });
+  document.getElementById('genVal').textContent = '0';
+  document.getElementById('collapseNote').style.color = 'transparent';
+  draw();
+}
+
+// ── stats ─────────────────────────────────────────────────────────────────────
+function updateStats(result) {
+  const t  = result.total;
+  const cp = Math.round(result.caught   / t * 100);
+  const mp = Math.round(result.missed   / t * 100);
+  const np = Math.round(result.noiseRec / t * 100);
+
+  document.getElementById('caughtPct').textContent = cp + '%';
+  document.getElementById('missedPct').textContent = mp + '%';
+  document.getElementById('noisePct').textContent  = np + '%';
+  document.getElementById('caughtBar').style.width = cp + '%';
+  document.getElementById('missedBar').style.width = mp + '%';
+  document.getElementById('noiseBar').style.width  = np + '%';
+  document.getElementById('genVal').textContent    = state.generation;
+  document.getElementById('noiseRow').style.opacity = NOISE_ON() ? '1' : '0.3';
+
+  const note = document.getElementById('collapseNote');
+  note.style.color = mp > 50 ? 'var(--accent)' : 'transparent';
+
+  const ann = document.getElementById('noiseAnnotation');
+  if (NOISE_ON()) {
+    ann.textContent   = 'Noise on: perturbation resists filter convergence. Distribution preserved.';
+    ann.style.borderColor = 'var(--noise)';
+  } else {
+    ann.textContent   = 'Noise off: filter trains only on prior captures. Convergence inevitable.';
+    ann.style.borderColor = 'var(--border)';
+  }
+}
+
+
+// ═══════════════════════════════════════════════════════════════════════════════
+// PARTICLE STREAM MODE
+// ═══════════════════════════════════════════════════════════════════════════════
+function drawParticleStream(filterX, top, H, W) {
+  const leftW = filterX;
+
+  // Label
+  ctx.fillStyle = '#B8B4B0';
+  ctx.font = '10px "IBM Plex Mono"';
+  ctx.textAlign = 'left';
+  ctx.fillText('NEED STREAM', 16, top - 14);
+
+  // Filter bar
+  const FT = 6;
+  ctx.fillStyle = '#DDD9D3';
+  ctx.fillRect(filterX - FT/2, top, FT, H);
+
+  const threshY = top + H * (1 - state.filterMin);
+  const grad = ctx.createLinearGradient(0, top, 0, top + H);
+  grad.addColorStop(0, 'rgba(180,83,9,0.3)');
+  grad.addColorStop(1 - state.filterMin, 'rgba(180,83,9,0.3)');
+  grad.addColorStop(1 - state.filterMin, 'rgba(29,78,216,0.18)');
+  grad.addColorStop(1, 'rgba(29,78,216,0.18)');
+  ctx.fillStyle = grad;
+  ctx.fillRect(filterX - FT/2, top, FT, H);
+
+  // Threshold dashed line
+  ctx.strokeStyle = 'rgba(180,83,9,0.45)';
+  ctx.lineWidth = 1;
+  ctx.setLineDash([3, 3]);
+  ctx.beginPath();
+  ctx.moveTo(16, threshY);
+  ctx.lineTo(filterX - 4, threshY);
+  ctx.stroke();
+  ctx.setLineDash([]);
+
+  ctx.fillStyle = '#B45309';
+  ctx.font = '9px "IBM Plex Mono"';
+  ctx.textAlign = 'right';
+  ctx.fillText('threshold', filterX - 10, threshY - 4);
+
+  // Empty state
+  if (state.particles.length === 0) {
+    ctx.fillStyle = '#C7C3BE';
+    ctx.font = '11px "IBM Plex Mono"';
+    ctx.textAlign = 'center';
+    ctx.fillText('Press "Next Generation"', leftW / 2, top + H / 2 - 8);
+    ctx.fillText('to begin',                leftW / 2, top + H / 2 + 8);
+    return;
+  }
+
+  // Particles
+  const n    = state.particles.length;
+  const cols = Math.ceil(Math.sqrt(n * 1.4));
+  const rows = Math.ceil(n / cols);
+  const cW   = (leftW - 60) / cols;
+  const cH   = H / rows;
+
+  state.particles.forEach((p, i) => {
+    const col = i % cols;
+    const row = Math.floor(i / cols);
+    const cx  = 30 + col * cW + cW / 2;
+    const cy  = top + row * cH + cH / 2;
+    const r   = Math.max(3, p.size * Math.min(cW, cH) * 0.38);
+    p.x = cx; p.y = cy;
+
+    let color, alpha;
+    if (p.caught)        { color = '#B45309'; alpha = 0.78; }
+    else if (p.noiseRec) { color = '#6D28D9'; alpha = 0.68; }
+    else                 { color = '#1D4ED8'; alpha = 0.28; }
+
+    if (p.caught || p.noiseRec) {
+      ctx.shadowBlur  = 5;
+      ctx.shadowColor = p.caught ? 'rgba(180,83,9,0.18)' : 'rgba(109,40,217,0.18)';
+    }
+    ctx.beginPath();
+    ctx.arc(cx, cy, r, 0, Math.PI * 2);
+    ctx.fillStyle   = color;
+    ctx.globalAlpha = alpha;
+    ctx.fill();
+    ctx.globalAlpha = 1;
+    ctx.shadowBlur  = 0;
+  });
+
+  // Filter label
+  ctx.fillStyle = '#A09C98';
+  ctx.font = '9px "IBM Plex Mono"';
+  ctx.textAlign = 'center';
+  ctx.fillText('FILTER', filterX, top + H + 16);
+  ctx.fillText(`θ = ${state.filterMin.toFixed(2)}`, filterX, top + H + 28);
+}
+
+// ═══════════════════════════════════════════════════════════════════════════════
+// FISH / NET MODE
+// ═══════════════════════════════════════════════════════════════════════════════
+
+// Draw a single fish shape (always faces right)
+
+// ═══════════════════════════════════════════════════════════════════════════════
+// CAPTURE HISTORY CHART
+// ═══════════════════════════════════════════════════════════════════════════════
+function drawChart(x, top, w, h) {
+  const hist = state.history;
+  const n    = hist.length;
+
+  ctx.fillStyle = '#B8B4B0';
+  ctx.font = '10px "IBM Plex Mono"';
+  ctx.textAlign = 'left';
+  ctx.fillText('CAPTURE HISTORY', x, top - 14);
+
+  // Axes
+  ctx.strokeStyle = '#DDD9D3';
+  ctx.lineWidth = 1;
+  ctx.beginPath();
+  ctx.moveTo(x, top);
+  ctx.lineTo(x, top + h);
+  ctx.lineTo(x + w, top + h);
+  ctx.stroke();
+
+  // Tick labels
+  ctx.fillStyle = '#C7C3BE';
+  ctx.font = '8px "IBM Plex Mono"';
+  ctx.textAlign = 'center';
+  ctx.fillText('0', x,     top + h + 12);
+  ctx.fillText(n,   x + w, top + h + 12);
+  ctx.textAlign = 'right';
+  ctx.fillText('100%', x - 4, top + 6);
+  ctx.fillText('50%',  x - 4, top + h/2 + 4);
+  ctx.fillText('0%',   x - 4, top + h);
+
+  // 50% guide line
+  ctx.strokeStyle = '#EAE6E2';
+  ctx.setLineDash([2, 4]);
+  ctx.beginPath();
+  ctx.moveTo(x,     top + h/2);
+  ctx.lineTo(x + w, top + h/2);
+  ctx.stroke();
+  ctx.setLineDash([]);
+
+  // Plot lines
+  function plotLine(key, color) {
+    ctx.beginPath();
+    ctx.strokeStyle = color;
+    ctx.lineWidth = 1.5;
+    hist.forEach((d, i) => {
+      const px = x + (i / Math.max(n - 1, 1)) * w;
+      const py = top + h - (d[key] / d.total) * h;
+      i === 0 ? ctx.moveTo(px, py) : ctx.lineTo(px, py);
+    });
+    ctx.stroke();
+  }
+
+  plotLine('missed',  'rgba(29,78,216,0.72)');
+  plotLine('caught',  'rgba(180,83,9,0.72)');
+  if (NOISE_ON()) plotLine('noiseRec', 'rgba(109,40,217,0.68)');
+
+  // Filter threshold trace
+  ctx.beginPath();
+  ctx.strokeStyle = 'rgba(160,156,152,0.4)';
+  ctx.lineWidth = 1;
+  ctx.setLineDash([2, 3]);
+  hist.forEach((d, i) => {
+    const px = x + (i / Math.max(n - 1, 1)) * w;
+    const py = top + h - d.filterMin * h;
+    i === 0 ? ctx.moveTo(px, py) : ctx.lineTo(px, py);
+  });
+  ctx.stroke();
+  ctx.setLineDash([]);
+
+  // End labels
+  if (n > 0) {
+    const last = hist[n - 1];
+    const ex   = x + w + 3;
+    ctx.font = '8px "IBM Plex Mono"';
+    ctx.textAlign = 'left';
+    const cy = top + h - (last.caught / last.total) * h;
+    const my = top + h - (last.missed / last.total) * h;
+    ctx.fillStyle = 'rgba(180,83,9,0.78)';
+    ctx.fillText('caught', ex, Math.min(cy + 4, top + h - 2));
+    ctx.fillStyle = 'rgba(29,78,216,0.78)';
+    ctx.fillText('missed', ex, Math.min(my + 4, top + h - 12));
+  }
+}
+
+// ═══════════════════════════════════════════════════════════════════════════════
+// EVENT LISTENERS
+// ═══════════════════════════════════════════════════════════════════════════════
+document.getElementById('stepBtn').addEventListener('click', step);
+
+document.getElementById('resetBtn').addEventListener('click', reset);
+
+document.getElementById('autoBtn').addEventListener('click', () => {
+  if (state.autoTimer) {
+    clearInterval(state.autoTimer);
+    state.autoTimer = null;
+    document.getElementById('autoBtn').textContent = '▶▶ Run Auto';
+  } else {
+    state.autoTimer = setInterval(step, 600);
+    document.getElementById('autoBtn').textContent = '■ Stop';
+  }
+});
+
+document.getElementById('lrSlider').addEventListener('input', e => {
+  document.getElementById('lrVal').textContent = (e.target.value / 100).toFixed(2);
+});
+
+document.getElementById('countSlider').addEventListener('input', e => {
+  document.getElementById('countVal').textContent = e.target.value;
+});
+
+document.getElementById('noiseToggle').addEventListener('change', () => {
+  const ann = document.getElementById('noiseAnnotation');
+  if (NOISE_ON()) {
+    ann.textContent   = 'Noise on: perturbation resists filter convergence. Distribution preserved.';
+    ann.style.borderColor = 'var(--noise)';
+  } else {
+    ann.textContent   = 'Noise off: filter trains only on prior captures. Convergence inevitable.';
+    ann.style.borderColor = 'var(--border)';
+  }
+  document.getElementById('noiseRow').style.opacity = NOISE_ON() ? '1' : '0.3';
+});
+
+
+// Initial draw
+draw();
+</script>
+</body>
+</html>

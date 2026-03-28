@@ -1,0 +1,858 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import ChaNetworkDiagram from '../../components/arrival/ChaNetworkDiagram.jsx';
+---
+
+<BaseLayout
+  title="The Beings of Charity — JZ Stafura"
+  description="Charity is not a virtue, a transaction, or a bond. It is a mode of existence — a crossing. Drawing on Latour's AIME framework, a proposal for [CHA] as a new mode, and what happens when algorithmic infrastructure captures the legibility of need."
+>
+  <article class="essay" id="top">
+
+    <!-- ── Preface note ──────────────────────────────────────────────────── -->
+    <aside class="preface-note">
+      <p><em>A note before we begin:</em> This paper had to cross [TEC] to reach you. Whatever my motives in writing this essay, it had to pass through Substack, internet infrastructure, devices, and algorithms that may or may not have surfaced it. At each crossing, the essay transformed slightly: it became a post, it acquired a header image, it arrived in a html frame that has nothing to do with what it's trying to say.</p>
+      <p>Yet, if you&rsquo;re reading this, something arrived anyway.</p>
+    </aside>
+
+    <!-- ── Header ─────────────────────────────────────────────────────────── -->
+    <header class="essay-header">
+      <p class="dedication"><em>Dedicated to the Beings of Charity in my life, in all their forms and trajectories</em></p>
+      <p class="overline">Essay &middot; March 23, 2026</p>
+      <h1>The Arrival: Beings of Charity, Mode Capture, and the Ontology of Giving</h1>
+      <p class="subtitle">
+        Charity is not a virtue, a transaction, or a bond. It is a mode of existence&mdash;a crossing.
+        Drawing on Latour&rsquo;s AIME framework, a proposal for [CHA] as a new mode, and what happens
+        when algorithmic infrastructure captures the legibility of need.
+      </p>
+      <a
+        href="https://jzstafura.substack.com/p/the-beings-of-charity"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="substack-link"
+      >Read on Substack ↗</a>
+    </header>
+
+    <!-- ── Table of Contents ──────────────────────────────────────────────── -->
+    <nav class="toc" aria-label="Table of contents">
+      <p class="toc-label">Contents</p>
+      <ol>
+        <li><a href="#prolegomenon">Prolegomenon</a></li>
+        <li><a href="#i-introduction">I. Introduction</a></li>
+        <li><a href="#ii-aime">II. AIME as Framework: Key Concepts</a></li>
+        <li><a href="#iii-beings">III. Beings of Charity: The Mode</a></li>
+        <li><a href="#iv-crossings">IV. Successful [CHA] Crossings: Three Cases</a></li>
+        <li><a href="#v-masquerade">V. Ontological Masquerade</a></li>
+        <li><a href="#vi-platform">VI. Platform Infrastructure as Parasitic Actant</a></li>
+        <li><a href="#vii-mor">VII. How [MOR] Interferes</a></li>
+        <li><a href="#viii-capture">VIII. Mode Capture: The Three-Stage Framework</a></li>
+        <li><a href="#ix-signal">IX. Signal Validity, [REF], and the Limits of Observation</a></li>
+        <li><a href="#x-open">X. Open Questions and Further Work</a></li>
+        <li><a href="#intervention">On Intervention: Three Paths, No Resolution</a></li>
+        <li><a href="#references">References</a></li>
+        <li><a href="#endnotes">Endnotes</a></li>
+        <li><a href="#appendix">Appendix</a></li>
+      </ol>
+    </nav>
+
+    <!-- ════════════════════════════════════════════════════════════════════ -->
+    <!-- PROLEGOMENON                                                        -->
+    <!-- ════════════════════════════════════════════════════════════════════ -->
+    <section id="prolegomenon" class="prose">
+      <h2>Prolegomenon</h2>
+      <p>In 2024, Americans gave $592.5 billion to charitable causes. GoFundMe alone has raised over $40 billion since 2010. Despite all of that, we still do not have a good theory of what Charity actually is. We have theories about donors, about altruism, about reciprocity, about moral duty. None of them start from the right place.</p>
+      <p>This essay starts from a need.</p>
+
+      <h3>The Central Move</h3>
+      <p>Bruno Latour, in his late work <em>An Inquiry into Modes of Existence</em>, argued that different human practices each have their own internal logic, their own way of succeeding or failing, their own kinds of beings. Science, law, religion, technology, economics: each operates by different rules. Not all rationalities are the same rationality. Applying economics to religion does not give you better religion. It gives you something else wearing religion&rsquo;s clothes.</p>
+      <p>Charity is one of those modes. Call it [CHA]. It has a specific logic, and that logic has been systematically misread.</p>
+      <p>Every existing theory of Charity centers the giver: their motives, their social obligations, their optimization strategies. This is the wrong object. Charity begins with a need. It succeeds when the need is met. That is its only criterion. Whether the giver was generous, virtuous, efficient, or obligated is ontologically irrelevant to whether Charity actually happened.</p>
+      <p>Call this the interpretive key: follow the need, not the giver.</p>
+
+      <h3>The Hiatus</h3>
+      <p>Every mode of rationality in Latour&rsquo;s framework crosses a constitutive gap, a structural discontinuity that defines the mode itself. For religion, the gap is between absence and presence. For technology, the gap is between a problem and its material solution.</p>
+      <p>For Charity, the gap is this: between a need that exists and a need that is visible.</p>
+      <p>A need can be real, urgent, pressing, and still sit on the wrong side of that gap. The Beings of Charity can only help what they can see. Legibility, not generosity, is the ontological crux of the mode. An isolated rural community with no infrastructure to announce its hunger is not less needy than a photographed one. It is less legible. That is why the suffering persists.</p>
+    </section>
+
+    <!-- ════════════════════════════════════════════════════════════════════ -->
+    <!-- I. INTRODUCTION                                                      -->
+    <!-- ════════════════════════════════════════════════════════════════════ -->
+    <section id="i-introduction" class="prose">
+      <h2>I. Introduction</h2>
+      <p>Among the many values Modern Humans claim to have, a motivation to help must be counted as core. In 2024 alone, $592.50 billion flowed through American charitable channels,<sup>2</sup> with crowdfunding platforms like GoFundMe, which has facilitated over $40 billion in donations since 2010,<sup>3</sup> emerging as significant contributors. Churches and religious organizations represent around a quarter of all giving, approximately $146.54 billion in 2024,<sup>4</sup> yet this represents a dramatic collapse from nearly two-thirds&mdash;63%&mdash;of all giving in 1983.<sup>5</sup> The landscape fragments, as shown in Table 1, but it changes to meet needs. Since giving is a prominent feature of Modern Globalized Society, not to mention its prominence among many other Collectives, one might assume the Modern Humans have a common language for Charity. A look reveals this to be as untrue as their other values.</p>
+
+      <figure class="table-figure">
+        <img src="/arrival/table-1.png" alt="Table 1. Change from 1984–2024 in Recipients of Charitable Dollars" />
+        <figcaption>Table 1. Change from 1984&ndash;2024 in Recipients of Charitable Dollars.</figcaption>
+      </figure>
+
+      <p>Existing frameworks in psychology (altruism), economics (Effective Altruism), and sociology (Mauss) all center the giver or the exchange. A gift unaccompanied by need may indeed be a transaction between parties. An &ldquo;efficient&rdquo; distribution system may indeed have metrics of success that can be met or not. A person may indeed feel a strong desire, apparently without external source, to tithe to his Church. More or less well-articulated (and more or less logical) theories have been developed for each of the above. However, none of these theories start from where we will argue Charity emanates: the need. In this way, Charity has been ontologically under-theorized. It has been mis-read as an individual motivation, an interpersonal transaction, an efficiency metric, and faith-based soul maintenance. It is time for us to look at Charity in its own mode of reasoning, to reveal its true trajectory, and to meet those Beings who cross an impossible hiatus to do their work. The only way to do so is to stay with the need. By tracing a need from obscurity through its emergence as legible and finally its satisfaction, we can see the true nature of Charity [CHA], on its own terms. From there, we will be better able to diagnose where its crossings with other modes lead to the greatest betrayals, and which betrayal may be heading towards a terminal mode capture of [CHA].</p>
+      <p>The argument here is that Charity can best be understood by approaching it as a distinct Latourian mode [CHA] with its own rationality, felicity (truth) conditions, and hiatus that must be crossed to continue existence. Viewing [CHA] from the perspectives of interpersonal interaction rituals, &ldquo;subjective&rdquo; value systems, systemic efficiency, or religious orientation are examples of categorical errors that necessarily occlude the true nature of the Value (for example, see Table 2). The categorical errors are perceptual errors in taking the viewpoint of a Mode of rationality other than the one that one believes one is taking the perspective of. This will be expanded later.</p>
+
+      <figure class="table-figure">
+        <img src="/arrival/table-2.png" alt="Table 2. Categorical errors in the interpretation of Charity" />
+        <figcaption>Table 2. Categorical errors in existing frameworks for understanding Charity.</figcaption>
+      </figure>
+
+      <p>Charity needs a need. It starts with a need. And, if successful, it ends with a need being met. This is its felicity condition: has a need been met. Its rationality rests on tracing the trajectory of a need announcing itself and finding a way to meet that need. The announcement is the jump across the hiatus that MUST happen for Charity to occur. Nothing else matters for the Beings of Charity. They meet legible needs. Focusing on the means necessarily involves a category error of one type or another and always results in biased perception of the needs, in their Mode of Being.</p>
+      <p>Once we have met the Beings of Charity on their own terms, listened to them in their own language, followed the need, we can easily see category errors in past theory, we can diagnose which other modes merely wound/shape [CHA] as it passes through and which modes degrade and colonize it. When one mode passes through another, there is a betrayal. However, if the mode&rsquo;s felicity conditions are met, it has succeeded, and the Beings of that mode live on another day. The deep ontological threat comes from complete mode capture by a parasitic actant from another mode, through a masquerade in which one mode&rsquo;s trajectory, felicity conditions, and explanatory key are completely consumed by another&rsquo;s. In the case of [CHA], the threat occurs in platform intermediation [TEC] with a particular trajectory: self-learning. This mode capture has a mathematically inevitable endpoint, that of collapse of [CHA] to a single vector of need against which algorithms converge.</p>
+      <p>In what follows three contributions are made to an Ontology of Charity. First, [CHA] is introduced as a distinct mode of Latourian rationality, with its own felicity conditions and hiatus. The Beings of Charity traverse a hiatus in which needs become legible. Only then do they continue to exist. A need existing is not enough for them; they must see it. Second, the concept of the parasitic actant is introduced and unpacked. The Platform Infrastructure [TEC] of online giving is an example of a parasitic actant, as it seals off the [CHA] rationality, replacing it with its own. Since needs must be legible to be met, [TEC] platform infrastructure captures [CHA] mode of rationality completely, acting as total mediator. Third, the introduction of learning algorithms to [TEC] adds a potentially terminal dimension to this mode capture. In formal terms, a system that learns from its own generated inferences will necessarily degenerate toward a delta function, where the mode of [CHA] has completely collapsed, and cannot be retrieved. The loss is total, and mathematically determinate.</p>
+      <p>This analysis matters precisely because we are in the threshold moment between stages. We still possess hybrid channels: direct giving, informal networks, weak-tie generosity, where [CHA] propagates without the mediation of [TEC]. These rhizomatic structures have not yet been fully captured. But the pressure is unidirectional and platform infrastructure is not a neutral intermediary. It is a parasitic actant that, once it mediates legibility, controls what counts as a need and who counts as capable of meeting it. The introduction of learning algorithms transforms parasitism into systematicity: the platforms no longer merely distort [CHA], they actively eliminate its ecological conditions. This is not a matter of reform, better design, or interface improvements. It is structural.</p>
+      <p>What follows is an anatomy of this capture. We begin by establishing [CHA] as a unique mode, using Latour&rsquo;s AIME framework to set out its distinctive rationality and the hiatus it must traverse to exist. Only by seeing [CHA] on its own terms can we diagnose the categorical errors that have occluded theoretical viewpoints. We then introduce and describe parasitic actants and the specific mechanics by which [TEC] seals off the [CHA] trajectory and replaces it with its own. Finally, we examine what happens when learning algorithms are introduced into this already-captured system, and why the endpoint is not equilibrium but collapse.</p>
+    </section>
+
+    <!-- ════════════════════════════════════════════════════════════════════ -->
+    <!-- II. AIME AS FRAMEWORK                                                -->
+    <!-- ════════════════════════════════════════════════════════════════════ -->
+    <section id="ii-aime" class="prose">
+      <h2>II. AIME as Framework: Key Concepts</h2>
+
+      <h3>A. Modes of Existence</h3>
+      <p>Each mode has its own rationality, its own beings, its own trajectory through the world. Felicity/infelicity conditions describe how a mode succeeds or fails on its own terms. Table 3 embeds [CHA] within Latour&rsquo;s AIME framework.<sup>1</sup></p>
+    </section>
+
+    <!-- ── CHA Mode Table (Table 3) ──────────────────────────────────────── -->
+    <section class="figure-block" id="table-3">
+      <style>
+        .cha-wrap { padding: 1.5rem 0; font-family: var(--font-sans); }
+        .cha-header { display: flex; align-items: baseline; gap: 12px; margin-bottom: 1.5rem; border-bottom: 1px solid var(--color-border-tertiary); padding-bottom: 1rem; }
+        .cha-abbr { font-size: 22px; font-weight: 500; color: var(--color-text-primary); font-family: var(--font-mono); }
+        .cha-full { font-size: 15px; color: var(--color-text-secondary); }
+        table.mode-table { width: 100%; border-collapse: collapse; font-size: 14px; }
+        table.mode-table tr { border-bottom: 0.5px solid var(--color-border-tertiary); }
+        table.mode-table tr:last-child { border-bottom: none; }
+        table.mode-table td { vertical-align: top; padding: 10px 12px; line-height: 1.6; color: var(--color-text-primary); }
+        table.mode-table td.row-label {
+          width: 30%;
+          font-weight: 500;
+          font-size: 12px;
+          text-transform: uppercase;
+          letter-spacing: 0.05em;
+          color: var(--color-text-secondary);
+          padding-top: 12px;
+        }
+        .tag { display: inline-block; font-family: var(--font-mono); font-size: 12px; padding: 1px 6px; border-radius: 4px; margin-right: 4px; background: #EEEDFE; color: #3C3489; }
+        .felicity { border-left: 3px solid #1D9E75; padding-left: 8px; }
+        .infelicity { border-left: 3px solid #E24B4A; padding-left: 8px; }
+        .source-note { margin-top: 1.25rem; font-size: 12px; color: var(--color-text-secondary); border-top: 0.5px solid var(--color-border-tertiary); padding-top: 0.75rem; }
+      </style>
+      <div class="cha-wrap">
+        <div class="cha-header">
+          <span class="cha-abbr">[CHA]</span>
+          <span class="cha-full">Charity &mdash; A proposed mode extension of Latour&rsquo;s AIME framework</span>
+        </div>
+        <table class="mode-table">
+          <tr>
+            <td class="row-label">Type of beings</td>
+            <td>The assemblage of need, legibility, and response. Not the giver. Not the gift. The crossing that makes an invisible need visible and then met. The beings of [CHA] are the entities&mdash;persons, networks, infrastructures, gestures&mdash;that traverse the hiatus and carry the need to resolution. They exist only in that traversal.</td>
+          </tr>
+          <tr>
+            <td class="row-label">Trajectory</td>
+            <td>Need exists (obscure) &rarr; need achieves legibility &rarr; response finds the need &rarr; need is met. The trajectory is directional and non-reversible. Each stage is necessary. A need that never becomes legible never generates charity. A legible need that attracts no response is charity stalled. A response that misidentifies the need is charity diverted.</td>
+          </tr>
+          <tr>
+            <td class="row-label">Constitutive hiatus</td>
+            <td>The gap between a need that exists and a need that is legible. This is not an obstacle from outside the mode. It is the mode&rsquo;s defining structure. Beings of [CHA] cannot operate on invisible needs. The crossing from obscurity into legibility must happen, or the mode does not propagate. Nothing follows until it does.</td>
+          </tr>
+          <tr>
+            <td class="row-label">Felicity condition</td>
+            <td class="felicity">A need is actually met. The origin of the response, the motive of the giver, the social identity of the recipient, and the efficiency of the exchange are all irrelevant to this condition. The felicity condition asks one question: was the need met? If yes, [CHA] has succeeded and must move on to the next need to continue existing.</td>
+          </tr>
+          <tr>
+            <td class="row-label">Infelicity conditions</td>
+            <td class="infelicity">
+              A need exists but remains illegible&mdash;the mode cannot activate.<br /><br />
+              A legible need is misidentified&mdash;the response addresses a simulation of the need, not the need itself.<br /><br />
+              Mode capture replaces [CHA]&rsquo;s rationality with that of another mode&mdash;the trajectory is redirected before arrival.
+            </td>
+          </tr>
+          <tr>
+            <td class="row-label">Veridiction key</td>
+            <td>Was the need met? This is the only evaluative question native to [CHA]. &ldquo;Was the giver virtuous?&rdquo; belongs to <span class="tag">[MOR]</span>. &ldquo;Was the giving efficient?&rdquo; belongs to <span class="tag">[ECO]</span>. &ldquo;Was the recipient deserving?&rdquo; belongs to <span class="tag">[MOR]</span> again. &ldquo;Did it renew the bond between souls?&rdquo; belongs to <span class="tag">[REL]</span>. Applying any of these questions to [CHA] is a category error.</td>
+          </tr>
+          <tr>
+            <td class="row-label">Interpretive key</td>
+            <td>Follow the need, not the giver. The methodological shift is directional. Track need trajectories. The donor&rsquo;s interior states&mdash;empathy, guilt, calculation, faith&mdash;are data about a different mode. They become relevant only as obstacles or facilitators of legibility, never as determinants of felicity.</td>
+          </tr>
+          <tr>
+            <td class="row-label">Characteristic confusions</td>
+            <td>
+              <span class="tag">[MOR]</span> Charity requires moral desert in the recipient; giving is a virtue to be evaluated.<br /><br />
+              <span class="tag">[ECO]</span> Effective altruism: giving should be optimized; the correct metric is impact per dollar.<br /><br />
+              <span class="tag">[REL]</span> Tithing as soul maintenance; charity transforms the giver, not only the need.<br /><br />
+              <span class="tag">[ORG]</span> Aid is a process to be administered; success is procedural compliance.<br /><br />
+              <span class="tag">[NET]</span> Reciprocity and gift exchange (Mauss): giving binds parties in social obligation.
+            </td>
+          </tr>
+          <tr>
+            <td class="row-label">Vulnerability to capture</td>
+            <td>High. [CHA] requires legibility as its operational condition. Whoever controls legibility controls the mode. Platform infrastructure <span class="tag">[TEC]</span> captures [CHA] by defining what counts as a legible need. When learning algorithms are introduced into that infrastructure, the capture becomes formally irreversible: the system converges on a delta function, recognizing only algorithmically legible needs, and the full distribution of actual need collapses to a point estimate.</td>
+          </tr>
+        </table>
+        <div class="source-note">Table 3. Proposed extension of the AIME comparative table (Latour, 2013). Rows follow AIME convention: beings, trajectory, hiatus, felicity/infelicity conditions, veridiction key, characteristic confusions.</div>
+      </div>
+    </section>
+
+    <section class="prose">
+      <p>The felicity condition for [CHA] is simple yet vanishingly effervescent: [CHA] succeeds when a need is met. As soon as a need is met, [CHA] has succeeded and must move on to another need for its continued existence. The origin of the gift has no impact on this condition. A noble gesture of $20 to an unfortunate on the street does not guarantee success unless that $20 continues along the trajectory of [CHA] to fulfill a need. If the giver intends the recipient to buy food, and the recipient instead uses that $20 for a bus ticket home, because that is what she actually needed, the felicity condition of [CHA] has been met. The giver&rsquo;s model of the need was wrong. The mode did not care. The intention of the giver, the transactional nature of the interaction, the societal consensus, and the impact on the recipient are all based on category errors ([MOR]/[REL]/[CHA], [NET]/[CHA], [SOC]/[MOR]/[CHA], [MOR]/[REP]/[CHA], respectively). Only by following the need can we truly see Charity. Only by eliminating considerations of the felicity conditions of other modes can we understand [CHA]. We must be anti-essentialist about origins: what matters is the trajectory, not the motive.<sup>9</sup></p>
+
+      <h3>B. The Hiatus</h3>
+      <p>Every mode of existence propagates through a constitutive gap, a hiatus&mdash;a structural discontinuity that the mode must cross to continue existing. This is easy to miss in Latour&rsquo;s account. The hiatus is not friction imposed from outside, an obstacle the mode happens to encounter. It is the mode&rsquo;s defining structure. What makes the gap is what defines the mode. Consider the examples.</p>
+      <p>Reproduction [REP] crosses the gap between generations. The Beings of Reproduction exist by carrying forward form across a discontinuity that could, at any moment, fail to close. A mutation, a miscarriage, a missing parent: the gap could break the chain.</p>
+      <p>Religion [REL] crosses the gap between absence and presence. The Beings of Religion exist only if that crossing succeeds, if presence is renewed. A prayer answered or unanswered; a ritual that brings what was absent into presence or fails to. The mode depends entirely on whether the gap closes.</p>
+      <p>Technology [TEC] folds and unfolds differently. The technical being crosses a gap between a problem and its material solution. But it crosses another gap as well: between the prescription buried in a device and the action it produces in the world. A medical device has an intended use; a logic designed into it. But that logic only works if the user understands the prescription, if they know what the device is meant to do and how to do it. If they do not, the prescription fails. The technical Being exists not just in the material object but in the legibility of what that object is supposed to accomplish. The gap is between what was designed and what actually happens when someone picks it up and tries to use it. Close the gap and the mode propagates. Leave it open and you have equipment, but no technology, like the Metaverse.</p>
+      <p>For Charity [CHA], the constitutive gap is between a need that exists and a need that is legible. A need can be real: pressing, urgent, materially undeniable. It can still sit on the wrong side of the hiatus, of the expanse. The beings of Charity cannot reach it there. They can only help what they see. Consider hunger in an isolated rural area versus hunger in a city where photographs can be taken and publicized. The need is equally real in both places. But charity works only when the need becomes visible, when it gets announced, when it enters into legibility. This is why legibility, not generosity, is the ontological crux of Charity. The Beings of Charity exist by seeing what is invisible. When the need stays hidden, there is no charity.</p>
+
+      <h3>C. Mode Crossings and Betrayal</h3>
+      <p>Modes do not exist in isolation. They pass through each other. Medical need travels through Technology. Charity moves through Economy. Biological reproduction through Law. Each crossing requires translation. Translation, Latour argues, is a form of betrayal. Not moral betrayal but logical betrayal. A mode survives its crossing only if it can be restated in the receiving mode&rsquo;s terms. A need becomes a case file. A prayer becomes an artifact. A treatment protocol becomes a price. The original mode transforms to move forward. The key question is whether it survives intact? If Charity passes through Bureaucracy and emerges as a case file but the need still gets met, Charity has arrived on the other side. The bureaucratic translation was a cost of passage, not a redirection of purpose. Call this incidental betrayal.</p>
+      <p>But sometimes the crossing is rigged. The receiving mode&rsquo;s logic does not just translate the original mode; it captures it. The transformation is not incidental to the crossing. It is the entire point. The mode arrives, but as something else entirely. Not as Charity-after-Bureaucracy, but as what Bureaucracy has made of Charity. Call this engineered betrayal. This distinction matters for what follows. When Charity passes through Economy, for example, when a need becomes a GoFundMe: Was this transformation the price of entry, or the price of capture?</p>
+
+      <h3>D. The Interpretive Key</h3>
+      <p>Each mode requires a trained perceptual shift. For Charity, the shift is directional: follow the need, not the giver. This reframes the proper methodology. Instead of donor interviews or psychometric scales of altruism, we should track need trajectories. You can ask a donor why they gave to a cause: guilt, obligation, empathy, spontaneous kindness. You will get an answer. But that answer does not change what happened. The need arrived and departed the same way regardless of which interior motive you find in the donor&rsquo;s account.</p>
+      <p>The method of perceptual shift changes what you can see. What you see makes motive irrelevant. And that undermines much of what has been thought about charity. The reorientation itself weakens psychological theories of empathy, moral philosophy&rsquo;s duty-based accounts, or economic models of reciprocity. It does not refute their logic; it shows their logic was attached to the wrong object. They were all watching the giver: interior states, virtues, rational calculation. The Mode itself was watching the need. It was following the trajectory of a problem that required solving. That is the perceptual shift. That is what makes Charity intelligible as Charity [CHA], separate from whatever the giver happened to feel or believe or intend.</p>
+
+      <h3>E. Against Mauss: The Gift Misread</h3>
+      <p>One can see a series of categorical misreadings in a foundational sociological account of the gift, that of Mauss in <em>The Gift</em> (1925). In this view of charity, all gifts are transactional interactions that carry three connected obligations: to give (the giver), to receive and to reciprocate (the recipient). The gift carries the giver&rsquo;s identity (<em>hau</em>) and demands return; it is never free. In this view, [CHA] is a degenerate or incomplete gift. At best, the reception looks like [CHA], but there is no reciprocity or binding social obligation created from the view of the need. Once it is legible and met, it disappears.</p>
+      <p>This is a clear category error on the part of Mauss. Society [SOC] and [MOR] are the keys Mauss is listening to here, while [CHA] is playing another. He is judging [CHA] by the wrong mode&rsquo;s criteria, the wrong interpretive key. Mauss is not seeing incompleteness of [CHA]; he is looking at different Beings of a different Mode because of his structural vantage point, the exchange. His interpretive key (follow the giver and the social bond) produces a different phenomenon than [CHA] (follow the need). The irony here is that every time [CHA] passes through social infrastructure ([NET], [REL], community norms) it carries wounds that look like reciprocity obligations to a Maussian observer. This is mistaking the wounds for the defining features of the mode.</p>
+    </section>
+
+    <!-- ════════════════════════════════════════════════════════════════════ -->
+    <!-- III. BEINGS OF CHARITY: THE MODE                                    -->
+    <!-- ════════════════════════════════════════════════════════════════════ -->
+    <section id="iii-beings" class="prose">
+      <h2>III. Beings of Charity: The Mode</h2>
+
+      <h3>A. The Assemblage</h3>
+      <p>Charity is not a property of individuals. This is the first point to establish, and it cuts against much of what psychology and moral philosophy have built. A person can carry generous impulses, can feel moved to act, can possess whatever interior states motivate human behavior. But the Being that does the work of Charity is never a person alone. It is an assemblage: person, timing, the legibility of a particular need at that moment, the infrastructure through which a gift travels. None of these elements in isolation is sufficient.</p>
+      <p>Take away the timing and the gesture becomes something else entirely. A gift given when it is no longer needed is not charity, whatever the motive, and however it is received. Take away the infrastructure and even the most determined person cannot reach a need that exists only in the wrong place. Take away legibility and you have a hidden need sitting uncrossed a hiatus, beyond the reach of anyone, no matter how willing. This is not a claim about moral responsibility or personal virtue. It is a claim about what the mode consists of. The Beings of Charity are not reducible to a single actor. They are the configurations that propagate need-meeting across the hiatus that separates &ldquo;this need exists&rdquo; from &ldquo;this need is visible enough to be met.&rdquo; Person, object, timing, visibility, network architecture: these are all actants in the assemblage, in Actor Network Theory&rsquo;s sense. The non-human elements are not incidental but constitutive.</p>
+
+      <h3>B. Felicity Condition</h3>
+      <p>Charity succeeds when a need is met. Not efficiently. Not purely. Not according to the giver&rsquo;s intention. Not in a way that generates reciprocity or social obligation. Simply: met. The felicity condition is radically simple. It has one dimension. Either the need arrives on the other side of the hiatus or it does not. It&rsquo;s a True/False on the Ontological Exam. This is what makes the interpretive key work. You can stop asking whether the impulse was genuine, whether the giver was truly altruistic, whether the gift created binding social ties. None of that matters to the mode. The $20 given to someone on the street who uses it for crack cocaine instead of food: this is Charity that succeeded, if that was the person&rsquo;s actual need. The mode does not care about the giver&rsquo;s prediction of need. It cares only whether the need that actually existed was met.</p>
+      <p>This drives everything else. Because if the felicity condition is outcome-defined and outcome-only, then motives become ontologically irrelevant. Not morally irrelevant. Ontologically irrelevant. The mode does not pass through the person&rsquo;s interior life. It passes through the need itself. This reframes the whole question. When you ask &ldquo;Why did he do it?&rdquo; you have chosen to watch the wrong object. The giver&rsquo;s motive state is incidental to the modes passage, not its origin.</p>
+
+      <h3>C. The Constitutive Hiatus</h3>
+      <p>Every mode in Latour&rsquo;s framework crosses a gap, a hiatus. Not an obstacle imposed from outside, but the gap that defines the mode itself. For Charity, that gap is specific: it lies between a need that exists and a need that becomes legible.</p>
+      <p>A need can be real. Pressing. Materially undeniable. A person can be genuinely suffering, their circumstances can be genuinely urgent and still sit on the wrong side of the hiatus. The beings of Charity cannot reach them there. They can only meet needs they can see. This is why legibility, not generosity, is the ontological crux. The assemblage&rsquo;s job is to perform the crossing. To take what exists unseen and make it visible. To announce the need. The visibility is not a side effect of Charity. It is the constitutive work of the Mode. Without that crossing, the Mode never activates. A need can sit uncrossed indefinitely. The failure is not moral; it is ontological. The hiatus was not crossed.</p>
+
+      <h3>D. Critique of Effective Altruism</h3>
+      <p>Effective Altruism (EA) applies economic rationality to Charity.<sup>10,11,12</sup> This is a category error, and like all category errors, it necessarily obscures what it claims to illuminate.</p>
+      <p>EA&rsquo;s move is explicit. Peter Singer&rsquo;s drowning child: if you see a child drowning in a pond and you can save them at minimal cost to yourself, you are obligated to do so. Extend this globally. Extend it to maximizing welfare per dollar. Minimize waste. Measure impact. Optimize giving against a utility function. This is Charity as economic problem-solving. Welfare maximization as the interpretive key. But this is not following the need. This is following the model of need. EA does not track need trajectories. It tracks predicted outcomes. It does not ask what this person actually requires in this moment. It asks where a dollar will produce maximum welfare reduction globally. These are different objects entirely.</p>
+      <p>The category error lies in this substitution. When you switch interpretive keys from &ldquo;follow the need&rdquo; to &ldquo;optimize welfare,&rdquo; you switch modes. You move from [CHA] to [ECO]. The Beings that propagate through EA infrastructure are not Charity Beings. They are Economic Beings. They are doing economically rational work. That work is real, and it produces outputs. But those outputs are not Charity in the Latourian sense [CHA]. They are economic outcomes that happen to involve resource transfer.</p>
+      <p>EA&rsquo;s proponents are explicit about this substitution. Singer argues that most charitable giving fails because it is driven by emotional responses rather than evidence and reason. Emotion, on this account, is the problem to be corrected. But this framing reveals the mode crossing rather than concealing it. When you declare emotion a defect in the giving process, you have already left [CHA] and entered [ECO]. You have decided in advance which rationality governs.</p>
+      <p>The problem is not that EA is immoral. The problem is that it has colonized Charity with a different mode&rsquo;s rationality and then claimed to be doing Charity better.</p>
+      <p>Notice what gets lost in this substitution. Proximity. Relationship. The dyadic quality of need meeting another specific need. The possibility that helping the person in front of you might be more important than helping the statistically optimal recipient three continents away. EA systematically privileges abstraction and distance because its rationality requires commensurability. It needs all needs to be measurable on the same scale, convertible to the same unit.</p>
+      <p>But Charity does not work on that scale. It works on the scale of the visible need, the assemblage that can close the particular hiatus. When you force Charity through EA&rsquo;s rationality, you necessarily lose those cases. The unmeasurable needs. Consider Carol Sue Snowden, a librarian in Columbus, Ohio, who spent thirty years saving quietly, buying books, living frugally, and left over a million dollars to her local library and seven neighborhood schools. By EA&rsquo;s explicit logic, she got it wrong. The money should have gone where it would do the most measurable good globally. This verdict is coherent inside [ECO]. Inside [CHA], it is a category error, and somewhat viscerally repellant. Snowden followed a visible need. She gave to what she could see, what she had lived alongside, what the hiatus of her own life had made legible. EA&rsquo;s model only registers the suboptimality.</p>
+      <p>The help that works not because it was optimized but because someone showed up.</p>
+      <p>To repeat (again): this is not a moral critique. It is a claim about what mode you are actually in. EA is doing [ECO] work. That work may transfer resources. It may reduce suffering, by whatever metrics you accept. But those metrics are [ECO]&rsquo;s felicity conditions, not Charity&rsquo;s. When EA succeeds by its own measures, it may simultaneously be failing [CHA]&rsquo;s. The modes are orthogonal. The deepest error is the assumption that a single rationality can govern all forms of giving. That there is a unified phenomenon called &ldquo;altruism&rdquo; that can be made efficient. There is not. There are modes with different architectures, different hiatuses, different ways of crossing. [CHA] is one of them. It is not improved by applying another mode&rsquo;s logic. It is replaced by that logic.</p>
+    </section>
+
+    <!-- ════════════════════════════════════════════════════════════════════ -->
+    <!-- IV. SUCCESSFUL [CHA] CROSSINGS: THREE CASES                        -->
+    <!-- ════════════════════════════════════════════════════════════════════ -->
+    <section id="iv-crossings" class="prose">
+      <h2>IV. Successful [CHA] Crossings: Three Cases</h2>
+
+      <h3>A. The &ldquo;Pure-Looking&rdquo; Case</h3>
+      <p>Neighbor to neighbor. Direct, intimate, no infrastructure. You were shoveling. Your younger neighbor finished his driveway, then walked up the street to the older neighbor&rsquo;s place and kept shoveling. Just so the man could get out if he needed to. You asked if he wanted help. He said yes. You both finished and left. Late, dark, the older neighbor probably never knew who did it.</p>
+      <p>Phenomenologically clean. No institutions, no mediation, no visible machinery. A single crossing in the pre-existing social tie [NET] that makes the need legible. This is what altruism theories point to when they argue for intrinsic human goodness. A perfect case for psychological accounts: empathy translating into action, obligation without coercion, warmth expressed directly.</p>
+    </section>
+
+    <!-- ── Network Diagrams: Figures 1–4 ──────────────────────────────────── -->
+    <section class="figure-block figure-diagram">
+      <ChaNetworkDiagram client:visible />
+      <p class="figure-caption">
+        <strong>Figures 1&ndash;4.</strong> Interactive network diagrams tracing charitable assemblages
+        across four scenarios&mdash;snow shoveling (Example 1), GoFundMe (Example 2), mode capture via
+        [MOR] (Example 3), and algorithmic model collapse (Example 4). Use the tabs to switch between
+        examples. Hover nodes and edges for annotations.
+      </p>
+    </section>
+
+    <section class="prose">
+      <p>Except the case itself does not care about your younger neighbor&rsquo;s interior life. The question &ldquo;Why did he do it?&rdquo; is ontologically irrelevant. What matters is that a need arrived. An older man&rsquo;s driveway was impassable. The need got met. Charity happened. The younger neighbor&rsquo;s motive state could have been any combination of those things, or none of them, and Charity would have still occurred in exactly the form it did.</p>
+      <p>This is what following the need, not the giver, shows you. The case does not refute psychological altruism theories. It shows they were watching the wrong object. The mode itself was already traveling. The motive was incidental to its passage.</p>
+
+      <h3>B. The &ldquo;Inefficient&rdquo; Case</h3>
+      <p>The church food bank operates on redundancy, bureaucracy, and friction. There are intake forms, eligibility criteria, a Kafka-esque stream of repetitive questions. The volunteers have been trained in procedures designed by [ORG] logic; The place smells like institutional life. There are [REL] strings attached too: the prayer before distribution, the implicit message that this help arrives through faith, the reminder that charity is a religious virtue. If you want the food, you encounter the institution first.</p>
+      <p>From an economic [ECO] standpoint, this is failure. The cost per meal delivered is measurable and unfavorable compared to direct food purchase. Effective Altruism would identify this immediately: resources are being diverted to coordination, to religious messaging, to the maintenance of institutional forms. By [ECO] rationality, those resources are wasted. The mode should have been optimized.</p>
+      <p>And yet&hellip;The food arrives. People who are hungry get fed. Week after week, the structure holds. People come to know the volunteers. The place becomes legible as &ldquo;where you go when you need food.&rdquo; The redundancy that looks like waste from outside is actually infrastructure from inside. The forms ensure accountability and the repetition ensures reliability. The [REL] framing, whatever you think of it, provides a rationality for why this place exists at all. The redundancy does the work.</p>
+      <p>This case defeats EA&rsquo;s implicit claim that inefficiency constitutes failure. Efficiency is an [ECO] criterion. When Charity succeeds through what looks like inefficiency, it demonstrates that the two modes are orthogonal. [CHA]&rsquo;s felicity condition is not &ldquo;resources optimized per unit need met.&rdquo; It is simply &ldquo;need met.&rdquo; The church food bank meets the condition. The bureaucracy and the redundancy do not prevent [CHA] from crossing. They become part of the assemblage that makes crossing possible.</p>
+      <p>The larger point: when a mode crosses infrastructure designed by another mode, betrayal happens at each junction. [CHA] passes through [ORG], then through [REL]. Each passage transforms. The need gets bureaucratized. It gets reframed through religious meaning. But the need still arrives on the other side. The betrayals were incidental, not terminal.</p>
+
+      <h3>C. The Double Mode Crossing: GoFundMe</h3>
+      <p>GoFundMe is also a test case for what happens when [CHA] must cross two modes in sequence to reach its felicity condition. [CHA] enters the platform through [TEC]/[NET], an intersection where technological folds meet social networks. Then it must pass through [ECO] to complete the transfer. Both crossings transform what travels, extract value, and introduce distortions. And yet, sometimes, the need still arrives. <span class="figure-ref">(→ Example 2 tab in the diagram above)</span></p>
+      <p>Consider a medical emergency. A person faces catastrophic illness. The cost is genuine and immediate and cannot be met by the family alone. On a traditional model, they might approach family, local community, religious institutions, social networks built through proximity. But those networks may not exist, or may be exhausted, or may carry stigma that blocks legibility. GoFundMe offers an alternative hiatus crossing. The need becomes legible through narrative and image. The campaign tells a story. Photography makes the crisis visible. The platform&rsquo;s algorithm determines visibility in a social network [NET] based not on proximity but on engagement metrics. These metrics are [TEC] criteria, not [CHA] criteria. What becomes legible is not the need in its raw form, but the need as narratable, as photographable, as emotionally resonant enough to generate platform engagement.</p>
+      <p>Then the money must cross [ECO]: Payment processing, fees, fungibility, clearance time, the paper trail of transaction. The gift becomes quantified, tracked, made commeasurable with other donations. This is another betrayal. The immediacy of need meeting another need becomes a scheduled transfer of funds.</p>
+      <p>What survives this double crossing? Sometimes the need arrives. The funds clear. The medical bills get paid. The felicity condition is met. But what is lost along the way is significant. The rawness of need is replaced by a curated narrative. The intimacy of dyadic giving is replaced by broadcasting to strangers. The phenomenological warmth of recognition, face to face, is replaced by anonymous transfer mediated by corporate infrastructure. The givers will never know the recipient. The recipient may never know the givers. The relation that Charity traditionally carries within itself has been abstracted away.</p>
+      <p>Yet [CHA] still propagated. The mode crossed the double betrayal and arrived. This tells us something crucial: the mode is robust. It can survive significant transformation. It can cross infrastructure that was not designed for it. The question that follows is whether it can survive not just crossing but capture. Whether there is a point at which the transformations become so complete, the distortions so systematic, that what arrives on the other side is no longer [CHA] at all, but only its simulation.</p>
+      <p>That is the work of Section VI. Here, we established that [CHA] can succeed even through messy, compromised, distorting passages. The felicity condition is simple enough to withstand substantial betrayal. The mode is not fragile. What matters is whether the need, in whatever form it took to become legible, gets met on the other side. GoFundMe demonstrates that [CHA] can answer yes to that question. For now.</p>
+    </section>
+
+    <!-- ════════════════════════════════════════════════════════════════════ -->
+    <!-- V. ONTOLOGICAL MASQUERADE                                           -->
+    <!-- ════════════════════════════════════════════════════════════════════ -->
+    <section id="v-masquerade" class="prose">
+      <h2>V. Ontological Masquerade: When Modes Operate Under Wrong Descriptions</h2>
+      <p>Betrayal is incidental. A mode crosses into another&rsquo;s territory, gets translated, loses something in transit, but continues. That is the normal cost of passage. Ontological masquerade is something else. It is not a crossing that transforms. It is a stable, self-reinforcing condition in which the beings actually propagating through an institution are categorically different from the beings the institution claims to produce.</p>
+
+      <h3>A. Definition</h3>
+      <p>Ontological masquerade occurs when a mode is systematically described and practiced under another mode&rsquo;s rationality, such that the beings propagating are different from the beings the institution claims to produce. This is distinct from betrayal. Betrayal happens at the crossing, as incidental transformation. The mode survives it. Masquerade is a settled condition. It does not happen once and recover. It installs itself as the operative logic of an institution and then reproduces that logic with every cycle. The crossing is no longer traversed. It has been replaced. The institution functions, outputs, claims success. But the original mode is not what it is running on.</p>
+      <p>Call this the masquerade: one mode&rsquo;s name on another mode&rsquo;s operation. The surface behavior, the language, the institutional forms, and the claimed identity all carry the original mode&rsquo;s label. But the felicity conditions being satisfied are another mode&rsquo;s entirely. The institution calls itself a charity and measures success by donor conversion. It calls itself science and measures success by citation counts. It calls itself governance and measures success by quarterly approval ratings. In each case, the original mode has been displaced. What replaced it feels continuous with what came before. That is what makes it a masquerade rather than a substitution anyone can see.</p>
+
+      <h3>B. Why Masquerade Is Stable</h3>
+      <p>What makes masquerade persistent is that it cannot be diagnosed from inside its own terms. The displaced mode does not announce its absence. There is no gap you can measure using the masquerading mode&rsquo;s instruments. Needs that do not become legible through wrong-mode infrastructure remain invisible. You cannot count what the wrong mode failed to see. The metrics report success, and they are not lying, exactly. They are reporting fidelity to a different felicity condition.</p>
+      <p>This is phenomenologically unlike ordinary deception. EA&rsquo;s rationality feels virtuous. It feels like rigor applied to generosity, not rigor replacing it. Maussian exchange at least feels transactional to participants. There is some residual phenomenological pressure toward recognizing that a gift creates obligation. EA leaves no such residue. Maximizing welfare per dollar is experienced as simply caring more carefully.</p>
+      <p>The masquerade is sincere. The participants are not gaming the system. They are running it as designed. That is exactly the problem. The masquerade is self-sealing. Success metrics are internal to the masquerading mode and confirm its own rationality on every cycle. The institution builds infrastructure to its actual felicity conditions, systematically, by design, with a clean conscience. What is measurable scales. What is not gets defunded. The beings the institution claims to produce become progressively unreachable through that infrastructure, but the institution&rsquo;s own instruments will not surface this as failure.</p>
+
+      <h3>C. Institutional Consequences</h3>
+      <p>The deepest consequence is a simulation problem. When [ECO] is working well, its outputs are indistinguishable from [CHA]&rsquo;s outputs from the outside. Need appears to be met and the donors are happy with the resulting metrics. The masquerade is perfect enough to be invisible to standard evaluation. You can observe the outcome: a resource transferred, a person fed, a bill paid. You can never see that the mode producing it has been replaced.</p>
+      <p>The institution&rsquo;s infrastructure compounds this. Once built to wrong-mode felicity conditions, it becomes progressively harder to reach needs through that infrastructure that do not satisfy the masquerading mode&rsquo;s criteria. A food bank built on [ECO] efficiency metrics will develop intake processes, eligibility verification, and outcome tracking that the most optimizable needs navigate more easily. The non-standard cases, the person who does not fit the form, the situation that requires presence rather than throughput begin to find the infrastructure increasingly opaque. The original mode&rsquo;s territory shrinks without the institution noticing.</p>
+
+      <h3>D. Masquerade Generalizes Across Modes</h3>
+      <p>The structure appears wherever a mode is administered by another mode&rsquo;s rationality long enough to become identified with it.</p>
+      <p>[POL] practiced in [ECO] terms: governance as optimization. The Beings of Politics exist only by traversing the gap between the legitimate and the illegitimate, producing the distinction that allows collective decisions to hold. When that crossing is replaced by a cost-benefit calculation, policy outputs may look similar. But the legitimacy question was never asked. The mode was not in operation.</p>
+      <p>This is not a hypothetical. George W. Bush was widely described as the first MBA president, the executive who would finally run government like a business. What followed was a foreign policy built on projected ROI (Iraqi oil revenues would pay for war), disaster response modeled on supply chain logistics (FEMA&rsquo;s performance during Katrina), and a faith in optimization that the mode of politics was never equipped to deliver. More recently, the attempt to restructure the federal government through a privately directed efficiency initiative has produced not streamlined governance but institutional disorder, legal challenges, and the particular kind of failure you get when [ECO] rationality is applied to systems whose coherence depends on legitimacy, not throughput. [POL] does not fail by being inefficient. It fails by losing the capacity to make decisions that hold. Efficiency metrics will not surface that failure until the institution has already collapsed.</p>
+      <p>[REL] practiced in [ORG] terms: highly institutionalized religion that retains all the forms while losing the presence-renewal that is [REL]&rsquo;s felicity condition. Latour addresses this directly. The Beings of Religion exist by making present what was absent. When that crossing fails but the institution persists, the institution produces [ORG] outputs: membership, administration, budgets, scheduling. The experience of presence is not produced. But no [ORG] instrument measures for that.</p>
+      <p>[REF] practiced in [MOR] terms: science that must satisfy moral questions before epistemic ones. The Beings of Reference produce what Latour calls immutable mobiles, representations that hold their form as they travel. A temperature reading becomes a data point, the data point becomes a graph, the graph becomes a published finding cited in a textbook. Something constant is preserved through each transformation. That is [REF]&rsquo;s felicity condition: constants preserved through transformation. When [REF] must pass through moral gatekeeping before it can propagate, it does not fail to produce outputs. It produces [MOR]-legible outputs. The findings that cross are those that can be framed in terms of benefit, safety, and social acceptability. The genuinely transgressive question, the finding that carries no moral valence, the inquiry that does not know yet whether its answer will be comfortable: these lose legibility first.</p>
+      <p>Each case has the same structure. Wrong rationality installs itself, builds infrastructure, and the original mode becomes progressively unreachable through that infrastructure. The institution does not hollow out from neglect. It hollows out from operation.</p>
+
+      <h3>E. Masquerade as the General Case: Mode Capture as the Accelerated Form</h3>
+      <p>The preceding examples share a common architecture but differ in mechanism. EA began as a philosophical position, a theoretical account that misnamed what it was doing. The masquerade is carried in its doctrine. Platform-mediated [CHA] began differently: as engineering infrastructure that incidentally reshaped what it carried. The masquerade was not stated but built. Both converge on the same endpoint: a system producing [ECO]-adjacent outcomes while calling them [CHA], with no internal mechanism to surface this as failure.</p>
+      <p>But the platform case differs from EA in one critical respect. A philosophical masquerade is stable but not self-optimizing. EA can be argued with. The masquerade holds only as long as the theoretical commitments hold. Platform masquerade is different in kind. It is a learning system. Not only does it install the wrong rationality; it continuously optimizes the wrong rationality against its own outputs. Each cycle narrows the distribution of what counts as legible need toward what the platform&rsquo;s model of donor conversion predicts. The masquerade goes beyond persistence and deepens, becoming, under specific mathematical conditions, irreversible. Call this mode capture.</p>
+      <p>Masquerade is the general phenomenon: stable misidentification of what mode is running. Mode capture is masquerade plus a learning system. The masquerade becomes not just stable but self-optimizing. The next section examines the GoFundMe case in detail: how the platform embeds as infrastructure, what it extracts from each crossing, and why the introduction of a learning system transforms parasitism into something potentially mathematically irreversible.</p>
+    </section>
+
+    <!-- ════════════════════════════════════════════════════════════════════ -->
+    <!-- VI. PLATFORM INFRASTRUCTURE AS PARASITIC ACTANT                    -->
+    <!-- ════════════════════════════════════════════════════════════════════ -->
+    <section id="vi-platform" class="prose">
+      <h2>VI. Platform Infrastructure as Parasitic Actant: The GoFundMe Case</h2>
+      <p>In Section IV, GoFundMe was a success story. [CHA] crossed two modes and arrived: that analysis was accurate. It was also incomplete. What Section IV could not see, by design, was the infrastructure beneath the crossing. Arrival required passing through a system that was not neutral, that was not indifferent, and that was not designed with [CHA]&rsquo;s felicity condition in mind. The question now is what that system actually does, and what it systematically cannot allow through.</p>
+
+      <h3>A. The Designed Felicity Condition Stack</h3>
+      <p>In AIME, felicity conditions are discovered. They emerge from the nature of the mode itself, from tracking what the mode requires in order to propagate. You observe what makes [REL] succeed and fail; you do not engineer it. This is consistent with Latour&rsquo;s broader anti-constructivism about modes. GoFundMe does something that has no clean precedent in Latour&rsquo;s framework. It engineers secondary felicity conditions that [CHA] must satisfy before it can reach its primary one. The platform does not merely translate the need, it gatekeeps it. To become legible, a need must first become legible in the platform&rsquo;s terms: narrativized, photographed, emotionally pitched, algorithmically surfaced. Only then does it get to try to cross.</p>
+      <p>Langdon Winner observed something structurally similar in a very different context. Robert Moses&rsquo;s bridges on the Long Island parkways were built with clearances too low for buses. The physical infrastructure encoded a social policy: working-class and Black New Yorkers, who depended on public transit, could not reach Jones Beach. The bridges were neutral in appearance but not effect. The artifact carried a politics, built into its concrete proportions. GoFundMe&rsquo;s architecture carries a politics too. But where Moses designed his bridges once, the platform redesigns itself continuously. It learns what to let through.</p>
+
+      <h3>B. First Crossing: [TEC]</h3>
+      <p>The platform is a technical being in Latour&rsquo;s sense. It has a prescription embedded in it: a set of instructions about how need is supposed to present itself in order to move through the infrastructure. The prescription is not stated explicitly, but is encoded in what the algorithm rewards.</p>
+      <p>And, what the algorithm rewards is narrative, not need. A campaign&rsquo;s visibility is determined by engagement metrics: shares, early donations, emotional resonance, the presence of a compelling photograph, a story arc with a legible protagonist and a legible problem. These are [TEC]&rsquo;s criteria. They are not [CHA]&rsquo;s criteria. [CHA] has one criterion: is there a need.</p>
+      <p>The first betrayal, then, is this: the need must become a story about the need, optimized for attention. What is gained is platform legibility. What is lost is rawness, particularity, resistance to narrative tidiness. A need that is real but not narratable, that is genuine but visually unphotogenic, that is urgent but structurally undramatic, loses legibility at this crossing. Not because anyone decided it was unworthy. Because the prescription does not recognize it.</p>
+      <p>There is a methodological irony here worth naming. Ecological Momentary Assessment (EMA), in the psychometric tradition, is built on the insight that self-report is more valid when it is proximate in time and context to the thing being measured. GoFundMe performs a kind of forced, asynchronous, public EMA of need. The design intention is not valid signal capture. It is donor conversion. The construct validity problem is real and almost entirely unacknowledged in platform discourse.</p>
+
+      <h3>C. Second Crossing: [ECO]</h3>
+      <p>The money must move. This requires payment infrastructure: processing fees, account verification, fund clearance, the conversion of a gift into a trackable transaction. This is the second betrayal, and it has a specific character. The intimacy of giving is replaced by fungibility. The urgency of need is absorbed into temporal delay. A person whose rent is due Friday may receive cleared funds the following week.</p>
+      <p>The gift becomes quantified in another sense too. Donation amounts are public and the campaign&rsquo;s total is displayed in real time. This visibility introduces [MOR] judgment by the back door: a $5 donation sits alongside a $500 donation. The dyadic quality of giving is replaced by a broadcast with a leaderboard. What the need actually was may never be fully visible to anyone who gave.</p>
+      <p>What survives this double crossing? Sometimes the need arrives. The felicity condition is met. But what arrives is not the need in its raw form. It is the need as successfully narrativized, successfully amplified through a donor&rsquo;s network, successfully processed by payment infrastructure. Three transformations, each with a cost, each capable of killing the mode if it fails to satisfy the relevant criterion.</p>
+
+      <h3>D. The Survival Condition Stack</h3>
+      <p>This is the structure that Section IV obscured by focusing on a successful case. [CHA] on GoFundMe does not propagate through a single crossing. It propagates through a conjunctive stack in which every condition must be met. The narrative must be compelling enough for [TEC] to surface it. The social network must be large enough to generate the early engagement that triggers algorithmic amplification. The funding target must be reached through [ECO] clearance before the need expires. Failure at any one crossing kills the mode, regardless of what was achieved at the others. A person with a genuine need, a well-written campaign, and no social network to seed early momentum will not be surfaced. The algorithm will not find her.</p>
+      <p>This produces a systematic bias that is invisible from inside the platform&rsquo;s metrics. [CHA] succeeds most consistently for people with existing social capital: specifically, what Granovetter called weak ties, the broad acquaintance networks that extend reach across otherwise disconnected communities. The person with five hundred Facebook friends in four different cities has structural access to platform legibility that a person with ten close friends does not.</p>
+
+      <h3>E. Parasitic Actancy</h3>
+      <p>A crossing that distorts is a betrayal. A position that distorts structurally, by design, extracting value from each crossing it mediates, is something else. Call this parasitic actancy. A parasitic actant embeds itself as necessary infrastructure for a mode, extracts value from each crossing and progressively reshapes the mode&rsquo;s trajectory to serve its own felicity conditions. This is distinct from ordinary betrayal in a specific way. Betrayal is incidental: the mode was not trying to transform [CHA] when it did. Parasitic actancy is structural and, in the platform case, intentional. The platform&rsquo;s engineering decisions were made by people with interests that do not align with [CHA]&rsquo;s felicity condition.</p>
+      <p>The platform succeeds when campaigns convert donors. [CHA] succeeds only when a need is met. These are different objects. A campaign can convert donors and fail to meet the need. A need can be met without a campaign converting anyone. The gap between platform success and [CHA] success is the extraction zone. Inside that gap, the platform captures value regardless of whether the mode propagated. There is a deeper misalignment still. The platform has a structural interest in the volume of [CHA] attempts, not their success rate. A failed campaign still generates data, user engagement, email addresses, and network effects. The platform is not indifferent to whether needs are met. It simply does not require that outcome to succeed on its own terms. The parasite does not need the host to thrive. It needs the host to persist.</p>
+
+      <h3>F. The Learning System Problem</h3>
+      <p>A static parasitic actant is concerning. A learning parasitic actant is qualitatively different in kind.</p>
+      <p>The GoFundMe algorithm is not fixed. It updates on its own performance data: campaigns that convert well are observed; campaigns that do not are also observed. The model of what constitutes a legible need drifts, with each update cycle, toward whatever the previous cycle rewarded. No individual engineer makes this happen at any given moment. The optimization is distributed across the system and expressed over time. This is distributed intentionality in the Latourian sense: no single actor&rsquo;s goal, but a goal expressed systematically through the assemblage.</p>
+      <p>What develops, over time, is a progressively finer-grained model of donor-legible need. This model drifts away from actual need. Donor-legible need and actual need overlap, but they are not the same distribution. The algorithm learns to recognize the former with increasing precision. The latter is only captured insofar as it happens to overlap with what donors have historically rewarded.</p>
+      <p>Two consequences follow, and they compound each other. First, personalized distortion becomes possible: different donors see different campaigns based on predicted conversion, which means legibility becomes audience-dependent and invisible to the person whose need it is. Second, extraction becomes more efficient as the gap between [CHA] felicity and platform felicity is progressively closed from the platform&rsquo;s side: not by the platform serving [CHA] better, but by the platform narrowing [CHA]&rsquo;s scope to what it can already serve well. This is the transition from masquerade to mode capture.</p>
+    </section>
+
+    <!-- ════════════════════════════════════════════════════════════════════ -->
+    <!-- VII. HOW [MOR] INTERFERES                                           -->
+    <!-- ════════════════════════════════════════════════════════════════════ -->
+    <section id="vii-mor" class="prose">
+      <h2>VII. How [MOR] Interferes</h2>
+
+      <h3>A. [MOR] as Gatekeeper</h3>
+      <p>[MOR] is a legitimate mode. This needs to be stated plainly, because the argument here is not against moral reasoning. [MOR] asks real questions: is this right? Is this recipient deserving? Does this action satisfy a moral standard? These are genuine questions with genuine answers, and the mode has genuine felicity conditions.</p>
+      <p>The problem arises when [MOR] serves as gatekeeper for [CHA]. [CHA] has exactly one question: did the need arrive? When [MOR] introduces a prior question such as, is this recipient worthy?, it installs a condition [CHA] was never designed to satisfy. The mode cannot answer a question it was not built to ask. This is not interference as disruption. It is interference as category error. This is a perceptual error leading to two modes occupying the same decision point.</p>
+      <p>A homeless encampment distills this dynamic usefully. A need is present, often quite visibly. And yet the mode routinely fails. Three moral contestations layer over the case: recipient worthiness: stigma around addiction/mental illness, and perceived agency compound the worthiness calculus, so that a need may be fully legible and still be denied because the person bearing it has failed a prior moral screening. Stating that &ldquo;you&rsquo;re enabling them&rdquo; appears moral but its structure is consequentialist, smuggling [ECO] rationality through a [MOR] wrapper. The contamination runs two levels deep. Spatial morality lurks, as well. The encampment itself is morally contested independent of its residents, treated as a violation before any individual is evaluated.<sup>13</sup></p>
+      <p>These contestations produce two distinct failure types. In the first, the hiatus is crossed, the need is legible, and [MOR] intervenes at the point of transfer. The Beings of Charity saw it and They stopped anyway. In the second, [MOR] operates upstream, before the hiatus is attempted. The need never becomes legible because the person bearing it has already been classified as unworthy of legibility. The distinction matters: the first failure can be argued with. The second forecloses that argument entirely. If the need was not seen there is nothing to dispute.</p>
+      <p><span class="figure-ref">(→ Example 3 tab in the diagram above)</span></p>
+
+      <h3>B. Pre-Moral Failure: Collins</h3>
+      <p>The second failure type does not require explicit moral judgment, only ordinary behavior. Randall Collins&rsquo;s theory of interaction ritual chains provides the mechanism. Face-to-face interaction generates mutual focus, emotional entrainment, and solidarity: the conditions under which persons become present to one another as persons. The interaction ritual is the basic social unit of mutual recognition. When a gaze is averted, a path rerouted, a body arranged so as not to resolve the other into a face, no mutual focus forms. Thus, no solidarity is generated. The hiatus cannot be attempted because the precondition for legibility has not been met.</p>
+      <p>Call this a pre-moral failure. [MOR] crossing presupposes that a need has already become legible. Collins reveals a mechanism that operates upstream of that. The interaction ritual is the device by which legibility is produced in the first place. A failed ritual means the need remains invisible, and no moral judgment was necessary to produce that outcome. The physical choreography of urban non-encounter is well-documented: phones consulted during passage, longer routes taken without acknowledged reason, peripheral vision that registers presence without resolving it into a face. These are not moral decisions in any moment-by-moment sense. They are habituated practices. Their collective effect is ontological erasure through the accumulation of thousands of small avoidances. The resident is real, present, and physically visible. But, In the sense relevant to [CHA] she does not exist.</p>
+      <p>Consider the same person in two settings. On a busy sidewalk, they are a figure in peripheral vision, registered and passed in under a second. In a waiting room, they are across the room, stationary, occasionally looked at. The interaction ritual can form in the second setting and almost never forms in the first. The need is identical. What differs is whether the spatial and temporal conditions for mutual focus are present. This is not a moral variable. It is a structural one, built into the choreography of urban form itself. Collins&rsquo;s insight is that legibility, in the sense [CHA] requires, is not a property of needs. It is a property of encounters.</p>
+
+      <h3>C. The Visibility Trap</h3>
+      <p>The encampment is too invisible for [CHA] to activate consistently. The interaction rituals fail. The need does not become legible. But the encampment is not invisible to every mode. [LAW] and [POL] perceive it clearly. Municipal ordinances, dispersal orders, and enforcement actions all require visibility. You cannot cite someone who is not there.</p>
+      <p>Call this the inverse visibility paradox. The spatial presence that should enable [CHA] instead triggers mode destruction. The encampment is simultaneously too invisible to attract [CHA] reliably, and visible enough to attract [LAW] and [POL] reliably. Legibility and interference scale together.</p>
+      <p>The condition can be described as two axes: need legibility running from invisible to fully legible, and mode interference running from none to high. [CHA] succeeds only when legibility is high and interference is low. The encampment occupies the wrong quadrants. When it is invisible, [CHA] cannot activate. When it is visible, [LAW] and [POL] arrive first. A resident who becomes more legible may improve her own odds. But she has not altered the structural conditions. She has moved within the distribution. The trap persists for everyone else, and the very interventions that helped one person navigate it often make it harder to contest the structure itself.</p>
+      <p>Most of what appears to be a moral problem here is actually a structural one. Asking for better moral performance will not move an encampment out of these conditions. The structural trap precedes the moral failure.</p>
+    </section>
+
+    <!-- ════════════════════════════════════════════════════════════════════ -->
+    <!-- VIII. MODE CAPTURE: THE THREE-STAGE FRAMEWORK                      -->
+    <!-- ════════════════════════════════════════════════════════════════════ -->
+    <section id="viii-capture" class="prose">
+      <h2>VIII. Mode Capture: The Three-Stage Framework</h2>
+      <p>Section VI established GoFundMe as a Parasitic Actant: a system that embeds as necessary infrastructure, extracts value from each crossing, and reshapes what travels. That is a structural description. Mode Capture is the dynamic complement. It describes what a learning parasitic actant does over time. It is the temporal process by which the reshaping becomes progressive, then irreversible.</p>
+
+      <h3>A. Definition</h3>
+      <p>Mode Capture is the dynamic process by which a learning system progressively reshapes a mode&rsquo;s hiatus and felicity conditions to serve another mode&rsquo;s rationality, until the original mode can only propagate on the captor&rsquo;s terms.</p>
+      <p>In the network diagram, we illustrate Mode Capture via moral reasoning. <span class="figure-ref">(→ Example 3 tab)</span> In this case, the need&rsquo;s [CHA] trajectory itself is altered by [MOR] felicity conditions. In order for a need to become legible, it must first answer moral questions. Does this person deserve help? For [CHA] to persist, it must alter itself to meet conditions external to its mode. It must match the interpretative key of [MOR]. Over time, the structure of [MOR] learns from its past successes, increasingly targeting those (now) <em>a priori</em> screened needs.</p>
+      <p>[MOR] capture carries a learning component, but its character requires precise specification. The screening of recipients by moral criteria does not emerge from a designed feedback mechanism. It accretes institutionally, over decades and centuries, through the sedimentation of legal categories, religious doctrine, and cultural practice. The distinction between the deserving and undeserving poor has roots in Elizabethan poor law (Hindle, 2004). A charity organization in 1880 applied moral worthiness tests not because an algorithm rewarded it but because those tests had become the institutional expression of what helping the right people meant. The learning was generational and incidental: what sustained institutional legitimacy and donor support was retained; what did not was abandoned. The distribution of legible needs narrowed slowly, across human lifetimes, through policy, precedent, and cultural transmission.</p>
+      <p>This distinction matters for what follows. The difference between [MOR] capture and GoFundMe-style algorithmic capture is not merely one of speed, though the speed difference is real. It is a difference in mechanism. [MOR] capture is incidental: the institution was not designed to optimize against its own outputs. It learned obliquely, through human social processes, over generations. Algorithmic capture is closed-loop and continuous: the platform updates its model of legible need against performance data, cycle by cycle, with no human deliberation intervening. What took [MOR] a century to narrow, a platform can collapse in years. And where [MOR] capture left gaps, needs that slipped through the moral screening on a good day, algorithmic capture converges toward a single canonical profile with no gaps. The endpoint is not narrower gatekeeping. It is a delta function.</p>
+      <p>The distinction from parasitic actancy is precise. A parasitic actant occupies a structural position: it is the necessary infrastructure through which the mode must pass, and it extracts value from that position. Mode capture is what happens when the parasitic actant is also a learning system. The infrastructure updates itself based on what it has already done, and each update makes the original mode&rsquo;s felicity condition harder to satisfy on its own terms. Parasitic actancy is a condition. Mode capture is a trajectory.</p>
+      <p>It is also distinct from Latour&rsquo;s betrayal. Betrayal is incidental transformation during a crossing: the cost of passage, survivable if the felicity condition is met on the other side. Mode capture is the redesign of the crossing itself, progressively and from within, by a system that has no interest in the original mode&rsquo;s arrival.</p>
+
+      <h3>B. The Delta Function Formalism</h3>
+      <p>In the case of an algorithm platform like GoFundMe, the system maintains a weighted distribution over need narratives: the range of stories, presentations, and circumstances that have historically converted donors. High-performing narratives carry more weight. Low-performing narratives are down weighted. Campaigns are generated or optimized against the current model. The model updates. A new generation of campaigns is shaped by the updated model.</p>
+      <p>This is generational resampling, and it is the key structural isomorphism with model collapse as described by Shumailov and colleagues (2024; See Appendix A).<sup>14</sup> In their setting, a generative model trained on its own outputs progressively loses the tail of the original distribution. Low-probability events are dropped at each generation. Not by design, but because finite sampling means rare events are underrepresented, and underrepresented events are further down weighted in the next cycle. The process is self-amplifying.</p>
+      <p>The mathematical result is convergence to a delta function: a point mass on whatever narrative profile the learning system has converged to. In the discrete case, the Markov chain has delta functions as its only absorbing states, and converges to one with probability 1. In the continuous case, variance collapses to zero while the distribution drifts arbitrarily far from the original. Either way, the endpoint is the same: a single canonical profile, and everything else invisible.</p>
+      <p>Translated to [CHA]: the platform converges, in finite time, toward a single canonical need narrative. Needs that match it achieve legibility. Needs that do not have no path through the platform&rsquo;s infrastructure, regardless of their reality or urgency. This is a structural property of learning systems that optimize from their own output. No amount of platform goodwill eliminates it, as long as the loop between performance data and model updates remains closed.</p>
+
+      <h3>C. Empirical Grounding: NIH AI-Assisted Submissions</h3>
+      <p>The degeneracy signature is already visible in an adjacent domain. Qian et al. (pre-print) analyzed confidential NSF and NIH proposal submissions from two large R1 universities between 2021 and 2025, alongside the full population of publicly released awards from both agencies. LLM use in proposals increased sharply after late 2022 and settled into a bimodal distribution: a group that mostly avoids these tools and a group that incorporates them at roughly 10&ndash;15%. Across all four datasets, higher LLM involvement was consistently associated with lower semantic distinctiveness, meaning proposals positioned closer to what the agency had most recently funded. At NIH, moving from low to high LLM involvement corresponded to roughly a 4-percentage-point increase in the probability of being funded. At NSF, no such advantage appeared.</p>
+      <p>This is precisely the early-collapse pattern: the distribution is converging on what the review system already knows how to reward. Individual researchers acting rationally, using available tools to improve their odds, produce a population-level effect that is the opposite of what genuine exploration requires. Unconventional questions, oblique approaches, work that does not yet know whether its answer will be fundable: these are the low-weight particles being dropped.</p>
+      <p>The NIH case demonstrates clearly that degeneracy is not an individual failure. Each researcher is doing what makes sense given the incentive structure. The collapse is emergent and invisible from inside the system&rsquo;s own metrics, since average award rates are going up, not down.</p>
+      <p>The testable prediction for [CHA] follows directly: as GoFundMe-style platforms mature and generative tools improve, as campaigns are increasingly shaped by models trained on successful prior campaigns, expect increasing average funding success rates accompanied by decreasing diversity in the needs that get funded. <span class="figure-ref">(→ Example 4 tab in the diagram above)</span> The metrics improve while the mode is captured. This is the empirical signature to watch for.</p>
+
+      <h3>D. The Three-Stage Model</h3>
+      <p>The trajectory from parasitic actancy to mode simulation is not a single event. It has a structure, and the stages are empirically distinguishable.</p>
+      <p>Stage 1 is parasitic actancy. The platform embeds as necessary infrastructure and begins extracting value from each crossing. The mode still propagates largely on its own terms. The betrayals at each crossing are real and measurable: rawness is lost, intimacy is lost, temporal urgency is absorbed. But the felicity condition can still be met. A wide range of needs achieves legibility. The distribution has not yet begun to narrow significantly.</p>
+      <p>Stage 2 is progressive degeneracy. The learning system begins to narrow the distribution of legible needs. The tail collapses first: unusual presentations, thin social networks, needs that resist narrative tidiness. These disappear not through any individual decision but through accumulated resampling. Platform metrics still look healthy: average success rates may even improve, as the remaining campaigns are increasingly optimized. The ontological damage is underway and invisible to standard measurement. A diversity audit of funded campaigns would surface it. Nothing in the platform&rsquo;s ordinary reporting would.</p>
+      <p>Stage 3 is mode simulation. The original mode exists only as a shadow. What propagates through the platform is a simulation optimized for platform felicity conditions: donor conversion, engagement, repeat giving. [CHA]&rsquo;s felicity condition is satisfied only incidentally, when a need happens to align with the canonical narrative profile. The mode no longer actually exists in Latour&rsquo;s sense. What exists is its functional simulacrum. The Beings are gone.</p>
+
+      <h3>E. The Terminal Question</h3>
+      <p>Is there a point at which mode capture is so complete that [CHA] no longer exists, that only its simulation remains, optimized for extraction?</p>
+      <p>The mathematics say yes. The delta function is the absorbing state, and under the conditions described, convergence is guaranteed. Needs will be met, but only needs that align with platform optimization. [CHA]&rsquo;s felicity condition will be satisfied as a byproduct, not as a goal. And the system will report success at every stage of this process, because its instruments measure its own felicity conditions, not [CHA]&rsquo;s.</p>
+      <p>The terminal question is not rhetorical. It is the point toward which the argument has been moving. If the mode can only propagate on the captor&rsquo;s terms, it is not propagating. It is being simulated. The distinction matters because simulations can be maintained indefinitely. A mode that has been captured does not fail visibly. It persists, outputs, claims success, and meets needs of the narrowing subset that fit the canonical profile. Everything outside that profile remains invisible, uncrossed, waiting.</p>
+    </section>
+
+    <!-- ════════════════════════════════════════════════════════════════════ -->
+    <!-- IX. SIGNAL VALIDITY                                                  -->
+    <!-- ════════════════════════════════════════════════════════════════════ -->
+    <section id="ix-signal" class="prose">
+      <h2>IX. Signal Validity, [REF], and the Limits of Observation</h2>
+      <p>The preceding sections have diagnosed [CHA] structurally: its hiatus, its felicity condition, the modes that interfere with it, the platform that captures it. That diagnosis was conducted from outside the mode, by following the need. But there is a prior question. What can be observed of [CHA] at all, and by what instruments?</p>
+      <p>This is the [REF] problem. It does not change the argument. It changes what the argument can claim to show.</p>
+
+      <h3>A. The [REF] Problem</h3>
+      <p>[REF] is the mode of scientific reference. Its Beings produce immutable mobiles: representations that hold their form as they travel. A temperature reading becomes a data point, the data point becomes a graph, the graph becomes a published finding. Something constant (the &ldquo;pointer&rdquo;) is preserved through each transformation. That is [REF]&rsquo;s felicity condition: constants preserved through transformation.</p>
+      <p>When [REF] is pointed at another mode, it does not see that mode. It sees what that mode translates into [REF]-legible signals. The distinction is not trivial. [REF] instruments are designed to preserve constants; they capture whatever in the target mode can be made constant. What resists quantification, what exists only in the crossing rather than in the outcome, what is relational and unrepeatable: these are not simply difficult to measure. They are structurally outside what [REF] can produce.</p>
+      <p>Consider a spectrophotometer pointed at a ripe tomato. It returns a wavelength: roughly 700 nanometers. It does not return red. The experience of redness, that specific phenomenal quality, exists in a relation between a surface, a nervous system, and a particular moment of looking. None of that relation appears in the readout. The instrument is not broken. It is doing exactly what it was designed to do: preserve a constant. The constant is not the experience.</p>
+      <p>[CHA] is a particularly lossy target for [REF] instruments. The felicity condition is simple enough to observe: was a need met. That is a binary outcome, and outcomes are among the things [REF] handles well. However, the mode is the assemblage that produced the crossing, and that assemblage is largely invisible to [REF]. The person, the timing, the interaction ritual that made the need legible, the infrastructure through which the gift traveled: these are the constitutive elements of [CHA], and none of them reduce cleanly to a preserved constant. You cannot measure the crossing. [REF] captures the end state of a process while remaining blind to most of what produced it.</p>
+      <p>This creates a specific research problem. Any empirical program aimed at [CHA] will be working with a signal that is already [REF]-filtered. Surveys of donor motivation, outcome metrics, impact assessments: these tell you what [REF] can see of [CHA], which is a fraction of the mode. A fraction that is systematically biased toward what is observable at endpoints, which means systematically biased toward the giver and the outcome, and away from the crossing itself. The frameworks this paper contains critiques of, such as psychological altruism theory, effective altruism, and Maussian gifting, were all built on [REF]-filtered data.</p>
+      <p>Signal validity is a ceiling, and it is mode-dependent. Some modes translate into [REF] with relatively little loss. [TEC]&rsquo;s outputs are often straightforwardly measurable: the device either worked or it did not, as anyone with a cell phone will report. [ECO]&rsquo;s transactions are designed to be recorded, as the IRS will remind you. [CHA]&rsquo;s crossings are not. The ceiling for a [REF]-based account of [CHA] is lower than for most modes, and no methodological improvement will fully raise it. The gap between the crossing and the observable signal is constitutive, not incidental.</p>
+
+      <h3>B. The Author&rsquo;s Platform Work</h3>
+      <p>The SMS and EMA platform work described briefly in Section VI is relevant here not as a case of [CHA] directly, but as a case of what happens when [TEC] infrastructure is designed with signal validity as the primary optimization target rather than engagement. Ecological Momentary Assessment is built on a specific insight: self-report is more valid when it is proximate in time and context to the phenomenon being measured. Retrospective accounts introduce reconstruction error; delay introduces artifact. The closer the measurement is to the moment, the more the signal reflects the phenomenon rather than a memory of it. The SMS platform applied this logic to performance and individual development: brief, contextually proximate, low-friction signal capture, designed to maximize construct validity rather than user engagement or conversion.</p>
+      <p>The empirical case for this is solid. Chronic pain patients asked to recall their average pain over the past week report higher levels than their real-time ratings from that same period. Memory favors the worst moments and compresses the rest. In addiction research, the distortion can erase a real effect entirely. When smokers trying to quit reported stress weekly, stress did not predict relapse. When asked the same question several times a day, stress in the hours before a lapse predicted it strongly. The weekly measure missed the phenomenon. The infrastructure is not categorically different from GoFundMe&rsquo;s. Both are [TEC] intermediaries. Both impose a prescription on what passes through them. Both produce betrayal at the crossing: the experience being measured is not fully captured by the text response, just as the need being met is not fully captured by the campaign narrative.</p>
+      <p>What differs is the design intention. The SMS platform attempted to minimize betrayal within an unavoidable betrayal. Every design choice was oriented toward reducing the gap between signal and phenomenon. GoFundMe&rsquo;s design choices are oriented toward maximizing donor conversion. Radically different ontological effects.</p>
+      <p>This contrast is not a success story for the platform work. It is evidence for a narrower claim: betrayal intensity is design-dependent, not infrastructure-determined. The [TEC] crossing does not fix the outcome. The design intention matters, at least in Stage 1, before the learning system takes over and the platform&rsquo;s own optimization loop closes. A platform designed with [CHA]&rsquo;s felicity condition as its primary target would produce a different distribution of legible needs than one designed for donor conversion.</p>
+      <p>That distinction is useful because it locates the intervention point correctly. The problem is [TEC] infrastructure optimized against the wrong felicity condition, and then set to learn from its own outputs. The first of those is a design choice. The second is what makes it irreversible.</p>
+    </section>
+
+    <!-- ════════════════════════════════════════════════════════════════════ -->
+    <!-- X. OPEN QUESTIONS                                                    -->
+    <!-- ════════════════════════════════════════════════════════════════════ -->
+    <section id="x-open" class="prose">
+      <h2>X. Open Questions and Further Work</h2>
+      <p>This essay has developed one area of a larger territory. Three areas are worth naming as the most productive directions for further work.</p>
+      <p>The first is [LAW] and [POL] crossings. Politically mediated aid, refugee assistance, disaster relief: these all require [CHA] to pass through legal and political infrastructure with their own rationalities and their own gatekeeping mechanisms. [MOR] interference, as developed in Section VII, looks relatively simple compared to what [LAW] and [POL] can do. They do not merely evaluate the recipient. They can classify the act of giving as legal or illegal, the recipient as documented or undocumented, the need as qualifying or non-qualifying under statute. The structural analysis developed here applies directly, but the mechanics are different enough to warrant separate treatment.</p>
+      <p>The second is the institutionalization threshold: the point at which charitable infrastructure becomes [ORG] entirely, even when the outputs still look like [CHA]. The church food bank in Section IV survived its [ORG] passage because the need still arrived. But there is a threshold beyond which the institution is running entirely on [ORG] rationality, and [CHA] is no longer propagating through it, only alongside it. Locating that threshold empirically and formally is a tractable research problem.</p>
+      <p>The third is the generalizability of mode capture beyond [CHA]. The three-stage model developed in Section VIII is a structural claim. It should apply wherever a learning system embeds as necessary infrastructure for a mode and optimizes against its own outputs. [REL] on social media platforms, [REF] in algorithmic publishing metrics, [POL] in attention-economy news environments: each of these is a candidate. The NIH case discussed in Section VIII suggests [REF] is already in Stage 2. Extending the analysis would require mode-specific accounts of the hiatus, the felicity condition, and the platform&rsquo;s substitute rationality, but the framework is portable.</p>
+      <p>An empirical program follows from this. Actor-Network Theory-style tracking of actual need trajectories through platform infrastructure, combined with diversity metrics over time, would give a degeneracy signature to monitor. The prediction from Section VIII is specific: average success rates rise while need diversity falls. That is the fingerprint of early-stage collapse, and it is measurable with existing data.</p>
+    </section>
+
+    <!-- ════════════════════════════════════════════════════════════════════ -->
+    <!-- INTERVENTION                                                         -->
+    <!-- ════════════════════════════════════════════════════════════════════ -->
+    <section id="intervention" class="prose">
+      <h2>On Intervention: Three Paths, No Resolution</h2>
+      <p>Future essays will address intervention in detail. Here the aim is narrower: to map the structural constraints on each available path, so that what follows in subsequent work begins from an honest accounting of what this analysis has and has not made possible.</p>
+
+      <h3>Path 1: Mode Introduction</h3>
+      <p>One path is to introduce a disruptive mode that can act as a moderator on the masquerading one. [REL] and [FIC] have historically disrupted [ECO] rationality&rsquo;s colonization of [CHA]. EA&rsquo;s &ldquo;earning to give&rdquo; orthodoxy has been destabilized less by philosophical argument than by the phenomenological flatness participants report: the lived experience of running a moral optimization engine, and finding it produces nothing that feels like charity. That is a mode asserting itself against a masquerade, spontaneously, from the inside.</p>
+      <p>But this path carries its own Latourian problem. The moment you design a program to restore [CHA], you have applied institutional rationality to it. You have made a [TEC] or [ORG] move in the place where [CHA] needs to find its own conditions. Modes find their own conditions. They resist being engineered back into existence. This is precisely why [REL] dies when you explain it. What you get is a program that looks like charity, administered by people who understand the theory. It is GoFundMe on top of GoFundMe.</p>
+
+      <h3>Path 2: Diagnosis and Rational Updating</h3>
+      <p>This is, in part, what this essay does. A distal bet is placed that articulating the problem with sufficient precision will produce institutional updating. Masquerade is self-sealing from the inside, but it is not invisible from outside. Diversity loss is measurable with the right instruments. The delta function is the kind of result that can be communicated to people who run platforms, fund research, and design charitable infrastructure.</p>
+      <p>Of course, this bet is historically thin. Institutions built on wrong-mode rationality have structural incentives not to notice what their instruments cannot surface. And by Stage 3, the masquerade is complete enough that the people inside it are not deceiving anyone. They are simply running the system they built, by its own logic, successfully. There is no villain to persuade. What diagnosis does is make the terminal outcome articulable. That is a precondition for any other move, not a sufficient condition.</p>
+
+      <h3>Path 3: Preservation of Parallel Infrastructure</h3>
+      <p>Shumailov et al. note that even 10% original human-generated data preserved in training dramatically slows collapse. The distribution does not converge to a delta function if there is a persistent supply of signals that were not generated by the model. The analog for [CHA] is direct: preserve non-mediated, non-platform-captured channels alongside the masquerading infrastructure. Proximity-based giving, informal mutual aid, weak-tie networks that have not yet been institutionalized.</p>
+      <p>This happens constantly. A person notices that the woman ahead of her at the grocery checkout has forgotten her wallet, and pays without being asked. In that case, the need was recognized by the giver before the recipient had articulated it. In other cases, the need is met before either party fully understands what happened: a spontaneous exchange in which something the receiver said triggered a response that met a need she had not yet named. The felicity condition was satisfied after the fact. The mode crossed without either party watching it.</p>
+      <p>These crossings are [CHA] at its most rhizomatic.<sup>15</sup> No root logic, no institutional permission, propagating horizontally through encounter. They are also the crossings least likely to scale, least likely to reach the deepest needs, and most vulnerable to the seduction of their own legibility. The moment informal giving becomes visible enough to institutionalize, it becomes a candidate for re-entry into the arborescent system. GoFundMe is itself a re-territorialization of the rhizomatic impulse to share resources through weak-tie networks. The platform gave the rhizome a root. That is mode capture in Deleuzian vocabulary, and it names Path 3&rsquo;s core limitation: success is the danger.</p>
+      <p>The channels most resistant to capture tend to serve needs that are already partially legible, which returns us to Collins and the encampment. The deepest needs are the least reachable by this path.</p>
+
+      <h3>No Resolution</h3>
+      <p>The position is necessarily unresolved. Each path has structural limitations that this essay has diagnosed directly. Path 1 reproduces the problem it attempts to solve. Path 2 is a precondition, not a solution. Path 3 is tractable but partial, and its greatest successes are the ones most likely to be recaptured.</p>
+      <p>The deepest quandary this essay reaches is this: if masquerade becomes the dominant institutional form of [CHA], and parallel non-captured channels serve only partially legible needs, does [CHA] as a mode survive at civilizational scale? The mathematics of mode capture say the platform trajectory is toward a single canonical need. The sociology of interaction rituals says the deepest needs are the ones that never become legible in the first place. These two failure mechanisms point at the same population from different directions.</p>
+      <p>The essay cannot resolve this, only name it accurately and insist that the naming is prior to any intervention worth attempting.</p>
+    </section>
+
+    <!-- ════════════════════════════════════════════════════════════════════ -->
+    <!-- REFERENCES                                                           -->
+    <!-- ════════════════════════════════════════════════════════════════════ -->
+    <section id="references" class="prose references">
+      <h2>References</h2>
+      <ul class="ref-list">
+        <li>Callon, M. (1986). Some elements of a sociology of translation: Domestication of the scallops and the fishermen of St Brieuc Bay. In J. Law (Ed.), <em>Power, Action and Belief: A New Sociology of Knowledge?</em> (pp. 196&ndash;223). Routledge.</li>
+        <li>Collins, R. (2004). <em>Interaction Ritual Chains.</em> Princeton University Press.</li>
+        <li>Deleuze, G., &amp; Guattari, F. (1987). <em>A thousand plateaus: Capitalism and schizophrenia</em> (B. Massumi, Trans.). University of Minnesota Press.</li>
+        <li>Granovetter, M. S. (1973). The strength of weak ties. <em>American Journal of Sociology, 78</em>(6), 1360&ndash;1380.</li>
+        <li>Granovetter, M. S. (1983). The strength of weak ties: A network theory revisited. <em>Sociological Theory, 1,</em> 201&ndash;233.</li>
+        <li>Hindle, S. (2004). Civility, honesty and the identification of the deserving poor in seventeenth-century England. In H. French &amp; J. Barry (Eds.), <em>Identity and Agency in England, 1500&ndash;1800</em> (pp. 38&ndash;59). Palgrave Macmillan.</li>
+        <li>Latour, B. (2013). <em>An inquiry into modes of existence.</em> Harvard University Press.</li>
+        <li>Latour, B. (2005). <em>Reassembling the Social: An Introduction to Actor-Network Theory.</em> Oxford University Press.</li>
+        <li>Latour, B. (1999). On recalling ANT. In J. Law &amp; J. Hassard (Eds.), <em>Actor Network Theory and After</em> (pp. 15&ndash;25). Blackwell.</li>
+        <li>Mauss, M. (2002). <em>The Gift: The Form and Reason for Exchange in Archaic Societies</em> (W.D. Halls, Trans.). Routledge.</li>
+        <li>Qian, Y., Wen, Z., Furnas, A. C., Bai, Y., Shao, E., &amp; Wang, D. (2026). The rise of large language models and the direction and impact of US federal research funding. <em>arXiv</em> (preprint). https://arxiv.org/abs/2601.15485</li>
+        <li>Shiffman, S., Stone, A. A., &amp; Hufford, M. R. (2008). Ecological momentary assessment. <em>Annual Review of Clinical Psychology, 4,</em> 1&ndash;32.</li>
+        <li>Shiffman, S. (2009). Ecological momentary assessment in substance use research. <em>Journal of Substance Abuse Treatment.</em></li>
+        <li>Shumailov, I., Shumaylov, Z., Zhao, Y., Papernot, N., Anderson, R., &amp; Gal, Y. (2024). AI models collapse when trained on recursively generated data. <em>Nature, 631</em>(8022), 755&ndash;759.</li>
+        <li>Singer, P. (2011). <em>Practical Ethics</em> (3rd ed.). Cambridge University Press.</li>
+        <li>Stone, A. A., &amp; Shiffman, S. (1994). Ecological momentary assessment (EMA) in behavioral medicine. <em>Annals of Behavioral Medicine, 16</em>(3), 199&ndash;202.</li>
+        <li>Stone, A. A., Schwartz, J. E., Broderick, J. E., &amp; Shiffman, S. S. (2005). Variability of momentary pain predicts recall of weekly pain. <em>Personality and Social Psychology Bulletin.</em></li>
+        <li>Winner, L. (1980). Do Artifacts Have Politics? <em>Daedalus, 109</em>(1), 121&ndash;136.</li>
+      </ul>
+    </section>
+
+    <!-- ════════════════════════════════════════════════════════════════════ -->
+    <!-- ENDNOTES                                                             -->
+    <!-- ════════════════════════════════════════════════════════════════════ -->
+    <section id="endnotes" class="prose endnotes">
+      <h2>Endnotes</h2>
+      <ol class="endnote-list">
+        <li id="en1">See <a href="http://modesofexistence.org/" target="_blank" rel="noopener">modesofexistence.org</a> for the full AIME comparative table and interactive inquiry.</li>
+        <li id="en2"><a href="https://givingusa.org/giving-usa-2025-u-s-charitable-giving-grew-to-592-50-billion-in-2024-lifted-by-stock-market-gains/" target="_blank" rel="noopener">Giving USA 2025: U.S. Charitable Giving Grew to $592.50 Billion in 2024.</a></li>
+        <li id="en3"><a href="https://www.businesswire.com/news/home/20250506825882/en/GoFundMe-Surpasses-40-Billion-Raised" target="_blank" rel="noopener">GoFundMe Surpasses $40 Billion Raised.</a></li>
+        <li id="en4"><a href="https://blog.stelter.com/2025/06/24/giving-usa-2025-inside-the-numbers-plus-a-look-back-and-a-look-ahead/" target="_blank" rel="noopener">Giving USA 2025: Inside the Numbers.</a></li>
+        <li id="en5"><a href="https://jamesmattison.co.uk/research/declining-religious-participation-in-the-us-and-its-effect-on-philanthropic-giving-1970s-2020s/" target="_blank" rel="noopener">Declining Religious Participation in the US and Its Effect on Philanthropic Giving, 1970s&ndash;2020s.</a></li>
+        <li id="en6"><a href="https://blog.stelter.com/2025/06/24/giving-usa-2025-inside-the-numbers-plus-a-look-back-and-a-look-ahead/" target="_blank" rel="noopener">Giving USA 2025: Inside the Numbers.</a></li>
+        <li id="en7"><a href="https://thenonprofittimes.com/report/giving-usa-data-shows-18-6b-lift-flattened-by-inflation/" target="_blank" rel="noopener">Giving USA Data Shows $18.6B Lift, Flattened by Inflation.</a></li>
+        <li id="en8"><a href="https://givingusa.org/insights/" target="_blank" rel="noopener">Giving USA Insights.</a></li>
+        <li id="en9">The logic extends to cases more uncomfortable than this one. A gift intended for food, spent instead on crack cocaine by someone for whom that was the genuine pressing need: [CHA]&rsquo;s felicity condition is still satisfied. The mode does not evaluate the recipient&rsquo;s choices. That is [MOR]&rsquo;s jurisdiction. [CHA] asks only whether the need that existed was met.</li>
+        <li id="en10"><a href="https://www.effectivealtruism.org/peter-singer-ted" target="_blank" rel="noopener">Peter Singer: The Why and How of Effective Altruism (TED).</a></li>
+        <li id="en11"><a href="https://www.bostonreview.net/forum/peter-singer-logic-effective-altruism/" target="_blank" rel="noopener">The Logic of Effective Altruism, Boston Review.</a></li>
+        <li id="en12"><a href="https://www.ethicsandinternationalaffairs.org/journal/the-lessons-of-effective-altruism" target="_blank" rel="noopener">The Lessons of Effective Altruism, Ethics &amp; International Affairs.</a></li>
+        <li id="en13">An individual in the Department of Human Services in one of the counties in Western PA recently made a post on solving homelessness: &ldquo;&hellip;your authority and your funding sit in only one system&hellip;You design good programs&hellip;you ask for better outcomes&hellip;the same people keep showing up in different places&hellip;Hospitals. Shelters. Jails&hellip;because the systems aren&rsquo;t aligned&hellip;The most effective solutions&hellip;start with two systems staying in their lane, but coordinating earlier.&rdquo; A person inside the system diagnosing the problematic&mdash;impressive in itself. However, the proposed solution shifts the crossing earlier in the process, which, as this essay argues, is no solution at all.</li>
+        <li id="en14"><a href="https://www.nature.com/articles/d41586-026-00369-3" target="_blank" rel="noopener">Shumailov et al., Nature (2024). See also Appendix A.</a></li>
+        <li id="en15">The structure of Path 3 resonates with Deleuze and Guattari&rsquo;s distinction in <em>A Thousand Plateaus</em> (1980) between arborescent and rhizomatic organization. The masquerading institution is arborescent: a single root logic ([ECO] rationality), a trunk (infrastructure), branches (programs, metrics, campaigns). The parallel channels&mdash;informal mutual aid, proximity networks, weak-tie giving&mdash;are rhizomatic: no root logic, no trunk, multiple entry and exit points, propagating horizontally through unexpected connections. The counsel is not simply &ldquo;preserve parallel infrastructure&rdquo;; it is more active: rhizomatic [CHA] does not need to defeat the arborescent system; it needs to remain heterogeneous to it. The danger is not capture by force; it is voluntary entry into the root logic. Every time informal giving adopts EA&rsquo;s language of impact and efficiency to justify itself, it plugs into the tree. The rhizome survives by refusing that translation. GoFundMe is arguably a re-territorialization of the rhizomatic impulse to share resources informally through weak-tie networks: the platform took the rhizome and gave it a root.</li>
+      </ol>
+    </section>
+
+    <!-- ── Appendix divider ────────────────────────────────────────────────── -->
+    <hr class="section-divider" />
+
+    <!-- ════════════════════════════════════════════════════════════════════ -->
+    <!-- APPENDIX                                                             -->
+    <!-- ════════════════════════════════════════════════════════════════════ -->
+    <section id="appendix" class="prose appendix">
+      <h2>Appendix</h2>
+
+      <div class="placeholder-notice">
+        [Appendix — paste from beings_of_charity_append_fin_nofigs.docx in the next pass.]
+      </div>
+
+      <!-- ── Figure 5: Particle Filter Visualization ──────────────────────── -->
+      <div class="figure-block figure-iframe" id="figure-5">
+        <iframe
+          src="/arrival/filter-collapse.html"
+          title="Figure 5: The Filter That Learns to Forget"
+          width="100%"
+          height="700"
+          frameborder="0"
+          loading="lazy"
+        ></iframe>
+        <p class="figure-caption">
+          <strong>Figure 5.</strong> <em>The Filter That Learns to Forget.</em>
+          An interactive particle filter simulation showing variance collapse under recursive
+          self-training. Use the controls to step through iterations.
+        </p>
+      </div>
+    </section>
+
+    <!-- ── Back to top ────────────────────────────────────────────────────── -->
+    <div class="back-to-top">
+      <a href="#top">&uarr; Back to top</a>
+    </div>
+
+  </article>
+</BaseLayout>
+
+<style>
+  /* ── Essay layout ──────────────────────────────────────────────────────── */
+  .essay {
+    max-width: 680px;
+    margin: 0 auto;
+    padding: 3rem 0 6rem;
+  }
+
+  /* ── Preface note ────────────────────────────────────────────────────── */
+  .preface-note {
+    border-left: 3px solid var(--color-border);
+    padding: 1rem 1.25rem;
+    margin-bottom: 2.5rem;
+    font-style: italic;
+    font-size: 0.9rem;
+    color: var(--color-muted);
+    line-height: 1.7;
+  }
+
+  .preface-note p { margin-bottom: 0.75rem; }
+  .preface-note p:last-child { margin-bottom: 0; }
+
+  /* ── Header ──────────────────────────────────────────────────────────── */
+  .essay-header {
+    padding-bottom: 2.5rem;
+    border-bottom: 1px solid var(--color-border);
+    margin-bottom: 2rem;
+  }
+
+  .dedication {
+    font-size: 0.875rem;
+    color: var(--color-muted);
+    text-align: center;
+    margin-bottom: 2rem;
+    padding: 0.5rem 0;
+    border-top: 1px solid var(--color-border);
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .overline {
+    font-size: 0.72rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--color-muted);
+    margin-bottom: 0.75rem;
+  }
+
+  .essay-header h1 {
+    font-size: clamp(1.6rem, 3.5vw, 2.4rem);
+    font-weight: normal;
+    line-height: 1.25;
+    margin-bottom: 1rem;
+  }
+
+  .subtitle {
+    font-size: 1rem;
+    color: var(--color-muted);
+    line-height: 1.65;
+    max-width: 56ch;
+    margin-bottom: 1.25rem;
+  }
+
+  .substack-link {
+    font-size: 0.8rem;
+    color: var(--color-muted);
+    border-bottom: 1px solid var(--color-border);
+    padding-bottom: 2px;
+  }
+
+  .substack-link:hover {
+    color: var(--color-accent);
+    text-decoration: none;
+  }
+
+  /* ── Table of Contents ───────────────────────────────────────────────── */
+  .toc {
+    background: #f5f5f3;
+    border: 1px solid var(--color-border);
+    padding: 1.25rem 1.5rem;
+    margin-bottom: 3rem;
+    font-size: 0.875rem;
+  }
+
+  .toc-label {
+    font-size: 0.68rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--color-muted);
+    margin-bottom: 0.75rem;
+  }
+
+  .toc ol {
+    margin: 0;
+    padding-left: 1.25rem;
+  }
+
+  .toc li { margin-bottom: 0.35rem; }
+
+  .toc a {
+    color: var(--color-text);
+    font-size: 0.875rem;
+  }
+
+  .toc a:hover { color: var(--color-accent); }
+
+  /* ── Prose sections ──────────────────────────────────────────────────── */
+  .prose { margin-bottom: 3rem; }
+
+  .prose h2 {
+    font-size: 1.2rem;
+    font-weight: normal;
+    margin-bottom: 1.25rem;
+    margin-top: 3rem;
+    padding-top: 1rem;
+    border-top: 1px solid var(--color-border);
+  }
+
+  .prose h3 {
+    font-size: 1rem;
+    font-weight: 600;
+    margin: 2rem 0 0.75rem;
+  }
+
+  .prose p { margin-bottom: 1.25rem; }
+
+  .prose sup {
+    font-size: 0.7rem;
+    line-height: 0;
+    color: var(--color-accent);
+  }
+
+  .prose blockquote {
+    border-left: 3px solid var(--color-border);
+    margin: 1.5rem 0;
+    padding: 0.25rem 0 0.25rem 1.25rem;
+    color: var(--color-muted);
+    font-style: italic;
+  }
+
+  /* ── Figure-ref inline cue ───────────────────────────────────────────── */
+  .figure-ref {
+    font-size: 0.8rem;
+    color: var(--color-muted);
+    font-style: italic;
+    display: inline;
+  }
+
+  /* ── Table figures ────────────────────────────────────────────────────── */
+  .table-figure {
+    margin: 2rem 0;
+    border: 1px solid var(--color-border);
+    background: #f9f9f7;
+    padding: 1rem;
+  }
+
+  .table-figure img {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+
+  .table-figure figcaption {
+    font-size: 0.8rem;
+    color: var(--color-muted);
+    margin-top: 0.6rem;
+    line-height: 1.5;
+  }
+
+  /* ── Figure blocks (diagram + iframe) ───────────────────────────────── */
+  .figure-block { margin: 2.5rem 0 3rem; }
+
+  .figure-diagram {
+    margin-left: -1rem;
+    margin-right: -1rem;
+  }
+
+  .figure-iframe {
+    border: 1px solid var(--color-border);
+    background: #f5f5f3;
+  }
+
+  .figure-iframe iframe { display: block; width: 100%; }
+
+  .figure-caption {
+    font-size: 0.8rem;
+    color: var(--color-muted);
+    margin-top: 0.75rem;
+    line-height: 1.5;
+    padding: 0 0.5rem;
+  }
+
+  /* ── References ──────────────────────────────────────────────────────── */
+  .ref-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .ref-list li {
+    font-size: 0.875rem;
+    line-height: 1.65;
+    margin-bottom: 0.85rem;
+    padding-left: 1.5rem;
+    text-indent: -1.5rem;
+    color: var(--color-text);
+  }
+
+  /* ── Endnotes ────────────────────────────────────────────────────────── */
+  .endnote-list {
+    padding-left: 1.5rem;
+    margin: 0;
+  }
+
+  .endnote-list li {
+    font-size: 0.8rem;
+    line-height: 1.65;
+    margin-bottom: 0.75rem;
+    color: var(--color-muted);
+  }
+
+  .endnote-list a { color: var(--color-accent); }
+
+  /* ── Appendix ────────────────────────────────────────────────────────── */
+  .section-divider {
+    border: none;
+    border-top: 1px solid var(--color-border);
+    margin: 4rem 0;
+  }
+
+  .appendix h2 {
+    font-size: 1rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    border-top: none;
+    margin-top: 0;
+    padding-top: 0;
+    margin-bottom: 1.5rem;
+    color: var(--color-muted);
+  }
+
+  /* ── Placeholder notice ──────────────────────────────────────────────── */
+  .placeholder-notice {
+    background: #fffbeb;
+    border: 1px dashed #d97706;
+    color: #92400e;
+    padding: 1rem 1.25rem;
+    font-size: 0.875rem;
+    font-family: var(--font-mono);
+    border-radius: 3px;
+    margin-bottom: 2rem;
+  }
+
+  /* ── Back to top ─────────────────────────────────────────────────────── */
+  .back-to-top {
+    text-align: center;
+    padding: 2rem 0 0;
+    border-top: 1px solid var(--color-border);
+    margin-top: 4rem;
+  }
+
+  .back-to-top a {
+    font-size: 0.8rem;
+    color: var(--color-muted);
+    letter-spacing: 0.05em;
+  }
+
+  /* ── Mobile ──────────────────────────────────────────────────────────── */
+  @media (max-width: 720px) {
+    .figure-diagram {
+      margin-left: -1.5rem;
+      margin-right: -1.5rem;
+    }
+
+    .figure-iframe iframe { height: 500px; }
+
+    .toc ol { padding-left: 1rem; }
+  }
+</style>

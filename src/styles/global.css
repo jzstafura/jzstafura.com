@@ -7,6 +7,11 @@
   --font-sans: 'Georgia', serif;
   --font-mono: 'Courier New', monospace;
   --max-width: 860px;
+
+  /* Aliases used by arrival page components */
+  --color-text-primary: var(--color-text);
+  --color-text-secondary: var(--color-muted);
+  --color-border-tertiary: var(--color-border);
 }
 
 * {

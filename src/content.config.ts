@@ -9,6 +9,7 @@ const writing = defineCollection({
     description: z.string(),
     tags: z.array(z.string()).optional(),
     external_url: z.string().optional(),
+    internal_url: z.string().optional(),
     venue: z.string().optional(),
   }),
 });
