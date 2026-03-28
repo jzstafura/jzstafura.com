@@ -545,28 +545,60 @@ import ChaNetworkDiagram from '../../components/arrival/ChaNetworkDiagram.jsx';
     <!-- APPENDIX                                                             -->
     <!-- ════════════════════════════════════════════════════════════════════ -->
     <section id="appendix" class="prose appendix">
-      <h2>Appendix</h2>
+      <h2>Appendix A: The Formal Basis for Mode Capture as Delta Function Convergence</h2>
+
+      <h3>A.1 Overview</h3>
+      <p>The claim that mode capture converges to a delta function is a direct application of results in Shumailov et al. (2024). Model collapse is a degenerative process that affects learning systems that train recursively on their own outputs. It should be noted that platform dynamics are more complex than the idealized generative model setting described by Shumailov et al. For the purposes of this essay, isomorphism is assumed, not identity. However, key isomorphic features, such as generational resampling, suggest that the degeneracy results apply directly.</p>
+
+      <h3>A.2 The Model Collapse Framework</h3>
+      <p>Shumailov et al. define model collapse as &ldquo;a degenerative process affecting generations of learned generative models, in which the data they generate end up polluting the training set of the next generation.&rdquo;</p>
+      <p>The formal setting: at generation <em>i</em>, a dataset D<sub>i</sub> consists of samples from distribution p<sub>i</sub>. The model estimates p<sub>i</sub> and generates D<sub>i+1</sub> by sampling from that estimate. Three compounding error sources drive collapse. Statistical approximation error arises because finite sampling means low-probability events are dropped at each generation; any event with probability <em>q</em> is lost with probability 1 &minus; <em>q</em> at each step, and tail information disappears first. Functional expressivity error follows from the model&rsquo;s inability to perfectly represent the true distribution, with errors accumulating across generations. Functional approximation error is introduced by optimization procedures independently of data quantity.</p>
+
+      <h3>A.3 The Delta Function Result</h3>
+      <p><strong>Discrete case</strong> (Theorem, Shumailov et al.): For a discrete distribution with exact functional approximation, the learning process is a Markov chain. The only absorbing states are delta functions. Because the chain contains at least one absorbing state, it converges to one with probability 1. Therefore, the distribution must converge to a delta function positioned at some state, with the probability of landing at a given state equal to the probability of sampling that state from the original distribution.</p>
+      <p><strong>Gaussian case</strong> (Theorem 3.1, Shumailov et al.): For data sampled from any distribution D<sub>0</sub> with non-zero variance, if successive generations are fit using unbiased sample mean and variance estimators:</p>
+      <p class="math-display">E[W₂(N(μₙ, Σₙ), D₀)] → ∞ &nbsp;&nbsp; and &nbsp;&nbsp; Σₙ → 0 &nbsp;&nbsp; almost surely as n → ∞</p>
+      <p>where W<sub>2</sub> is the Wasserstein-2 distance. The <em>n</em>th-generation approximation not only diverges arbitrarily far from the original distribution but collapses to zero variance. The system converges to a point estimate.</p>
+    </section>
+
+    <!-- ── Figure 5: Particle Filter Visualization (after A.3) ──────────── -->
+    <div class="figure-block figure-iframe" id="figure-5">
+      <iframe
+        src="/arrival/filter-collapse.html"
+        title="Figure 5: The Filter That Learns to Forget"
+        width="100%"
+        height="700"
+        frameborder="0"
+        loading="lazy"
+      ></iframe>
+      <p class="figure-caption">
+        <strong>Figure 5.</strong> <em>The Filter That Learns to Forget.</em>
+        An interactive particle filter simulation showing variance collapse under recursive
+        self-training. Use the controls to step through iterations.
+      </p>
+    </div>
+
+    <section class="prose appendix">
+      <h3>A.4 Application to Platform-Mediated [CHA]</h3>
+      <p>The mapping to [CHA] platform dynamics proceeds as follows in Table A1. Generational resampling is the key structural isomorphism.</p>
 
       <div class="placeholder-notice">
-        [Appendix — paste from beings_of_charity_append_fin_nofigs.docx in the next pass.]
+        [Appendix Table A1 — maps Shumailov et al. framework components to [CHA] platform dynamics equivalents. Paste table data from <em>Appendix Table 1.docx</em> to build this out.]
       </div>
 
-      <!-- ── Figure 5: Particle Filter Visualization ──────────────────────── -->
-      <div class="figure-block figure-iframe" id="figure-5">
-        <iframe
-          src="/arrival/filter-collapse.html"
-          title="Figure 5: The Filter That Learns to Forget"
-          width="100%"
-          height="700"
-          frameborder="0"
-          loading="lazy"
-        ></iframe>
-        <p class="figure-caption">
-          <strong>Figure 5.</strong> <em>The Filter That Learns to Forget.</em>
-          An interactive particle filter simulation showing variance collapse under recursive
-          self-training. Use the controls to step through iterations.
-        </p>
-      </div>
+      <h3>A.5 Early and Late Mode Capture</h3>
+      <p>Early mode capture mirrors early model collapse. Low-probability needs begin disappearing from the legible distribution. Platform metrics may look healthy during this phase: average success rates rise as the system optimizes toward what it already recognizes. Diversity loss is the measurable signature, and it precedes and predicts late-stage collapse. The NIH parallel described by Qian et al. (pre-print) is interesting in just this regard: AI-assisted grant submissions show higher award rates alongside lower content diversity, precisely the early-collapse signature in a [REF]-mediated system.</p>
+      <p>Late mode capture mirrors late model collapse. The distribution of legible needs collapses toward a point estimate. Only needs that match the platform&rsquo;s learned canonical profile achieve legibility. [CHA]&rsquo;s felicity condition is satisfied only when a need happens to conform to that profile.</p>
+
+      <h3>A.6 Why Convergence is Inevitable</h3>
+      <p>Shumailov et al. demonstrate that collapse is not a correctable bias. It is a structural property of generational learning from self-generated data. Even under near-ideal conditions, statistical sampling error alone is sufficient to guarantee convergence to absorbing states in finite time for discrete systems, and zero-variance collapse in the limit for continuous systems.</p>
+      <p>For platform-mediated [CHA], this has three implications. No amount of platform goodwill or design improvement eliminates the degeneracy as long as the platform optimizes from its own performance data. The convergence accelerates as generative AI tools are integrated: campaigns increasingly generated by models trained on successful prior campaigns close the loop entirely. The only intervention that delays collapse in Shumailov et al.&rsquo;s experiments is preservation of original data. The analog for [CHA] is preserving direct, unmediated legibility channels outside platform infrastructure.</p>
+
+      <h3>Citations</h3>
+      <ul class="ref-list">
+        <li>Shumailov, I., Shumaylov, Z., Zhao, Y., Papernot, N., Anderson, R., &amp; Gal, Y. (2024). AI models collapse when trained on recursively generated data. <em>Nature, 631,</em> 755&ndash;759. https://doi.org/10.1038/s41586-024-07566-y</li>
+        <li>Qian, Y., Wen, Z., Furnas, A. C., Bai, Y., Shao, E., &amp; Wang, D. (2026). The rise of large language models and the direction and impact of US federal research funding. <em>arXiv</em> (preprint). https://arxiv.org/abs/2601.15485</li>
+      </ul>
     </section>
 
     <!-- ── Back to top ────────────────────────────────────────────────────── -->
@@ -816,6 +848,18 @@ import ChaNetworkDiagram from '../../components/arrival/ChaNetworkDiagram.jsx';
     padding-top: 0;
     margin-bottom: 1.5rem;
     color: var(--color-muted);
+  }
+
+  /* ── Math display block ─────────────────────────────────────────────── */
+  .math-display {
+    font-family: var(--font-mono);
+    font-size: 0.9rem;
+    text-align: center;
+    padding: 1rem 1.5rem;
+    background: #f5f5f3;
+    border: 1px solid var(--color-border);
+    margin: 1.5rem 0;
+    overflow-x: auto;
   }
 
   /* ── Placeholder notice ──────────────────────────────────────────────── */
