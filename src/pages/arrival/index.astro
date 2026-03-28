@@ -582,9 +582,43 @@ import ChaNetworkDiagram from '../../components/arrival/ChaNetworkDiagram.jsx';
       <h3>A.4 Application to Platform-Mediated [CHA]</h3>
       <p>The mapping to [CHA] platform dynamics proceeds as follows in Table A1. Generational resampling is the key structural isomorphism.</p>
 
-      <div class="placeholder-notice">
-        [Appendix Table A1 — maps Shumailov et al. framework components to [CHA] platform dynamics equivalents. Paste table data from <em>Appendix Table 1.docx</em> to build this out.]
-      </div>
+      <figure class="table-figure appendix-table">
+        <figcaption>Table A1. Structural mapping from Shumailov et al. (2024) model collapse framework to platform-instantiated [CHA].</figcaption>
+        <table class="mapping-table">
+          <thead>
+            <tr>
+              <th>Model Collapse Concept</th>
+              <th>[CHA] Platform Analog</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Training data distribution</td>
+              <td>Distribution of need narratives in the platform ecosystem</td>
+            </tr>
+            <tr class="key-row">
+              <td><strong>Generational resampling</strong> (key isomorphism)</td>
+              <td><strong>Campaigns optimized based on prior campaign performance data</strong></td>
+            </tr>
+            <tr>
+              <td>Low-probability events</td>
+              <td>Unusual, non-narratable, or socially marginal needs</td>
+            </tr>
+            <tr>
+              <td>Tail disappearance (early collapse)</td>
+              <td>Decreasing diversity of needs that achieve legibility</td>
+            </tr>
+            <tr>
+              <td>Delta function convergence (late collapse)</td>
+              <td>Single &ldquo;canonical&rdquo; need narrative; all others invisible</td>
+            </tr>
+            <tr>
+              <td>Functional approximation error</td>
+              <td>Platform algorithm&rsquo;s structural biases toward engagement metrics</td>
+            </tr>
+          </tbody>
+        </table>
+      </figure>
 
       <h3>A.5 Early and Late Mode Capture</h3>
       <p>Early mode capture mirrors early model collapse. Low-probability needs begin disappearing from the legible distribution. Platform metrics may look healthy during this phase: average success rates rise as the system optimizes toward what it already recognizes. Diversity loss is the measurable signature, and it precedes and predicts late-stage collapse. The NIH parallel described by Qian et al. (pre-print) is interesting in just this regard: AI-assisted grant submissions show higher award rates alongside lower content diversity, precisely the early-collapse signature in a [REF]-mediated system.</p>
@@ -848,6 +882,44 @@ import ChaNetworkDiagram from '../../components/arrival/ChaNetworkDiagram.jsx';
     padding-top: 0;
     margin-bottom: 1.5rem;
     color: var(--color-muted);
+  }
+
+  /* ── Mapping table (Appendix A1) ────────────────────────────────────── */
+  .mapping-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 14px;
+  }
+
+  .mapping-table thead tr {
+    border-bottom: 2px solid var(--color-text);
+  }
+
+  .mapping-table th {
+    text-align: left;
+    padding: 8px 12px;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--color-text);
+  }
+
+  .mapping-table td {
+    vertical-align: top;
+    padding: 9px 12px;
+    line-height: 1.6;
+    color: var(--color-text);
+    border-bottom: 0.5px solid var(--color-border);
+  }
+
+  .mapping-table tbody tr:last-child td { border-bottom: none; }
+
+  .mapping-table .key-row td { background: #f9f9f7; }
+
+  .appendix-table figcaption {
+    font-size: 0.8rem;
+    color: var(--color-muted);
+    margin-bottom: 0.6rem;
+    line-height: 1.5;
   }
 
   /* ── Math display block ─────────────────────────────────────────────── */
