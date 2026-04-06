@@ -1,0 +1,33 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+---
+
+<BaseLayout
+  title="Bloch Sphere Quantum Simulator — JZ Stafura"
+  description="An interactive quantum simulator with a 3D Bloch sphere, entanglement explorer, and circuit builder. Apply gates, observe state vector evolution, and measure qubits in superposition."
+>
+  <div class="full-bleed">
+    <iframe
+      src="/bloch-sphere-v3.html"
+      title="Bloch Sphere Quantum Simulator"
+      class="sim-frame"
+      loading="lazy"
+    />
+  </div>
+</BaseLayout>
+
+<style>
+  :global(main) {
+    padding: 0 !important;
+    max-width: none !important;
+  }
+  .full-bleed {
+    width: 100%;
+  }
+  .sim-frame {
+    display: block;
+    width: 100%;
+    height: 100vh;
+    border: none;
+  }
+</style>
