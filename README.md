@@ -1,43 +1,49 @@
-# Astro Starter Kit: Minimal
+# jzstafura.com
 
-```sh
-npm create astro@latest -- --template minimal
+Personal site of Joseph Z. Stafura, PhD — cognitive psychologist, researcher, and research administrator based in Pittsburgh, PA.
+
+**Live site:** [jzstafura.com](https://jzstafura.com)
+
+## Tech Stack
+
+- **Astro 6** — static site generator, file-based routing, zero JS by default
+- **React 19** — used only for interactive island components (`client:load`); all other pages are static HTML
+- **TypeScript** — strict mode; React components use `.jsx` (not `.tsx`)
+- No CSS framework — global variables in `src/styles/global.css`, scoped styles per page
+
+## Local Development
+
+Requires Node >= 22.12.0.
+
+```bash
+npm install
+npm run dev       # localhost:4321
+npm run build     # production build → ./dist/
+npm run preview   # preview production build locally
 ```
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+## Site Sections
 
-## 🚀 Project Structure
+| Route | Content |
+|---|---|
+| `/lab/` | Research projects & tools: Intellectual Network Map, Hallucination Detection, NOFO Processor, Violence Research Dashboard |
+| `/writing/` | Essays and articles on cognition, AI, organizations, and policy |
+| `/consulting/` | Organizational diagnostics and applied measurement |
+| `/educational/` | Interactive science visualizations: Bloch sphere, CRISPR-Cas9, EEG P300, ERP Language |
+| `/fun/` | Side projects: Banana Santana, SoulWrap |
+| `/about/` | Bio, education, experience |
+| `/arrival/` | Network diagram visualization project |
 
-Inside of your Astro project, you'll see the following folders and files:
+## Adding Content
 
-```text
-/
-├── public/
-├── src/
-│   └── pages/
-│       └── index.astro
-└── package.json
-```
+**New lab project** — two files required:
+1. Add entry to the `projects` array in `src/pages/lab/index.astro`
+2. Create `src/pages/lab/<slug>/index.astro` for the detail page
 
-Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
+**New writing post** — add a Markdown file to `src/content/writing/`. Required frontmatter: `title`, `date`, `description`. Optional: `tags[]`, `external_url`, `internal_url`, `venue`. Schema is in `src/content.config.ts`.
 
-There's nothing special about `src/components/`, but that's where we like to put any Astro/React/Vue/Svelte/Preact components.
+**New interactive visualization** — build as a React component in `src/components/`, import into an `.astro` page with `client:load`.
 
-Any static assets, like images, can be placed in the `public/` directory.
+## Deployment
 
-## 🧞 Commands
-
-All commands are run from the root of the project, from a terminal:
-
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
-
-## 👀 Want to learn more?
-
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+The site URL (`https://jzstafura.com`) is set in `astro.config.mjs` and is required for sitemap generation and canonical URLs. All pages extend `src/layouts/BaseLayout.astro`, which handles nav, footer, and SEO meta tags.
