@@ -8,9 +8,12 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 npm run dev       # Start dev server at localhost:4321
 npm run build     # Production build to ./dist/
 npm run preview   # Preview production build locally
+npx astro check  # TypeScript type-checking
 ```
 
 **Requires Node >=22.12.0**
+
+There is no linting or test suite.
 
 ## Tech Stack
 
@@ -43,6 +46,14 @@ Lab projects require two coordinated changes:
 2. Create `src/pages/lab/<slug>/index.astro` for the project detail page
 
 There is no content collection for lab projects; the index array is the source of truth.
+
+### Educational Demos
+Educational demos follow the same pattern as lab projects:
+1. Add an entry to the `demos` array in `src/pages/educational/index.astro` — fields: `title`, `slug`, `description`, `tags[]`
+2. Create `src/pages/educational/<slug>/index.astro` for the demo page (typically importing a React island with `client:load`)
+
+### Top-Level Sections
+Adding a new top-level section requires adding a nav link in `src/layouts/BaseLayout.astro`. The nav uses `pathname.startsWith('/section')` to apply the `active` class.
 
 ### Styling
 Global CSS variables (colors, fonts, 860px max-width) are in `src/styles/global.css`. Component styles are scoped within each `.astro` file. No CSS framework is used.
