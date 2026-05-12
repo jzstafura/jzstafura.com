@@ -1,0 +1,23 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import PsychophysicsGallery from '../../../components/educational/PsychophysicsGallery.jsx';
+---
+
+<BaseLayout
+  title="Core Psychophysics — JZ Stafura"
+  description="Interactive gallery of four foundational psychophysics findings: Signal Detection Theory (d′ and criterion), Speed-Accuracy Tradeoff, Stevens' Power Law across six sensory modalities, and Hick's Law."
+>
+  <div class="full-bleed">
+    <PsychophysicsGallery client:load />
+  </div>
+</BaseLayout>
+
+<style>
+  :global(main) {
+    padding: 0 !important;
+    max-width: none !important;
+  }
+  .full-bleed {
+    width: 100%;
+  }
+</style>
