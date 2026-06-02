@@ -46,14 +46,37 @@ Lab projects require two coordinated changes:
 2. Create `src/pages/lab/<slug>/index.astro` for the project detail page
 
 There is no content collection for lab projects; the index array is the source of truth.
+Valid `statusClass` values: `status-live` (green), `status-research` (amber), `status-tool` (blue).
 
 ### Educational Demos
 Educational demos follow the same pattern as lab projects:
 1. Add an entry to the `demos` array in `src/pages/educational/index.astro` — fields: `title`, `slug`, `description`, `tags[]`
-2. Create `src/pages/educational/<slug>/index.astro` for the demo page (typically importing a React island with `client:load`)
+2. Create `src/pages/educational/<slug>/index.astro` for the demo page
+
+Two embed patterns are in use:
+
+**React island** (standard — used by all JSX components): import the component and render with `client:load`.
+
+**Standalone HTML artifact** (used when the file has its own JS globals, canvas loops, etc.): copy the `.html` file to `public/`, then embed with `<iframe src="/filename.html">`. This isolates the artifact's state from Astro entirely.
+
+All interactive demo pages remove the layout's default padding/max-width so the component fills the viewport:
+```astro
+<style>
+  :global(main) { padding: 0 !important; max-width: none !important; }
+  .full-bleed { width: 100%; }
+</style>
+```
 
 ### Top-Level Sections
 Adding a new top-level section requires adding a nav link in `src/layouts/BaseLayout.astro`. The nav uses `pathname.startsWith('/section')` to apply the `active` class.
 
 ### Styling
-Global CSS variables (colors, fonts, 860px max-width) are in `src/styles/global.css`. Component styles are scoped within each `.astro` file. No CSS framework is used.
+Global CSS variables are in `src/styles/global.css`:
+- `--color-bg` `--color-text` `--color-muted` `--color-accent` `--color-border`
+- `--font-sans` (Georgia serif) · `--font-mono` (Courier New)
+- `--max-width: 860px`
+- Aliases for the arrival section: `--color-text-primary` `--color-text-secondary` `--color-border-tertiary`
+
+Component styles are scoped within each `.astro` file. No CSS framework is used.
+
+React island components (educational demos) carry their own inline styles and import Google Fonts (`DM Mono`, `Playfair Display`) directly via a `<style>` tag inside the component — they do not inherit site variables.
