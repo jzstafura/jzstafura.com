@@ -33,8 +33,11 @@ All pages extend `src/layouts/BaseLayout.astro`, which handles nav, footer, SEO 
 Site URL (`https://jzstafura.com`) is set in `astro.config.mjs` — required for sitemap and canonical URLs.
 
 ### React Islands
-Interactive components live in `src/components/` and are imported into `.astro` pages with `client:load`. The rest of the site is static HTML. React is only used where interactivity is needed (scientific visualizations, network diagrams).
-Components are organized by section: `src/components/educational/`, `src/components/arrival/`
+Interactive components live in `src/components/` and are imported into `.astro` pages with a `client:` directive. The rest of the site is static HTML.
+Components are organized by section: `src/components/educational/`, `src/components/arrival/`, `src/components/writing/`
+
+Use `client:load` for full-viewport interactive pages (educational demos) where the component is the entire page content.
+Use `client:visible` for components embedded inside long-scroll prose pages (writing essays) — this defers hydration until the component scrolls into view.
 
 ### Content Collections
 Blog posts are Markdown files in `src/content/writing/` managed via Astro's content loader. Schema is defined in `src/content.config.ts` with Zod — fields include `title`, `date`, `description`, `tags`, `external_url`, `internal_url`, `venue`.
@@ -66,6 +69,16 @@ All interactive demo pages remove the layout's default padding/max-width so the 
   .full-bleed { width: 100%; }
 </style>
 ```
+
+### Writing Essay Pages
+Full essay pages (e.g. `/writing/against-synthesis/`) live at `src/pages/writing/<slug>/index.astro` and are not driven by the content collection — they are standalone `.astro` files with prose inline and React components embedded via `client:visible`. To also surface them in the writing index, add a corresponding `src/content/writing/<slug>.md` entry with `internal_url: "/writing/<slug>/"`.
+
+### Fun Section
+Fun items require two coordinated changes:
+1. Add a card directly to the `<section class="grid">` in `src/pages/fun/index.astro` (hardcoded, no array — unlike lab/educational)
+2. Create `src/pages/fun/<slug>/index.astro` for the detail page
+
+For parody/standalone HTML artifacts in the fun section: copy the `.html` file to `public/` and link to it from the detail page (opens in a new tab). Do **not** use an iframe — fun parody sites are meant to be experienced as their own pages, not embedded. This differs from the educational iframe pattern.
 
 ### Top-Level Sections
 Adding a new top-level section requires adding a nav link in `src/layouts/BaseLayout.astro`. The nav uses `pathname.startsWith('/section')` to apply the `active` class.
