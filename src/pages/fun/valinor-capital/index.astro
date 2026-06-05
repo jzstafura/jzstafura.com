@@ -1,0 +1,141 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+---
+<BaseLayout
+  title="Valinor Capital — JZ Stafura"
+  description="A parody venture capital firm website for a fund backing founders who refuse to inherit broken systems. Tolkien aesthetic. Serious copy. Underground city portfolio."
+>
+  <div class="back"><a href="/fun/">&#x2190; Fun</a></div>
+
+  <section class="hero">
+    <p class="overline">Fun / Parody</p>
+    <h1>Valinor Capital</h1>
+    <p class="hero-sub">The legacy world has a liquidity problem.</p>
+    <div class="meta-row">
+      <span class="status status-live">Live</span>
+      <div class="links">
+        <a href="/valinor-capital.html" target="_blank" rel="noopener">Visit Valinor Capital &#x2197;</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="preview-section">
+    <a href="/valinor-capital.html" target="_blank" rel="noopener" class="preview-card">
+      <div class="preview-inner">
+        <p class="preview-tagline">&ldquo;We back founders who refuse to inherit broken systems.&rdquo;</p>
+        <div class="feature-list">
+          <span>Tolkien-themed parody VC</span>
+          <span>Dark gold aesthetic</span>
+          <span>Underground city portfolio</span>
+          <span>Libertarian investment thesis</span>
+          <span>Co-investors: Grey Havens Partners, Mithril Ventures</span>
+        </div>
+      </div>
+      <div class="preview-cta">
+        Visit Valinor Capital &#x2197;
+      </div>
+    </a>
+    <p class="preview-note">A parody VC site. Opens in a new tab.</p>
+  </section>
+
+  <section class="about">
+    <h2>About</h2>
+    <p>Valinor Capital is a fictional venture firm backing founders building infrastructure for a post-surface world. The portfolio includes Underhill (an underground city), ShireChain (logistics), Deepglow (power), and Underrock (mining) &mdash; all supplied by each other in a vertically integrated loop that would make any competition regulator deeply uncomfortable.</p>
+    <p>The aesthetic is sincere. The copy is straight-faced. The Tolkien references are relentless. It does not wink.</p>
+
+    <div class="details-grid">
+      <div class="detail-block">
+        <h3>Stack</h3>
+        <ul>
+          <li>Vanilla HTML / CSS / JS</li>
+          <li>Google Fonts (Cinzel, Barlow)</li>
+          <li>Scroll animations</li>
+          <li>No dependencies</li>
+        </ul>
+      </div>
+      <div class="detail-block">
+        <h3>Disclaimer</h3>
+        <p class="detail-desc">Valinor Capital is not a real fund and is not accepting LP commitments. The underground city is not yet habitable. Mithril alloys are fictional. Please do not wire money.</p>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .back { padding: 1.5rem 0 0; }
+  .back a { font-size: 0.85rem; color: var(--color-muted); text-decoration: none; }
+  .back a:hover { color: var(--color-accent); }
+
+  .overline { font-size: 0.75rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--color-muted); margin-bottom: 0.75rem; }
+  .hero { padding: 2.5rem 0 2rem; border-bottom: 1px solid var(--color-border); margin-bottom: 2.5rem; }
+  .hero h1 { font-size: clamp(1.75rem, 4vw, 2.75rem); font-weight: normal; margin-bottom: 0.5rem; letter-spacing: 0.05em; }
+  .hero-sub { max-width: 55ch; color: var(--color-muted); margin-bottom: 1.25rem; font-style: italic; }
+  .meta-row { display: flex; align-items: center; gap: 1.5rem; }
+  .status { font-size: 0.65rem; letter-spacing: 0.1em; text-transform: uppercase; padding: 0.2rem 0.55rem; border: 1px solid; }
+  .status-live { color: #16a34a; border-color: rgba(22, 163, 74, 0.3); background: rgba(22, 163, 74, 0.05); }
+  .links { display: flex; gap: 1.25rem; }
+  .links a { font-size: 0.85rem; color: var(--color-muted); border-bottom: 1px solid var(--color-border); padding-bottom: 1px; text-decoration: none; }
+  .links a:hover { color: var(--color-accent); }
+
+  .preview-section { margin-bottom: 3rem; }
+
+  .preview-card {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    border: 1px solid #1C2238;
+    background: #070B14;
+    text-decoration: none;
+    color: inherit;
+    transition: border-color 0.15s, box-shadow 0.15s;
+  }
+
+  .preview-card:hover {
+    border-color: #B8962E;
+    box-shadow: 0 2px 24px rgba(184, 150, 46, 0.1);
+    text-decoration: none;
+  }
+
+  .preview-inner { padding: 2.5rem 2rem 2rem; }
+
+  .preview-tagline {
+    font-size: 1.05rem;
+    font-style: italic;
+    color: #E4DFD5;
+    margin-bottom: 2rem;
+    max-width: 50ch;
+  }
+
+  .feature-list { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+  .feature-list span {
+    font-size: 0.65rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: #8A8780;
+    border: 1px solid #1C2238;
+    padding: 0.25rem 0.65rem;
+  }
+
+  .preview-cta {
+    padding: 1rem 2rem;
+    background: #B8962E;
+    color: #070B14;
+    font-size: 0.8rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    text-align: center;
+    font-weight: 500;
+  }
+
+  .preview-note { font-size: 0.8rem; color: var(--color-muted); margin-top: 0.75rem; }
+
+  section.about { padding-bottom: 2rem; }
+  .about h2 { font-size: 1.1rem; font-weight: normal; margin-bottom: 1.25rem; }
+  .about p { color: var(--color-muted); line-height: 1.75; margin-bottom: 1rem; max-width: 65ch; }
+
+  .details-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 2rem; margin-top: 2rem; padding-top: 2rem; border-top: 1px solid var(--color-border); }
+  .detail-block h3 { font-size: 0.75rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--color-muted); margin-bottom: 0.75rem; }
+  .detail-block ul { list-style: none; }
+  .detail-block li { font-size: 0.875rem; color: var(--color-text); padding: 0.2rem 0; }
+  .detail-desc { font-size: 0.8rem; color: var(--color-muted); line-height: 1.6; font-style: italic; }
+</style>

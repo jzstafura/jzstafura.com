@@ -1,0 +1,1084 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Valinor Capital — The legacy world has a liquidity problem. We back founders who refuse to inherit broken systems.">
+  <title>Valinor Capital</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600&family=Barlow:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg:           #070B14;
+      --bg-elevated:  #0D1220;
+      --bg-card:      #101828;
+      --text:         #E4DFD5;
+      --text-dim:     #8A8780;
+      --accent:       #B8962E;
+      --accent-light: #D4AF50;
+      --border:       #1C2238;
+      --border-soft:  #242C44;
+    }
+
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; font-size: 16px; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Barlow', sans-serif;
+      font-weight: 300;
+      line-height: 1.75;
+      overflow-x: hidden;
+    }
+
+    /* =====================
+       NAVIGATION
+    ===================== */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.25rem 3rem;
+      background: rgba(7, 11, 20, 0.93);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nav-logo {
+      font-family: 'Cinzel', serif;
+      font-size: 0.8rem;
+      letter-spacing: 0.28em;
+      color: var(--accent);
+      text-decoration: none;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2.5rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      font-size: 0.7rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--text-dim);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover { color: var(--text); }
+
+    /* =====================
+       HERO
+    ===================== */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 9rem 2rem 6rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* Grid overlay */
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(184,150,46,0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(184,150,46,0.03) 1px, transparent 1px);
+      background-size: 64px 64px;
+      pointer-events: none;
+    }
+
+    /* Glow */
+    .hero::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 65% 55% at 50% 45%, rgba(184,150,46,0.07) 0%, transparent 65%),
+        radial-gradient(ellipse 35% 25% at 15% 85%, rgba(61,107,74,0.04) 0%, transparent 55%);
+      pointer-events: none;
+    }
+
+    .hero-eyebrow {
+      font-family: 'Cinzel', serif;
+      font-size: 0.65rem;
+      letter-spacing: 0.4em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 2rem;
+      position: relative; z-index: 1;
+      opacity: 0;
+      animation: fadeUp 0.7s 0.1s ease forwards;
+    }
+
+    .hero-title {
+      font-family: 'Cinzel', serif;
+      font-size: clamp(3.5rem, 9vw, 7.5rem);
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      line-height: 1;
+      margin-bottom: 1.75rem;
+      position: relative; z-index: 1;
+      opacity: 0;
+      animation: fadeUp 0.7s 0.25s ease forwards;
+    }
+
+    .hero-tagline {
+      font-size: clamp(0.95rem, 2vw, 1.15rem);
+      font-weight: 300;
+      font-style: italic;
+      color: var(--text-dim);
+      letter-spacing: 0.04em;
+      margin-bottom: 3rem;
+      max-width: 480px;
+      position: relative; z-index: 1;
+      opacity: 0;
+      animation: fadeUp 0.7s 0.4s ease forwards;
+    }
+
+    .hero-cta {
+      display: inline-block;
+      padding: 0.9rem 2.75rem;
+      border: 1px solid var(--accent);
+      color: var(--accent);
+      font-family: 'Barlow', sans-serif;
+      font-size: 0.7rem;
+      font-weight: 500;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      text-decoration: none;
+      transition: background 0.25s, color 0.25s;
+      position: relative; z-index: 1;
+      opacity: 0;
+      animation: fadeUp 0.7s 0.55s ease forwards;
+    }
+
+    .hero-cta:hover { background: var(--accent); color: var(--bg); }
+
+    .hero-rule {
+      width: 1px;
+      height: 72px;
+      margin: 3rem auto 0;
+      background: linear-gradient(to bottom, rgba(184,150,46,0.8), transparent);
+      position: relative; z-index: 1;
+      opacity: 0;
+      animation: fadeUp 0.7s 0.7s ease forwards;
+    }
+
+    /* =====================
+       SHARED LAYOUT
+    ===================== */
+    .divider { width: 100%; height: 1px; background: var(--border); }
+
+    .container {
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 6rem 3rem;
+    }
+
+    .section-label {
+      font-family: 'Cinzel', serif;
+      font-size: 0.62rem;
+      letter-spacing: 0.38em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 2.5rem;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .section-label::after {
+      content: '';
+      height: 1px;
+      width: 48px;
+      background: var(--border-soft);
+    }
+
+    .section-title {
+      font-family: 'Cinzel', serif;
+      font-size: clamp(1.4rem, 3vw, 2.25rem);
+      font-weight: 500;
+      line-height: 1.25;
+      margin-bottom: 2rem;
+      max-width: 680px;
+    }
+
+    .body-text {
+      font-size: 1rem;
+      line-height: 1.9;
+      color: var(--text-dim);
+      max-width: 680px;
+    }
+
+    .body-text p + p { margin-top: 1.25rem; }
+    .body-text em   { color: var(--text); font-style: italic; }
+    .body-text strong { color: var(--text); font-weight: 500; font-style: normal; }
+
+    /* =====================
+       PORTFOLIO
+    ===================== */
+    .portfolio-grid {
+      margin-top: 3rem;
+      border: 1px solid var(--border);
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+    }
+
+    /* featured spans full width */
+    .p-card-featured {
+      grid-column: 1 / -1;
+      display: grid;
+      grid-template-columns: 1.2fr 1fr;
+      gap: 3rem;
+      padding: 2.5rem;
+      border-bottom: 1px solid var(--border);
+      border-top: 2px solid var(--accent);
+      background: var(--bg-elevated);
+      transition: background 0.2s;
+      align-items: start;
+    }
+
+    .p-card-featured:hover { background: var(--bg-card); }
+
+    .p-card {
+      padding: 2rem;
+      border-right: 1px solid var(--border);
+      transition: background 0.2s;
+    }
+
+    .p-card:last-child { border-right: none; }
+    .p-card:hover { background: var(--bg-elevated); }
+
+    .card-tag {
+      font-size: 0.62rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 0.85rem;
+    }
+
+    .card-name {
+      font-family: 'Cinzel', serif;
+      font-size: 1.3rem;
+      font-weight: 500;
+      margin-bottom: 0.6rem;
+    }
+
+    .p-card-featured .card-name { font-size: 2rem; }
+
+    .card-desc {
+      font-size: 0.875rem;
+      color: var(--text-dim);
+      line-height: 1.7;
+    }
+
+    .card-round {
+      font-size: 0.78rem;
+      color: var(--text-dim);
+      margin-top: 1.5rem;
+      padding-top: 1.25rem;
+      border-top: 1px solid var(--border);
+    }
+
+    .card-round span { color: var(--text); font-weight: 500; }
+
+    .card-link {
+      display: inline-block;
+      margin-top: 1.25rem;
+      font-size: 0.7rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--accent);
+      text-decoration: none;
+      transition: opacity 0.2s;
+    }
+
+    .card-link:hover { opacity: 0.7; }
+
+    /* metrics grid inside featured card */
+    .featured-metrics {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem 2rem;
+      padding-top: 0.5rem;
+    }
+
+    .metric {
+      border-left: 2px solid var(--accent);
+      padding-left: 1rem;
+    }
+
+    .metric-value {
+      font-family: 'Cinzel', serif;
+      font-size: 1rem;
+      color: var(--text);
+      margin-bottom: 0.2rem;
+    }
+
+    .metric-label {
+      font-size: 0.68rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--text-dim);
+      line-height: 1.4;
+    }
+
+    /* =====================
+       UNDERHILL DEEP DIVE
+    ===================== */
+    .underhill-wrap {
+      background: var(--bg-elevated);
+      width: 100%;
+    }
+
+    .underhill-grid {
+      display: grid;
+      grid-template-columns: 1.35fr 1fr;
+      gap: 4.5rem;
+      margin-top: 3rem;
+    }
+
+    /* Vertical integration callout */
+    .vi-box {
+      margin-top: 2.5rem;
+      border: 1px solid var(--border-soft);
+      border-left: 3px solid var(--accent);
+      padding: 1.75rem 2rem;
+      background: var(--bg-card);
+    }
+
+    .vi-box-title {
+      font-family: 'Cinzel', serif;
+      font-size: 0.65rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 1.25rem;
+    }
+
+    .vi-companies {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem 1.5rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .vi-co-name {
+      font-size: 0.88rem;
+      color: var(--text);
+      font-weight: 500;
+    }
+
+    .vi-co-role {
+      font-size: 0.75rem;
+      color: var(--text-dim);
+      margin-top: 0.15rem;
+    }
+
+    .vi-note {
+      font-size: 0.85rem;
+      color: var(--text-dim);
+      line-height: 1.8;
+      border-top: 1px solid var(--border);
+      padding-top: 1.25rem;
+    }
+
+    .vi-note strong {
+      color: var(--text);
+      font-style: normal;
+      font-weight: 500;
+    }
+
+    /* Sidebar blocks */
+    .sidebar-blocks {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+
+    .s-block {
+      border: 1px solid var(--border);
+      padding: 1.5rem;
+    }
+
+    .s-block-title {
+      font-family: 'Cinzel', serif;
+      font-size: 0.62rem;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 1rem;
+    }
+
+    .s-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+
+    .s-list li {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 1rem;
+      font-size: 0.82rem;
+      padding: 0.65rem 0;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .s-list li:last-child { border-bottom: none; padding-bottom: 0; }
+    .s-list li:first-child { padding-top: 0; }
+
+    .s-key { color: var(--text-dim); flex-shrink: 0; }
+
+    .s-val {
+      color: var(--text);
+      text-align: right;
+      line-height: 1.4;
+    }
+
+    /* Pull quote */
+    .pull-quote {
+      margin-top: 3rem;
+      padding: 2.5rem;
+      border-top: 1px solid var(--border);
+    }
+
+    .pull-quote blockquote {
+      font-size: 1.05rem;
+      font-style: italic;
+      color: var(--text-dim);
+      line-height: 1.9;
+      border-left: 2px solid var(--accent);
+      padding-left: 2rem;
+      max-width: 800px;
+    }
+
+    .pull-quote cite {
+      display: block;
+      margin-top: 1rem;
+      padding-left: 2rem;
+      font-size: 0.78rem;
+      font-style: normal;
+      color: var(--text-dim);
+      opacity: 0.6;
+    }
+
+    /* =====================
+       TEAM
+    ===================== */
+    .team-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2.5rem;
+      margin-top: 3rem;
+    }
+
+    .team-card {
+      border-top: 1px solid var(--border);
+      padding-top: 1.5rem;
+    }
+
+    .team-name {
+      font-family: 'Cinzel', serif;
+      font-size: 1.05rem;
+      font-weight: 500;
+      margin-bottom: 0.3rem;
+    }
+
+    .team-role {
+      font-size: 0.68rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 1.1rem;
+    }
+
+    .team-bio {
+      font-size: 0.875rem;
+      color: var(--text-dim);
+      line-height: 1.75;
+    }
+
+    /* =====================
+       FAQ
+    ===================== */
+    .faq-list {
+      margin-top: 3rem;
+    }
+
+    .faq-item { border-top: 1px solid var(--border); }
+    .faq-item:last-child { border-bottom: 1px solid var(--border); }
+
+    .faq-btn {
+      width: 100%;
+      background: none;
+      border: none;
+      color: var(--text);
+      font-family: 'Barlow', sans-serif;
+      font-size: 0.95rem;
+      font-weight: 400;
+      text-align: left;
+      padding: 1.5rem 0;
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1.5rem;
+      transition: color 0.2s;
+    }
+
+    .faq-btn:hover { color: var(--accent); }
+
+    .faq-icon {
+      flex-shrink: 0;
+      width: 22px; height: 22px;
+      border: 1px solid var(--border-soft);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 0.9rem;
+      color: var(--accent);
+      transition: transform 0.3s ease;
+    }
+
+    .faq-item.open .faq-icon { transform: rotate(45deg); }
+
+    .faq-body {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.38s ease;
+    }
+
+    .faq-item.open .faq-body { max-height: 600px; }
+
+    .faq-inner {
+      font-size: 0.9rem;
+      color: var(--text-dim);
+      line-height: 1.85;
+      padding-bottom: 1.75rem;
+      max-width: 720px;
+    }
+
+    /* =====================
+       FOOTER
+    ===================== */
+    footer {
+      border-top: 1px solid var(--border);
+    }
+
+    .footer-inner {
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 3.5rem 3rem 3rem;
+    }
+
+    .footer-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 3rem;
+    }
+
+    .footer-logo {
+      font-family: 'Cinzel', serif;
+      font-size: 1rem;
+      letter-spacing: 0.22em;
+      color: var(--accent);
+    }
+
+    .footer-sub {
+      font-size: 0.78rem;
+      font-style: italic;
+      color: var(--text-dim);
+      margin-top: 0.4rem;
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 2rem;
+    }
+
+    .footer-links a {
+      font-size: 0.68rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--text-dim);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .footer-links a:hover { color: var(--text); }
+
+    .footer-disclaimer {
+      font-size: 0.75rem;
+      color: var(--text-dim);
+      opacity: 0.55;
+      line-height: 1.75;
+      border-top: 1px solid var(--border);
+      padding-top: 1.5rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .footer-bottom {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.72rem;
+      color: var(--text-dim);
+      opacity: 0.4;
+    }
+
+    .footer-bottom em { font-style: italic; }
+
+    /* =====================
+       KEYFRAMES
+    ===================== */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(18px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* =====================
+       RESPONSIVE
+    ===================== */
+    @media (max-width: 800px) {
+      nav { padding: 1rem 1.5rem; }
+      .nav-links { display: none; }
+      .container { padding: 4rem 1.5rem; }
+      .portfolio-grid { grid-template-columns: 1fr; }
+      .p-card-featured { grid-template-columns: 1fr; gap: 2rem; }
+      .underhill-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+      .team-grid { grid-template-columns: 1fr; gap: 2rem; }
+      .vi-companies { grid-template-columns: 1fr; }
+      .featured-metrics { grid-template-columns: 1fr 1fr; }
+      .footer-top { flex-direction: column; gap: 1.5rem; }
+      .footer-bottom { flex-direction: column; gap: 0.5rem; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ============================
+       NAV
+  ============================ -->
+  <nav>
+    <a href="#" class="nav-logo">VALINOR CAPITAL</a>
+    <ul class="nav-links">
+      <li><a href="#thesis">Thesis</a></li>
+      <li><a href="#portfolio">Portfolio</a></li>
+      <li><a href="#underhill">Underhill</a></li>
+      <li><a href="#team">Team</a></li>
+      <li><a href="#faq">FAQ</a></li>
+    </ul>
+  </nav>
+
+  <!-- ============================
+       HERO
+  ============================ -->
+  <header class="hero">
+    <p class="hero-eyebrow">Valinor Capital &middot; Est. 2019</p>
+    <h1 class="hero-title">VALINOR<br>CAPITAL</h1>
+    <p class="hero-tagline">The legacy world has a liquidity problem.</p>
+    <a href="#portfolio" class="hero-cta">View Portfolio</a>
+    <div class="hero-rule"></div>
+  </header>
+
+  <div class="divider"></div>
+
+  <!-- ============================
+       THESIS
+  ============================ -->
+  <section id="thesis">
+    <div class="container">
+      <p class="section-label">Our Thesis</p>
+      <h2 class="section-title">We back founders who refuse to inherit broken systems.</h2>
+      <div class="body-text">
+        <p>The surface is a legacy system. Aging democratic institutions, accelerating climate volatility, rising inequality, and increasingly irrational regulatory environments have collectively produced a jurisdiction that no longer serves its highest-potential participants.</p>
+        <p>We are not pessimists. We are early.</p>
+        <p>Valinor Capital partners with founders building exit-first solutions: new governance models, new geographies, new primitives for human coordination. We believe the next great civilizations will not inherit the current one. They will route around it.</p>
+        <p><em>Our thesis is simple: the smartest, most capable people on Earth should not be subject to systems designed for median outcomes.</em></p>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- ============================
+       PORTFOLIO
+  ============================ -->
+  <section id="portfolio">
+    <div class="container">
+      <p class="section-label">Portfolio</p>
+      <h2 class="section-title">Investments in what comes after.</h2>
+
+      <div class="portfolio-grid">
+
+        <!-- FEATURED: Underhill -->
+        <div class="p-card-featured">
+          <div>
+            <p class="card-tag">Series A &middot; Featured Investment</p>
+            <h3 class="card-name">Underhill</h3>
+            <p class="card-desc">The world's first climate-resilient sovereign network state, positioned in a pre-industrial sub-surface geography with zero legacy regulatory overhead, abundant natural resources, and a motivated founding population. The surface is running out of runway. Underhill is not.</p>
+            <div class="card-round">
+              <span>$2.3B</span> raised &middot; Lead: Valinor Capital &middot; Co-investors: Grey Havens Partners, Mithril Ventures, Undercroft Capital
+            </div>
+            <a href="#underhill" class="card-link">Full Investment Thesis &rarr;</a>
+          </div>
+          <div class="featured-metrics">
+            <div class="metric">
+              <div class="metric-value">$2.3B</div>
+              <div class="metric-label">Series A</div>
+            </div>
+            <div class="metric">
+              <div class="metric-value">13,247</div>
+              <div class="metric-label">Citizens (target: 1M)</div>
+            </div>
+            <div class="metric">
+              <div class="metric-value">MTH</div>
+              <div class="metric-label">Reserve Currency</div>
+            </div>
+            <div class="metric">
+              <div class="metric-value">Net Negative</div>
+              <div class="metric-label">Carbon Status</div>
+            </div>
+            <div class="metric">
+              <div class="metric-value">Zero</div>
+              <div class="metric-label">Regulatory Overhead</div>
+            </div>
+            <div class="metric">
+              <div class="metric-value">Ongoing</div>
+              <div class="metric-label">Indigenous Stakeholder Engagement</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Supporting portfolio companies -->
+        <div class="p-card">
+          <p class="card-tag">Series B</p>
+          <h3 class="card-name">Arkenstone Analytics</h3>
+          <p class="card-desc">AI-powered subsurface resource identification and extraction optimization. Reducing discovery timelines by 70% in non-surface geological environments. Not affiliated with the Lonely Mountain incident.</p>
+          <div class="card-round"><span>$180M</span> raised &middot; Lead: Valinor Capital</div>
+        </div>
+
+        <div class="p-card">
+          <p class="card-tag">Series A</p>
+          <h3 class="card-name">Deepglow Energy</h3>
+          <p class="card-desc">Geothermal infrastructure for sub-surface habitation at scale. Founder-owned. Primary energy provider for the Underhill territory. Supplies no other customers at this time.</p>
+          <div class="card-round"><span>$340M</span> raised &middot; Lead: Valinor Capital</div>
+        </div>
+
+        <div class="p-card">
+          <p class="card-tag">Seed</p>
+          <h3 class="card-name">ShireChain</h3>
+          <p class="card-desc">Decentralized agricultural provision and logistics protocol with native MTH settlement. Exclusive procurement partner for the Underhill founding population. Founder-owned.</p>
+          <div class="card-round"><span>$42M</span> raised &middot; Lead: Valinor Capital</div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- ============================
+       UNDERHILL DEEP DIVE
+  ============================ -->
+  <div class="underhill-wrap" id="underhill">
+    <div class="container">
+      <p class="section-label">Investment Deep Dive</p>
+      <h2 class="section-title">Underhill: The Surface Is Not the Destination.</h2>
+
+      <div class="underhill-grid">
+
+        <!-- LEFT: narrative -->
+        <div>
+          <div class="body-text">
+            <p>The investment thesis is straightforward. The surface is running out of runway. Climate instability, redistributive governance regimes, and the structural inability of democratic institutions to protect outlier value creation have produced an environment that is &mdash; for a certain kind of founder &mdash; simply inhospitable.</p>
+            <p>Underhill is not a retreat. It is a relocation of ambition.</p>
+            <p>The territory, situated in a sub-surface formation below the Misty Mountain range, offers exceptional natural insulation from surface climate events, an established cave system requiring only modest structural enhancement, access to the world's largest known mithril deposit, and &mdash; critically &mdash; no prior governing authority with an active claim.</p>
+            <p>We view this as a greenfield opportunity at civilizational scale.</p>
+          </div>
+
+          <!-- VERTICAL INTEGRATION CALLOUT -->
+          <div class="vi-box">
+            <p class="vi-box-title">A Note on Vertical Integration</p>
+            <div class="vi-companies">
+              <div>
+                <div class="vi-co-name">GeoDepth Technologies</div>
+                <div class="vi-co-role">Excavation &amp; boring (Founder, 2018)</div>
+              </div>
+              <div>
+                <div class="vi-co-name">Underrock Materials</div>
+                <div class="vi-co-role">Stone supply &amp; mithril processing (Founder, 2020)</div>
+              </div>
+              <div>
+                <div class="vi-co-name">Deepglow Energy</div>
+                <div class="vi-co-role">Geothermal power grid (Founder, 2021)</div>
+              </div>
+              <div>
+                <div class="vi-co-name">ShireChain</div>
+                <div class="vi-co-role">Provision &amp; supply logistics (Founder, 2023)</div>
+              </div>
+            </div>
+            <div class="vi-note">
+              Underhill's entire infrastructure layer is supplied by companies within the Founder's portfolio. GeoDepth bored the territory. Underrock supplies and processes all construction material &mdash; including mithril alloys &mdash; from mines it owns and operates within the territory. Deepglow powers it. ShireChain feeds it. Underhill, in turn, purchases all of the above exclusively from these entities at rates the Founder considers fair.
+              <br><br>
+              <strong>We view this as a structural moat, not a conflict of interest.</strong> The Founder has noted that vertical integration "eliminates supply chain risk," which is technically accurate.
+            </div>
+          </div>
+
+          <div class="body-text" style="margin-top:2rem;">
+            <p>Governance follows a meritocratic council model. Citizenship is tiered: Founders Track citizens hold full voting rights and territory allocation. Community Track citizens receive access and services in exchange for labor contribution. The Founder has described this distinction as "a natural reflection of skin in the game."</p>
+            <p>Dispute resolution is handled through binding arbitration for claims under $500,000 USD or MTH equivalent. Claims above that threshold are resolved via trial by combat, which the Founder describes as "efficient and clarifying."</p>
+            <p>Carbon accounting is handled through the Shire Organic Agricultural Program, which generates offset credits from soil sequestration at a rate that renders Underhill net negative from day one. We have not independently audited these figures but find them directionally compelling.</p>
+          </div>
+        </div>
+
+        <!-- RIGHT: sidebar data -->
+        <div class="sidebar-blocks">
+          <div class="s-block">
+            <p class="s-block-title">Deal Terms</p>
+            <ul class="s-list">
+              <li><span class="s-key">Round</span><span class="s-val">Series A</span></li>
+              <li><span class="s-key">Amount Raised</span><span class="s-val">$2.3B</span></li>
+              <li><span class="s-key">Lead Investor</span><span class="s-val">Valinor Capital</span></li>
+              <li><span class="s-key">Co-Investors</span><span class="s-val">Grey Havens Partners, Mithril Ventures, Undercroft Capital</span></li>
+              <li><span class="s-key">Reserve Currency</span><span class="s-val">MTH (Mithril Token)</span></li>
+              <li><span class="s-key">Exit Target</span><span class="s-val">IPO or Acquisition, Third Age 4012</span></li>
+            </ul>
+          </div>
+
+          <div class="s-block">
+            <p class="s-block-title">Territory Overview</p>
+            <ul class="s-list">
+              <li><span class="s-key">Location</span><span class="s-val">Sub-Misty Mountain, Sector 7</span></li>
+              <li><span class="s-key">Prior Designation</span><span class="s-val">Moria (vacated, governance dispute)</span></li>
+              <li><span class="s-key">Climate Exposure</span><span class="s-val">Negligible (sub-surface)</span></li>
+              <li><span class="s-key">Regulatory Environment</span><span class="s-val">None</span></li>
+              <li><span class="s-key">Carbon Status</span><span class="s-val">Net Negative</span></li>
+            </ul>
+          </div>
+
+          <div class="s-block">
+            <p class="s-block-title">Population</p>
+            <ul class="s-list">
+              <li><span class="s-key">Founders Track</span><span class="s-val">847</span></li>
+              <li><span class="s-key">Community Track</span><span class="s-val">12,400</span></li>
+              <li><span class="s-key">Population Target</span><span class="s-val">1,000,000</span></li>
+              <li><span class="s-key">Indigenous Stakeholder Engagement</span><span class="s-val">Ongoing</span></li>
+            </ul>
+          </div>
+
+          <div class="s-block">
+            <p class="s-block-title">Governance</p>
+            <ul class="s-list">
+              <li><span class="s-key">Model</span><span class="s-val">Meritocratic Council</span></li>
+              <li><span class="s-key">Voting Rights</span><span class="s-val">Founders Track Only</span></li>
+              <li><span class="s-key">Disputes &lt; $500K</span><span class="s-val">Binding Arbitration</span></li>
+              <li><span class="s-key">Disputes &gt; $500K</span><span class="s-val">Trial by Combat</span></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- PULL QUOTE -->
+      <div class="pull-quote">
+        <blockquote>
+          "The Founder has a demonstrated track record of building interconnected infrastructure companies and acquiring adjacent capabilities before competitors understand the category exists. He does not play to win. He plays to define the game. We backed the territory. We are also, technically, the territory."
+        </blockquote>
+        <cite>&mdash; Marcus Fell, Managing Partner, Valinor Capital</cite>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- ============================
+       TEAM
+  ============================ -->
+  <section id="team">
+    <div class="container">
+      <p class="section-label">The Team</p>
+      <h2 class="section-title">Patient capital requires patient people.</h2>
+
+      <div class="team-grid">
+        <div class="team-card">
+          <h3 class="team-name">Marcus Fell</h3>
+          <p class="team-role">Managing Partner</p>
+          <p class="team-bio">Marcus spent 12 years at a sovereign wealth fund before joining the founding team at a Y Combinator-backed network state protocol. He left to start Valinor after concluding that surface-level capital deployment was producing surface-level returns. He has no fixed address and prefers it that way.</p>
+        </div>
+        <div class="team-card">
+          <h3 class="team-name">Elara Voss</h3>
+          <p class="team-role">General Partner</p>
+          <p class="team-bio">Elara led growth investments at a top-quartile fund before becoming a founding signatory of the Prospera Charter. She believes governance is a product and that most governments are badly in need of a v2. She holds dual citizenship in three jurisdictions and is actively working to reduce that number to zero.</p>
+        </div>
+        <div class="team-card">
+          <h3 class="team-name">Thomas Crane</h3>
+          <p class="team-role">Partner, Infrastructure</p>
+          <p class="team-bio">Thomas was an early engineer at a logistics unicorn before pivoting to investment. He focuses exclusively on infrastructure, supply chain, and what he calls "the boring work of making impossible places livable." His words. He uses them in every meeting.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- ============================
+       FAQ
+  ============================ -->
+  <section id="faq">
+    <div class="container">
+      <p class="section-label">FAQ</p>
+      <h2 class="section-title">Questions we receive. Answers we provide.</h2>
+
+      <div class="faq-list">
+
+        <div class="faq-item">
+          <button class="faq-btn">
+            Is Middle Earth real?
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-body">
+            <p class="faq-inner">We believe this question reflects a framework rooted in legacy geographic assumptions. All frontier markets were once considered speculative. Underhill is a real opportunity with real capital behind it. We suggest reframing.</p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-btn">
+            Does the Founder own all of the companies supplying Underhill?
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-body">
+            <p class="faq-inner">Yes. The Founder owns GeoDepth Technologies, which bored the territory. He owns Underrock Materials, which supplies and processes all construction material &mdash; including mithril alloys &mdash; from mines he also owns and operates within the territory. He owns Deepglow Energy, which provides the power grid. He owns ShireChain, which handles all food and provision logistics. Underhill purchases exclusively from these entities at rates the Founder considers fair. We view this as a feature. Vertical integration at the civilizational layer is a structural advantage that is, frankly, underappreciated in traditional sovereign finance.</p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-btn">
+            What about the existing inhabitants?
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-body">
+            <p class="faq-inner">Underhill operates under a comprehensive Indigenous Stakeholder Engagement Protocol (ISEP) developed in cooperation with all sentient species currently present within the territory. Engagement is ongoing. We are committed to equitable partnership and are in active dialogue with several parties whose legal classification remains under internal review.</p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-btn">
+            What happened to the previous tenants of Sector 7?
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-body">
+            <p class="faq-inner">Sector 7 &mdash; formerly known as Moria &mdash; was vacated following a prolonged governance dispute in the Third Age involving a Balrog, a collapsed council, and a series of decisions the Founder has described as "a classic case of founder-led succession failure." We do not comment further on prior occupants. The territory was vacant at time of acquisition.</p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-btn">
+            What is Valinor Capital's position on the Dark Lord?
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-body">
+            <p class="faq-inner">Our analysis identifies the referenced incumbent as a prior operator facing significant political and reputational headwinds. The primary instrument of his authority has been decommissioned through a transaction we were not party to but view as favorable. We consider the post-Ring competitive landscape to be structurally open. First-mover advantage in this environment is substantial.</p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-btn">
+            How do I invest?
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-body">
+            <p class="faq-inner">Valinor Capital raises exclusively from qualified purchasers. Minimum LP commitment: $50M USD or MTH equivalent. We are not accepting unsolicited applications at this time. We are not accepting applications from hobbits at any time.</p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-btn">
+            What is the exit strategy?
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-body">
+            <p class="faq-inner">IPO or strategic acquisition. Target horizon: Third Age 4012. We believe patient capital is the only capital. The surface has trained investors to expect 10-year fund cycles. We think in ages.</p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-btn">
+            Why is the firm called Valinor Capital?
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-body">
+            <p class="faq-inner">Valinor is a place where those who have endured the troubles of the mortal world may go to find peace, continuity, and distance from the chaos they have left behind. We thought it captured the fund's thesis well. Also, the domain was available.</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- ============================
+       FOOTER
+  ============================ -->
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-top">
+        <div>
+          <p class="footer-logo">VALINOR CAPITAL</p>
+          <p class="footer-sub">The legacy world has a liquidity problem.</p>
+        </div>
+        <nav class="footer-links">
+          <a href="#thesis">Thesis</a>
+          <a href="#portfolio">Portfolio</a>
+          <a href="#underhill">Underhill</a>
+          <a href="#team">Team</a>
+          <a href="#faq">FAQ</a>
+        </nav>
+      </div>
+      <p class="footer-disclaimer">This is a parody website for entertainment purposes only. Valinor Capital is not a real venture capital firm. Underhill is not a real investment opportunity. Middle Earth is not a real geography, though we maintain the distinction is increasingly academic. No actual capital has been deployed into sub-surface sovereign territories. The Mithril Token (MTH) is not a real cryptocurrency, which is not a meaningful distinction from most real cryptocurrencies.</p>
+      <div class="footer-bottom">
+        <span>&copy; 2026 Valinor Capital. All rights reserved. The surface is not our problem anymore.</span>
+        <em>Patient capital. Impossible places.</em>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // FAQ accordion
+    document.querySelectorAll('.faq-item').forEach(item => {
+      item.querySelector('.faq-btn').addEventListener('click', () => {
+        const isOpen = item.classList.contains('open');
+        document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+        if (!isOpen) item.classList.add('open');
+      });
+    });
+
+    // Subtle scroll-based nav opacity
+    const nav = document.querySelector('nav');
+    window.addEventListener('scroll', () => {
+      nav.style.borderBottomColor = window.scrollY > 60
+        ? 'rgba(28,34,56,0.9)'
+        : 'rgba(28,34,56,0.6)';
+    }, { passive: true });
+  </script>
+
+</body>
+</html>

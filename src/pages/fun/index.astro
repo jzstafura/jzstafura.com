@@ -37,6 +37,20 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
         <span class="card-cta">Visit site &#x2192;</span>
       </div>
     </a>
+
+    <a href="/fun/valinor-capital/" class="card card-vc">
+      <div class="card-emoji">&#x2694;&#xFE0F;</div>
+      <h2>Valinor Capital</h2>
+      <p>A parody venture capital firm backing founders who refuse to inherit broken systems. Tolkien-themed. Underground city portfolio. The investment thesis is airtight.</p>
+      <div class="card-footer">
+        <div class="tags">
+          <span class="tag">Parody</span>
+          <span class="tag">Tolkien</span>
+          <span class="tag">Vanilla HTML</span>
+        </div>
+        <span class="card-cta">Visit firm &#x2192;</span>
+      </div>
+    </a>
   </section>
 </BaseLayout>
 
@@ -70,6 +84,17 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
     border-color: #9ca3af;
     box-shadow: 0 2px 16px rgba(0, 0, 0, 0.08);
   }
+
+  .card-vc { background: #070B14; border-color: #1C2238; }
+  .card-vc:hover {
+    border-color: #B8962E;
+    box-shadow: 0 2px 16px rgba(184, 150, 46, 0.12);
+  }
+  .card-vc h2 { color: #E4DFD5; }
+  .card-vc:hover h2 { color: #D4AF50; }
+  .card-vc p { color: #8A8780; }
+  .card-vc .tag { color: #8A8780; border-color: #1C2238; }
+  .card-vc .card-cta { color: #B8962E; }
 
   .card-emoji { font-size: 2.5rem; line-height: 1; margin-bottom: 0.25rem; }
 
