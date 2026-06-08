@@ -1,0 +1,23 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import STDP from '../../../components/educational/STDP.jsx';
+---
+
+<BaseLayout
+  title="Spike-Timing Dependent Plasticity — JZ Stafura"
+  description="An interactive visualization of the STDP learning rule (Bi & Poo, 1998). Set the spike-timing interval Δt, fire pre/post pairs, and watch synaptic weight potentiate or depress as the STDP window unfolds."
+>
+  <div class="full-bleed">
+    <STDP client:load />
+  </div>
+</BaseLayout>
+
+<style>
+  :global(main) {
+    padding: 0 !important;
+    max-width: none !important;
+  }
+  .full-bleed {
+    width: 100%;
+  }
+</style>
