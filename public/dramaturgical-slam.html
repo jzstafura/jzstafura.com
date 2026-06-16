@@ -131,9 +131,12 @@
     text-transform: uppercase;
     text-shadow: 0 3px 0 var(--bg-deep), 0 0 28px var(--glow);
     letter-spacing: 0.01em;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
   }
-  .marquee .a { display: block; font-size: clamp(3.6rem, 14vw, 7rem); }
-  .marquee .b { display: block; font-size: clamp(4.4rem, 17vw, 8.6rem); }
+  .marquee .a { font-size: clamp(3.6rem, 14vw, 7rem); width: max-content; }
+  .marquee .b { font-size: clamp(4.4rem, 17vw, 8.6rem); width: max-content; }
 
   .tagline {
     text-align: center;
