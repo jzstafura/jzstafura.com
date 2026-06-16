@@ -51,6 +51,20 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
         <span class="card-cta">Visit firm &#x2192;</span>
       </div>
     </a>
+
+    <a href="/fun/dramaturgical-slam/" class="card card-slam">
+      <div class="card-emoji">&#x1F3AD;</div>
+      <h2>Dramaturgical Slam</h2>
+      <p>Erving Goffman&#x2019;s dramaturgical sociology staged as a one-night-only pro-wrestling card. The Idealized Self vs. the Self Off Duty. Front stage. Back stage. No refunds on the self.</p>
+      <div class="card-footer">
+        <div class="tags">
+          <span class="tag">Parody</span>
+          <span class="tag">Goffman</span>
+          <span class="tag">Vanilla HTML</span>
+        </div>
+        <span class="card-cta">Enter the arena &#x2192;</span>
+      </div>
+    </a>
   </section>
 </BaseLayout>
 
@@ -95,6 +109,17 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
   .card-vc p { color: #8A8780; }
   .card-vc .tag { color: #8A8780; border-color: #1C2238; }
   .card-vc .card-cta { color: #B8962E; }
+
+  .card-slam { background: #5A0B12; border-color: #7A1620; }
+  .card-slam:hover {
+    border-color: #E3AE3C;
+    box-shadow: 0 2px 16px rgba(227, 174, 60, 0.15);
+  }
+  .card-slam h2 { color: #ECE0C6; }
+  .card-slam:hover h2 { color: #F6D27C; }
+  .card-slam p { color: #DCCBA4; }
+  .card-slam .tag { color: #DCCBA4; border-color: #7A1620; }
+  .card-slam .card-cta { color: #E3AE3C; }
 
   .card-emoji { font-size: 2.5rem; line-height: 1; margin-bottom: 0.25rem; }
 
