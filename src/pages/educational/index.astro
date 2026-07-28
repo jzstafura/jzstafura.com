@@ -5,52 +5,86 @@ const demos = [
   {
     title: "Parietal ERP: Expected vs. Unexpected",
     slug: "eeg-p300",
+    category: "EEG & Event-Related Potentials",
     description: "An animated ERP visualization of the P300 oddball paradigm. Rare deviant stimuli elicit a dramatically larger late positive component — a hallmark of context updating in working memory. Clickable component badges reveal latency, generator, and modulation details.",
     tags: ["EEG", "P300", "Oddball Paradigm", "Cognitive Neuroscience"],
   },
   {
     title: "Language ERPs: N400 & P600",
     slug: "erp-language",
+    category: "EEG & Event-Related Potentials",
     description: "Visualizes the N400 and P600 components elicited by semantic and syntactic violations. Demonstrates their classic double dissociation, supporting distinct neural substrates for meaning and grammatical structure in language comprehension.",
     tags: ["ERP", "N400", "P600", "Language", "Semantics", "Syntax"],
   },
   {
-    title: "Bloch Sphere Quantum Simulator",
-    slug: "bloch-sphere",
-    description: "An interactive 3-tab quantum simulator: explore the Bloch sphere with 8 single-qubit gates, visualize Bell-state entanglement between two qubits, and build circuits with a drag-and-drop circuit builder.",
-    tags: ["Quantum Computing", "Bloch Sphere", "Entanglement", "Quantum Gates", "Circuit Builder"],
+    title: "Mismatch Negativity: Pre-attentive Auditory Deviance Detection",
+    slug: "mmn",
+    category: "EEG & Event-Related Potentials",
+    description: "Toggle between attended and unattended listening and between frequency, duration, and intensity deviants to see the P3a vanish while the MMN persists intact — isolated in the deviant-minus-standard difference wave. A live scalp topography updates with each component.",
+    tags: ["EEG", "MMN", "Auditory Oddball", "Pre-attentive Processing", "Difference Wave"],
   },
   {
-    title: "CRISPR-Cas9: Programmable DNA Cleavage",
-    slug: "crispr-cas9",
-    description: "An animated, stage-by-stage visualization of the CRISPR-Cas9 mechanism — RNP surveillance, PAM recognition, R-loop formation, double-strand break, and NHEJ vs. HDR repair. Clickable domain badges reveal mechanistic detail and primary literature.",
-    tags: ["CRISPR", "Cas9", "Molecular Biology", "Gene Editing", "DNA Repair"],
+    title: "Source to Scalp: The EEG Forward Problem",
+    slug: "source-to-scalp",
+    category: "EEG & Event-Related Potentials",
+    description: "An interactive demonstration of how a cortical current dipole projects to scalp electrodes. Drag the source, rotate its orientation, and toggle skull blurring to see why scalp EEG is spatially smeared and why radial vs. tangential dipoles produce strikingly different topographies.",
+    tags: ["EEG", "Forward Problem", "Dipole", "Volume Conduction", "Neuroimaging"],
   },
   {
     title: "Core Psychophysics",
     slug: "psychophysics",
+    category: "Cognitive Psychology",
     description: "An interactive gallery of four foundational psychophysics findings: Signal Detection Theory (d′ and criterion), Speed-Accuracy Tradeoff, Stevens' Power Law across six sensory modalities, and Hick's Law — each with live parameter controls and primary literature references.",
     tags: ["Psychophysics", "SDT", "Signal Detection", "Stevens' Power Law", "Hick's Law", "Speed-Accuracy Tradeoff"],
   },
   {
     title: "Schneider & Shiffrin (1977): Automatic vs. Controlled Processing",
     slug: "schneider-shiffrin",
+    category: "Cognitive Psychology",
     description: "An interactive replication of the classic visual search paradigm. Run consistent-mapping and varied-mapping blocks and watch the RT × set-size slope flatten with consistent mapping — the signature of automaticity that defined a generation of attention research.",
     tags: ["Attention", "Automaticity", "Visual Search", "Cognitive Psychology", "Working Memory"],
   },
   {
-    title: "Source to Scalp: The EEG Forward Problem",
-    slug: "source-to-scalp",
-    description: "An interactive demonstration of how a cortical current dipole projects to scalp electrodes. Drag the source, rotate its orientation, and toggle skull blurring to see why scalp EEG is spatially smeared and why radial vs. tangential dipoles produce strikingly different topographies.",
-    tags: ["EEG", "Forward Problem", "Dipole", "Volume Conduction", "Neuroimaging"],
+    title: "CRISPR-Cas9: Programmable DNA Cleavage",
+    slug: "crispr-cas9",
+    category: "Cells, Synapses & Molecules",
+    description: "An animated, stage-by-stage visualization of the CRISPR-Cas9 mechanism — RNP surveillance, PAM recognition, R-loop formation, double-strand break, and NHEJ vs. HDR repair. Clickable domain badges reveal mechanistic detail and primary literature.",
+    tags: ["CRISPR", "Cas9", "Molecular Biology", "Gene Editing", "DNA Repair"],
   },
   {
     title: "Spike-Timing Dependent Plasticity",
     slug: "stdp",
+    category: "Cells, Synapses & Molecules",
     description: "An animated visualization of the STDP learning rule (Bi & Poo, 1998). Set the pre/post spike interval Δt, fire pairs, and watch synaptic weight potentiate or depress. The NMDA receptor acts as the molecular coincidence detector — causal order determines synaptic fate.",
     tags: ["Synaptic Plasticity", "STDP", "LTP", "LTD", "Neuroscience", "NMDA"],
   },
+  {
+    title: "Consolidation & Reconsolidation: The Labile Synapse",
+    slug: "memory-consolidation",
+    category: "Cells, Synapses & Molecules",
+    description: "A stage-by-stage tour from NMDA-gated Ca²⁺ influx through CaMKII and early LTP, the PKA/ERK→CREB cascade, and cellular consolidation, to retrieval-triggered reconsolidation. Toggle the anisomycin protein-synthesis inhibitor to see consolidation or reconsolidation blocked — but only when reactivation occurs.",
+    tags: ["Memory", "LTP", "Consolidation", "Reconsolidation", "CREB", "Synaptic Plasticity"],
+  },
+  {
+    title: "Bloch Sphere Quantum Simulator",
+    slug: "bloch-sphere",
+    category: "Physics & Computation",
+    description: "An interactive 3-tab quantum simulator: explore the Bloch sphere with 8 single-qubit gates, visualize Bell-state entanglement between two qubits, and build circuits with a drag-and-drop circuit builder.",
+    tags: ["Quantum Computing", "Bloch Sphere", "Entanglement", "Quantum Gates", "Circuit Builder"],
+  },
 ];
+
+// Section order. Demos render grouped under these headings; empty groups are skipped.
+const categoryOrder = [
+  "EEG & Event-Related Potentials",
+  "Cognitive Psychology",
+  "Cells, Synapses & Molecules",
+  "Physics & Computation",
+];
+
+const grouped = categoryOrder
+  .map((category) => ({ category, items: demos.filter((d) => d.category === category) }))
+  .filter((group) => group.items.length > 0);
 ---
 
 <BaseLayout
@@ -65,18 +99,23 @@ const demos = [
   </section>
 
   <section class="demos">
-    <div class="grid">
-      {demos.map((demo) => (
-        <a href={`/educational/${demo.slug}/`} class="card">
-          <h2>{demo.title}</h2>
-          <p class="desc">{demo.description}</p>
-          <div class="tags">
-            {demo.tags.map(tag => <span class="tag">{tag}</span>)}
-          </div>
-          <span class="cta">Open →</span>
-        </a>
-      ))}
-    </div>
+    {grouped.map((group) => (
+      <div class="category">
+        <h2 class="category-title">{group.category}</h2>
+        <div class="grid">
+          {group.items.map((demo) => (
+            <a href={`/educational/${demo.slug}/`} class="card">
+              <h3>{demo.title}</h3>
+              <p class="desc">{demo.description}</p>
+              <div class="tags">
+                {demo.tags.map(tag => <span class="tag">{tag}</span>)}
+              </div>
+              <span class="cta">Open →</span>
+            </a>
+          ))}
+        </div>
+      </div>
+    ))}
   </section>
 
 </BaseLayout>
@@ -112,6 +151,25 @@ const demos = [
     padding: 3rem 0 4rem;
   }
 
+  .category {
+    margin-bottom: 3rem;
+  }
+
+  .category:last-child {
+    margin-bottom: 0;
+  }
+
+  .category-title {
+    font-size: 0.95rem;
+    font-weight: normal;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--color-muted);
+    margin: 0 0 1rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid var(--color-border);
+  }
+
   .grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
@@ -134,7 +192,7 @@ const demos = [
 
   .card:hover { background: #fff; text-decoration: none; }
 
-  .card h2 {
+  .card h3 {
     font-size: 1.2rem;
     font-weight: normal;
     color: var(--color-text);

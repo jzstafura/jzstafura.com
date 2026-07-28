@@ -1,0 +1,23 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import MemoryConsolidation from '../../../components/educational/MemoryConsolidation.jsx';
+---
+
+<BaseLayout
+  title="Consolidation & Reconsolidation — JZ Stafura"
+  description="An animated, stage-by-stage visualization of synaptic memory consolidation and reconsolidation — NMDA-gated Ca²⁺ influx, CaMKII and early LTP, the PKA/ERK→CREB cascade, and the anisomycin-sensitive reconsolidation window. Clickable badges reveal mechanistic detail and primary literature."
+>
+  <div class="full-bleed">
+    <MemoryConsolidation client:load />
+  </div>
+</BaseLayout>
+
+<style>
+  :global(main) {
+    padding: 0 !important;
+    max-width: none !important;
+  }
+  .full-bleed {
+    width: 100%;
+  }
+</style>
