@@ -15,6 +15,13 @@ npx astro check  # TypeScript type-checking
 
 There is no linting or test suite.
 
+### Local Repo Location
+The canonical local checkout lives inside Google Drive for Desktop (`…/GoogleDrive-jzstafura@gmail.com/My Drive/projects/jzstafura.com`), not a plain local folder. `node_modules/`, `.astro/`, and `dist/` are symlinked out to `~/.dev-artifacts/jzstafura.com/` so Drive's file-sync engine never has to stream tens of thousands of small package files.
+
+**`npm install` breaks this** — npm deletes the `node_modules` symlink and writes a real directory back into the Drive-synced repo. After any `npm install`, run `./relink-deps.sh` (in the repo root) to move it back out and restore the symlink. `npm run dev` / `npm run build` don't touch the symlinks and are safe to run repeatedly.
+
+A companion Dropbox checkout (`…/Dropbox/projects/jzstafura.com`) is kept in sync as a fallback; treat GitHub as the actual source of truth if the two ever diverge.
+
 ## Tech Stack
 
 - **Astro 6** — static site generator with file-based routing
@@ -52,9 +59,12 @@ There is no content collection for lab projects; the index array is the source o
 Valid `statusClass` values: `status-live` (green), `status-research` (amber), `status-tool` (blue).
 
 ### Educational Demos
-Educational demos follow the same pattern as lab projects:
-1. Add an entry to the `demos` array in `src/pages/educational/index.astro` — fields: `title`, `slug`, `description`, `tags[]`
+Educational demos require three coordinated changes:
+1. Add an entry to the `demos` array in `src/pages/educational/index.astro` — fields: `title`, `slug`, `category`, `description`, `tags[]`
 2. Create `src/pages/educational/<slug>/index.astro` for the demo page
+3. Copy the component into `src/components/educational/` using a PascalCase filename (e.g. `mmn.jsx` → `MMN.jsx`, `memory-consolidation.jsx` → `MemoryConsolidation.jsx`)
+
+The index groups demos under category headings rather than a flat grid. `category` must exactly match one of the strings in the `categoryOrder` array (also in `src/pages/educational/index.astro`); groups with zero matching demos are skipped automatically. Current categories: `EEG & Event-Related Potentials`, `Cognitive Psychology`, `Cells, Synapses & Molecules`, `Physics & Computation`. Add a new category by appending to `categoryOrder` — position in that array controls render order on the page.
 
 Two embed patterns are in use:
 
