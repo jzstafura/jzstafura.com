@@ -5,15 +5,18 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 ## Commands
 
 ```bash
-npm run dev       # Start dev server at localhost:4321
-npm run build     # Production build to ./dist/
-npm run preview   # Preview production build locally
-npx astro check  # TypeScript type-checking
+npm run dev            # Start dev server at localhost:4321
+npm run build          # Production build to ./dist/
+npm run preview        # Preview production build locally (daemonizes — see below)
+npx astro preview stop # Stop the preview daemon
+npx astro check        # TypeScript type-checking
 ```
 
 **Requires Node >=22.12.0**
 
-There is no linting or test suite.
+As of Astro 7, `npm run preview` **daemonizes**: it prints a pid and returns immediately instead of holding the terminal. Backgrounding it will look like it exited successfully while the server is still running and holding port 4321. Always shut it down with `npx astro preview stop` (`astro preview status` / `astro preview logs` also exist). `npm run dev` still runs in the foreground as usual.
+
+There is no linting or test suite. `npx astro check` currently reports 15 pre-existing implicit-`any` errors in `src/pages/fun/banana-santana/index.astro`'s inline script — a clean run is 15 errors, not 0.
 
 ### Local Repo Location
 The canonical local checkout is `~/dev/projects/jzstafura.com` — a plain local folder.
@@ -28,7 +31,7 @@ Because `node_modules` resolves outside the project root, Vite's dev server need
 
 ## Tech Stack
 
-- **Astro 6** — static site generator with file-based routing
+- **Astro 7** — static site generator with file-based routing (Vite 8, Rust compiler, `compressHTML: 'jsx'` by default)
 - **React 19** — used only for interactive island components (visualizations, demos)
 - **TypeScript** — strict mode via `astro/tsconfigs/strict`
 - **React components** use `.jsx` (not `.tsx`) despite TypeScript strict mode elsewhere

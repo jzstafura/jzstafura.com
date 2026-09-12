@@ -6,7 +6,7 @@ Personal site of Joseph Z. Stafura, PhD — cognitive psychologist and researche
 
 ## Tech Stack
 
-- **Astro 6** — static site generator, file-based routing, zero JS by default
+- **Astro 7** — static site generator, file-based routing, zero JS by default
 - **React 19** — used only for interactive island components (`client:load` / `client:visible`); all other pages are static HTML
 - **TypeScript** — strict mode; React components use `.jsx` (not `.tsx`)
 - No CSS framework — global variables in `src/styles/global.css`, scoped styles per page
