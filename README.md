@@ -17,8 +17,8 @@ Personal site of Joseph Z. Stafura, PhD — cognitive psychologist and researche
 |---|---|
 | `/writing/` | Essays on cognition, AI, organizations, and philosophy. Some full pages with interactive figures, some external links to Substack and LinkedIn. |
 | `/lab/` | Independent research projects: Intellectual Network Map, AI Hallucination Detection, NOFO Processor, Violence Research Dashboard |
-| `/educational/` | Interactive scientific visualizations: Bloch sphere, CRISPR-Cas9, EEG P300, ERP language, psychophysics, Schneider-Shiffrin, EEG forward problem |
+| `/educational/` | Interactive scientific visualizations, grouped by category — EEG/ERP (P300, N400 & P600, mismatch negativity, forward problem), cognitive psychology (psychophysics, Schneider-Shiffrin), social networks (gunshot-injury networks, contagion vs. homophily), cells and molecules (CRISPR-Cas9, STDP, memory consolidation), and physics (Bloch sphere) |
 | `/arrival/` | Full essay with interactive network diagrams — a proposed Latourian mode of existence for charity |
 | `/consulting/` | Organizational diagnostics and applied measurement |
-| `/fun/` | Side projects: Banana Santana name generator, SoulWrap™ wellness parody, Valinor Capital VC parody |
+| `/fun/` | Side projects: Banana Santana name generator, SoulWrap™ wellness parody, Valinor Capital VC parody, Dramaturgical Slam |
 | `/about/` | Bio, education, and experience |

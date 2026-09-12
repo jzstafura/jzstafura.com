@@ -16,11 +16,15 @@ npx astro check  # TypeScript type-checking
 There is no linting or test suite.
 
 ### Local Repo Location
-The canonical local checkout lives inside Google Drive for Desktop (`…/GoogleDrive-jzstafura@gmail.com/My Drive/projects/jzstafura.com`), not a plain local folder. `node_modules/`, `.astro/`, and `dist/` are symlinked out to `~/.dev-artifacts/jzstafura.com/` so Drive's file-sync engine never has to stream tens of thousands of small package files.
+The canonical local checkout is `~/dev/projects/jzstafura.com` — a plain local folder.
 
-**`npm install` breaks this** — npm deletes the `node_modules` symlink and writes a real directory back into the Drive-synced repo. After any `npm install`, run `./relink-deps.sh` (in the repo root) to move it back out and restore the symlink. `npm run dev` / `npm run build` don't touch the symlinks and are safe to run repeatedly.
+`node_modules/`, `.astro/`, and `dist/` are symlinked out to `~/.dev-artifacts/jzstafura.com/` to keep build artifacts and tens of thousands of small package files out of the repo tree.
 
-A companion Dropbox checkout (`…/Dropbox/projects/jzstafura.com`) is kept in sync as a fallback; treat GitHub as the actual source of truth if the two ever diverge.
+**`npm install` breaks this** — npm deletes the `node_modules` symlink and writes a real directory back into the repo. After any `npm install`, run `./relink-deps.sh` (in the repo root) to move it back out and restore the symlink. `npm run dev` / `npm run build` don't touch the symlinks and are safe to run repeatedly.
+
+Because `node_modules` resolves outside the project root, Vite's dev server needs `server.fs.allow` to include `~/.dev-artifacts` or every React island fails to hydrate in `npm run dev`. This is configured in `astro.config.mjs` — see the comment there before changing it.
+
+**Stale duplicate checkouts exist** at `~/dev/jzstafura.com`, `~/dev/projects/projects/jzstafura.com`, and `~/Dropbox/projects/jzstafura.com`. All are behind and none is canonical. Treat GitHub (`jzstafura/jzstafura.com`) as the source of truth, and verify you are in `~/dev/projects/` before committing.
 
 ## Tech Stack
 
@@ -64,7 +68,7 @@ Educational demos require three coordinated changes:
 2. Create `src/pages/educational/<slug>/index.astro` for the demo page
 3. Copy the component into `src/components/educational/` using a PascalCase filename (e.g. `mmn.jsx` → `MMN.jsx`, `memory-consolidation.jsx` → `MemoryConsolidation.jsx`)
 
-The index groups demos under category headings rather than a flat grid. `category` must exactly match one of the strings in the `categoryOrder` array (also in `src/pages/educational/index.astro`); groups with zero matching demos are skipped automatically. Current categories: `EEG & Event-Related Potentials`, `Cognitive Psychology`, `Cells, Synapses & Molecules`, `Physics & Computation`. Add a new category by appending to `categoryOrder` — position in that array controls render order on the page.
+The index groups demos under category headings rather than a flat grid. `category` must exactly match one of the strings in the `categoryOrder` array (also in `src/pages/educational/index.astro`); groups with zero matching demos are skipped automatically. Current categories: `EEG & Event-Related Potentials`, `Cognitive Psychology`, `Social Networks & Populations`, `Cells, Synapses & Molecules`, `Physics & Computation`. Add a new category by inserting into `categoryOrder` — position in that array controls render order on the page.
 
 Two embed patterns are in use:
 
@@ -79,6 +83,8 @@ All interactive demo pages remove the layout's default padding/max-width so the 
   .full-bleed { width: 100%; }
 </style>
 ```
+
+**Paired demos.** When one demo is a direct follow-up to another (e.g. `networks-of-violence` → `contagion-or-homophily`, where the second is the methodological objection to the first), each page carries a `<nav class="pair-link">` strip *after* the `.full-bleed` div. Placing it outside the island keeps it on site CSS variables instead of the component's own palette. Use "Follow-up" going forward and "Prior demo" going back, and keep the links reciprocal.
 
 ### Writing Essay Pages
 Full essay pages (e.g. `/writing/against-synthesis/`) live at `src/pages/writing/<slug>/index.astro` and are not driven by the content collection — they are standalone `.astro` files with prose inline and React components embedded via `client:visible`. To also surface them in the writing index, add a corresponding `src/content/writing/<slug>.md` entry with `internal_url: "/writing/<slug>/"`.
