@@ -1,0 +1,51 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import ContagionOrHomophily from '../../../components/educational/ContagionOrHomophily.jsx';
+---
+
+<BaseLayout
+  title="The Confound: Contagion or Homophily? — JZ Stafura"
+  description="Two generative processes run side by side on one fixed network. On the left, risk transmits along ties. On the right, nothing transmits and risk follows a latent trait that is itself clustered. Both drive the same odds ratio below one — Shalizi and Thomas's confounding result made visible."
+>
+  <div class="full-bleed">
+    <ContagionOrHomophily client:load />
+  </div>
+
+  <nav class="pair-link">
+    <span class="pair-label">Prior demo</span>
+    <a href="/educational/networks-of-violence/">← Five Handshakes: Networks and the Risk of Gunshot Injury</a>
+  </nav>
+</BaseLayout>
+
+<style>
+  :global(main) {
+    padding: 0 !important;
+    max-width: none !important;
+  }
+  .full-bleed {
+    width: 100%;
+  }
+
+  .pair-link {
+    border-top: 1px solid var(--color-border);
+    padding: 1.75rem 1.5rem;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: baseline;
+    gap: 0.75rem;
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+  }
+
+  .pair-label {
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    font-size: 0.68rem;
+    color: var(--color-muted);
+  }
+
+  .pair-link a {
+    color: var(--color-accent);
+  }
+</style>

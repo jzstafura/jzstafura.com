@@ -45,6 +45,20 @@ const demos = [
     tags: ["Attention", "Automaticity", "Visual Search", "Cognitive Psychology", "Working Memory"],
   },
   {
+    title: "Five Handshakes: Networks and the Risk of Gunshot Injury",
+    slug: "networks-of-violence",
+    category: "Social Networks & Populations",
+    description: "An interactive reconstruction of Papachristos, Braga & Hureau (2012). Trace the shortest chain of ties between any person and the nearest gunshot victim, watch modelled risk fall about 25% with every step, and compare network position against individual risk factors on the same 220 people.",
+    tags: ["Social Networks", "Gun Violence", "Epidemiology", "Geodesic Distance", "Sociology", "Criminology"],
+  },
+  {
+    title: "The Confound: Contagion or Homophily?",
+    slug: "contagion-or-homophily",
+    category: "Social Networks & Populations",
+    description: "Two generative processes run side by side on one fixed network. On the left, risk transmits along ties. On the right, nothing transmits and risk follows a latent trait that is itself clustered. Both drive the same odds ratio below one. Accumulate draws and watch the two sampling distributions sit on top of each other, which is Shalizi and Thomas's confounding result made visible.",
+    tags: ["Social Networks", "Causal Inference", "Contagion", "Homophily", "Simulation", "Methodology"],
+  },
+  {
     title: "CRISPR-Cas9: Programmable DNA Cleavage",
     slug: "crispr-cas9",
     category: "Cells, Synapses & Molecules",
@@ -78,6 +92,7 @@ const demos = [
 const categoryOrder = [
   "EEG & Event-Related Potentials",
   "Cognitive Psychology",
+  "Social Networks & Populations",
   "Cells, Synapses & Molecules",
   "Physics & Computation",
 ];
@@ -89,13 +104,13 @@ const grouped = categoryOrder
 
 <BaseLayout
   title="Educational — JZ Stafura"
-  description="Interactive demonstrations of cognitive neuroscience and ERP concepts."
+  description="Interactive demonstrations across cognitive neuroscience, psychophysics, molecular biology, social networks, and quantum computation."
 >
 
   <section class="hero">
     <p class="overline">Educational</p>
     <h1>Interactive Demonstrations</h1>
-    <p class="hero-sub">Interactive visualizations of cognitive neuroscience concepts — ERP components, experimental paradigms, and the neural signatures of cognition.</p>
+    <p class="hero-sub">Interactive visualizations built to make a finding legible — ERP components and experimental paradigms, synaptic and molecular mechanism, the structure of social networks, and the geometry of a qubit. Each one reconstructs a result from the primary literature and cites it.</p>
   </section>
 
   <section class="demos">
