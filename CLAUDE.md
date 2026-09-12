@@ -29,7 +29,20 @@ The canonical local checkout is `~/dev/projects/jzstafura.com` — a plain local
 
 Because `node_modules` resolves outside the project root, Vite's dev server needs `server.fs.allow` to include `~/.dev-artifacts` or every React island fails to hydrate in `npm run dev`. This is configured in `astro.config.mjs` — see the comment there before changing it.
 
-**Stale duplicate checkouts exist** at `~/dev/jzstafura.com`, `~/dev/projects/projects/jzstafura.com`, and `~/Dropbox/projects/jzstafura.com`. All are behind and none is canonical. Treat GitHub (`jzstafura/jzstafura.com`) as the source of truth, and verify you are in `~/dev/projects/` before committing.
+**This is now the only checkout on the machine.** Three stale duplicates (`~/dev/jzstafura.com`, `~/dev/projects/projects/jzstafura.com`, `~/Dropbox/projects/jzstafura.com`) were deleted on 2026-09-12 after confirming each held no unpushed commits. Do not recreate them — clones drift silently and none stayed current. Treat GitHub (`jzstafura/jzstafura.com`) as the source of truth.
+
+Note that `~/dev/projects/projects/` is itself a real, active project directory, unrelated to this repo — only the `jzstafura.com` checkout inside it was removed.
+
+### Project Skills
+Three skills are checked in under `.claude/skills/`:
+
+- **webapp-testing** — Playwright scripts for driving the local site: verifying interactive demos, capturing screenshots, reading browser console logs. The usual loop here is `npm run build` → `npm run preview` → drive the page, since dev-server behavior differs from the build.
+- **browser-use** — general browser automation (navigation, forms, extraction)
+- **frontend-design** — guidance for building new UI
+
+`skills-lock.json` pins the two installed from GitHub (`browser-use`, `frontend-design`) by content hash. **`webapp-testing` is not in the lockfile** — it was copied in by hand, so the skills tooling won't update or verify it.
+
+`.claude/settings.local.json` (personal permission allowlist) and `.claude/claude-code-chat-images/` are deliberately not tracked.
 
 ## Tech Stack
 
