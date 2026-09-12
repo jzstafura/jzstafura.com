@@ -183,7 +183,7 @@ const nameData = {
   nicknames: ["Hands","Dental","Bad At It","The Minor","The Kicker","Slick","The Fixer","Tiny","Big","Fast","Slow","Lucky","Unlucky","The Kid","Pops","Ace","Doc","Smiley","Grumpy","Lefty","Righty","Boss","Chief","Captain","Major","Colonel","Sarge","Skip","Chip","Buddy","Pal","Mac","Wheels","Turbo","Nitro","Rocket","Boomer","Crash","Flash","Dash","Zip"]
 };
 
-const patternLabels = {
+const patternLabels: Record<string, string> = {
   rhyme: "Rhyming pair",
   object: "Object + surname",
   absurd: "Normal + absurd",
@@ -192,11 +192,11 @@ const patternLabels = {
   nickname: "Nicknamed character"
 };
 
-function pick(arr) {
+function pick<T>(arr: T[]): T {
   return arr[Math.floor(Math.random() * arr.length)];
 }
 
-function weightedPick(items, weights) {
+function weightedPick<T>(items: T[], weights: number[]): T {
   const total = weights.reduce((a, b) => a + b, 0);
   let r = Math.random() * total;
   for (let i = 0; i < items.length; i++) {
@@ -224,9 +224,10 @@ function generate() {
   return { name, label: patternLabels[pattern.key] };
 }
 
-function animateName(name, label) {
+function animateName(name: string, label: string) {
   const el = document.getElementById('generatedName');
   const labelEl = document.getElementById('patternLabel');
+  if (!el || !labelEl) return;
   el.classList.add('fading');
   setTimeout(() => {
     el.textContent = name;
@@ -235,15 +236,18 @@ function animateName(name, label) {
   }, 150);
 }
 
-document.getElementById('generateBtn').addEventListener('click', () => {
+document.getElementById('generateBtn')?.addEventListener('click', () => {
   const { name, label } = generate();
   animateName(name, label);
 });
 
 // Generate one on load
 window.addEventListener('DOMContentLoaded', () => {
+  const nameEl = document.getElementById('generatedName');
+  const labelEl = document.getElementById('patternLabel');
+  if (!nameEl || !labelEl) return;
   const { name, label } = generate();
-  document.getElementById('generatedName').textContent = name;
-  document.getElementById('patternLabel').textContent = label;
+  nameEl.textContent = name;
+  labelEl.textContent = label;
 });
 </script>

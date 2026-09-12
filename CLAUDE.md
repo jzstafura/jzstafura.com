@@ -16,7 +16,9 @@ npx astro check        # TypeScript type-checking
 
 As of Astro 7, `npm run preview` **daemonizes**: it prints a pid and returns immediately instead of holding the terminal. Backgrounding it will look like it exited successfully while the server is still running and holding port 4321. Always shut it down with `npx astro preview stop` (`astro preview status` / `astro preview logs` also exist). `npm run dev` still runs in the foreground as usual.
 
-There is no linting or test suite. `npx astro check` currently reports 15 pre-existing implicit-`any` errors in `src/pages/fun/banana-santana/index.astro`'s inline script — a clean run is 15 errors, not 0.
+There is no linting or test suite. `npx astro check` should report **0 errors** — keep it that way.
+
+Note that Astro type-checks inline `<script>` blocks as **TypeScript**, not JavaScript, so JSDoc type annotations (`@param {string}`) are silently ignored there. Annotate with real TS syntax instead (`function pick<T>(arr: T[]): T`); Astro strips the types at build.
 
 ### Local Repo Location
 The canonical local checkout is `~/dev/projects/jzstafura.com` — a plain local folder.
